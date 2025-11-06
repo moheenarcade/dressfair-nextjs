@@ -37,3 +37,10 @@ button , a {
 }
 
 
+.tabs-main::-webkit-scrollbar {
+  display: none;
+}
+.tabs-main {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}

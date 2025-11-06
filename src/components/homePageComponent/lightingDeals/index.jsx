@@ -184,7 +184,7 @@ const LightingDeals = () => {
                     {products.map((product) => (
                         <SwiperSlide key={product.id}>
                             <Link href="#">
-                            <div className="single-lighting-deals-card group px-1 xl:px-4">
+                            <div className="single-lighting-deals-card group">
                                 <div className="product-img overflow-hidden w-full md:w-[250px] h-[250px] bg-[#00000008] flex items-center justify-center">
                                     <Image
                                         className='w-full h-full object-contain group-hover:scale-[1.2] transition-all duration-500 ease-in-out'
