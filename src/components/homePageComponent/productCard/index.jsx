@@ -36,7 +36,7 @@ const ProductCard = ({ products = [] }) => {
                 )}
               </p>
 
-              <button className="border-[1.2px] hover:scale-[1.02] transition-all duration-500 ease-in-out border-black rounded-full px-3 py-[2px] flex justify-center items-center">
+              <button className="border-[1.2px] hover:scale-[1.05] transition-all duration-500 ease-in-out border-black rounded-full px-3 py-[2px] flex justify-center items-center">
                 <BiCartAdd className="text-2xl" />
               </button>
             </div>
