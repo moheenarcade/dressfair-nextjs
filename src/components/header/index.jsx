@@ -362,7 +362,7 @@ const Header = () => {
                                         <div className="px-4 py-2">
                                             <label className='text-[17px] font-normal'>Language</label>
                                             <div className="lang-radio py-3 border-b border-b-gray-200">
-                                                <p className='flex items-center gap-2 text-[15px] font-normal'><div className='bg-white rounded-full border-4 border-black w-4 h-4'></div> English</p>
+                                                <div className='flex items-center gap-2 text-[15px] font-normal'><div className='bg-white rounded-full border-4 border-black w-4 h-4'></div> English</div>
 
                                             </div>
 
