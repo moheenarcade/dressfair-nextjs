@@ -163,8 +163,8 @@ const LightingDeals = () => {
                     slidesPerView={5}
                     breakpoints={{
                         320: {
-                            slidesPerView: 2,
-                            spaceBetween: 10
+                            slidesPerView: 1.4,
+                            spaceBetween: 5
                         },
                         768: {
                             slidesPerView: 3,
@@ -184,8 +184,8 @@ const LightingDeals = () => {
                     {products.map((product) => (
                         <SwiperSlide key={product.id}>
                             <Link href="#">
-                            <div className="single-lighting-deals-card group px-4">
-                                <div className="product-img overflow-hidden w-[250px] h-[250px] bg-[#00000008] flex items-center justify-center">
+                            <div className="single-lighting-deals-card group px-1 xl:px-4">
+                                <div className="product-img overflow-hidden w-full md:w-[250px] h-[250px] bg-[#00000008] flex items-center justify-center">
                                     <Image
                                         className='w-full h-full object-contain group-hover:scale-[1.2] transition-all duration-500 ease-in-out'
                                         src={product.image}
@@ -229,12 +229,12 @@ const LightingDeals = () => {
                 </Swiper>
 
                 {/* Custom Navigation Arrows */}
-                <button className="swiper-button-prev-custom absolute top-1/2 -left-4 -translate-y-1/2 z-10 cursor-pointer bg-white shadow-lg rounded-full w-10 h-10 flex items-center justify-center hover:bg-gray-100 transition-colors">
+                <button className="swiper-button-prev-custom absolute top-1/2 left-0 xl:-left-4 -translate-y-1/2 z-10 cursor-pointer bg-white shadow-lg rounded-full w-10 h-10 flex items-center justify-center hover:bg-gray-100 transition-colors">
                     <svg className="w-5 h-5 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
                     </svg>
                 </button>
-                <button className="swiper-button-next-custom absolute top-1/2 -right-4 -translate-y-1/2 z-10 cursor-pointer bg-white shadow-lg rounded-full w-10 h-10 flex items-center justify-center hover:bg-gray-100 transition-colors">
+                <button className="swiper-button-next-custom absolute top-1/2 right-0 xl:-right-4 -translate-y-1/2 z-10 cursor-pointer bg-white shadow-lg rounded-full w-10 h-10 flex items-center justify-center hover:bg-gray-100 transition-colors">
                     <svg className="w-5 h-5 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                     </svg>
