@@ -262,7 +262,7 @@ const Footer = () => {
         </div>
       </div>
 
-      <div className="mobile-footer block xl:hidden bg-[#f5f5f5] py-3">
+      <div className="mobile-footer block xl:hidden bg-[#f5f5f5] py-3 lg:px-16">
         <div className="footer-faqs">
 
           {faqsData.map((faq, index) => {

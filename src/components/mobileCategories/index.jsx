@@ -121,7 +121,7 @@ const MobileCategories = () => {
     return (
 
         <>
-            <div className="mobile-cat-sec bg-white w-full h-[90vh] fixed block xl:hidden">
+            <div className="mobile-cat-sec bg-white w-full h-[90vh] lg:h-screen fixed block xl:hidden z-[99999999999]">
                 <div className="cat-top-strip bg-[#FEEFE1] px-2 py-2 flex justify-between items-center">
                     <p className='flex items-center gap-1 text-[#000000] text-sm'>
                         <FaCheck className='text-[#0b8802] text-lg' />

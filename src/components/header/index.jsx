@@ -399,7 +399,7 @@ const Header = () => {
                     </nav>
                 </div>
 
-                <div className="mobile-header py-1 px-2 border-b-[#DFDFDF] border-b block xl:hidden">
+                <div className="mobile-header py-1 px-2 lg:px-16 border-b-[#DFDFDF] border-b block xl:hidden">
                     <div className="flex justify-between items-center gap-4">
                         <div className="w-[50px] shrink-0">
                             <Link href="/">

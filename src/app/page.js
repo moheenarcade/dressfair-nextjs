@@ -15,7 +15,7 @@ const Home = () => {
        <DressfairFriday />
     </div>
 
-    <div className="homepage-mobile block xl:hidden">
+    <div className="homepage-mobile block xl:hidden lg:px-16">
         <TopTabsSection />
     </div>
     </>
