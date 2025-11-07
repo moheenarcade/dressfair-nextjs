@@ -1,5 +1,6 @@
-"use client";
-import React, { useState, useRef, useEffect } from "react";
+"use client"
+import React, { useState, useEffect, useRef } from 'react';
+import { usePathname } from 'next/navigation';
 import { FiSearch } from "react-icons/fi";
 import { MdDeleteSweep } from "react-icons/md";
 import Image from "next/image";
@@ -24,12 +25,13 @@ const popularItemsMock = [
 ];
 
 const SearchBarHeader = () => {
+    const pathname = usePathname();
+    const isHomePage = pathname === '/' || pathname === '/home';
     const [searchText, setSearchText] = useState("");
     const [showDropdown, setShowDropdown] = useState(false);
     const [recentItems, setRecentItems] = useState(recentItemsMock);
     const [popularItems] = useState(popularItemsMock);
     const [isDeleteMode, setIsDeleteMode] = useState(false);
-
     const dropdownRef = useRef(null);
     const inputRef = useRef(null);
 
@@ -66,7 +68,7 @@ const SearchBarHeader = () => {
     return (
         <div className="relative w-full max-w-[500px]">
             {/* Search Input */}
-            <div className="bg-white rounded-full flex items-center justify-between pl-4 pr-1 w-full h-[43px]">
+            <div className={`${isHomePage ? "border-white" : "border-black"} bg-white border-2 rounded-full flex items-center justify-between pl-4 pr-1 w-full h-[43px] `}>
                 <input
                     ref={inputRef}
                     className="h-full w-full text-[14px] rounded-full outline-0"

@@ -1,6 +1,7 @@
 "use client"
+import React, { useState, useEffect, useRef } from 'react';
+import { usePathname } from 'next/navigation';
 import Image from 'next/image';
-import React, { useEffect, useRef, useState } from 'react';
 import Logo from "../../../public/temu-logo.png";
 import { FiSearch } from "react-icons/fi";
 import { FaRegUser } from "react-icons/fa6";
@@ -133,6 +134,8 @@ const categoriesData = [
 ];
 
 const Header = () => {
+    const pathname = usePathname();
+    const isHomePage = pathname === '/' || pathname === '/home';
     const [showMobileSearchModel, setMobileSearchModel] = useState(false);
     const [showMobileCategory, setMobileCategory] = useState(false);
     const [showUserMobileDropdown, setShowUserMobileDropdown] = useState(false);
@@ -180,7 +183,7 @@ const Header = () => {
     return (
         <>
             <header>
-                <div className='bg-[#E02222] pb-2 hidden xl:block'>
+                <div className={`pb-2 border-b hidden xl:block ${isHomePage ? 'bg-[#E02222] border-b-[#E02222]' : 'bg-white border-b-[#DFDFDF]'}`}>
                     <HeaderTopContent />
                     <nav className='container mx-auto px-2 2xl:px-22 z-[99999999999]'>
                         <div className="flex items-center justify-between gap-4">
@@ -192,28 +195,30 @@ const Header = () => {
 
                             {/* Menu Links */}
                             <ul className="flex items-center shrink-0">
-                                <li className="relative flex items-center gap-1 font-semibold cursor-pointer text-white text-[14px] px-3 py-1 group rounded-md">
-                                    <span className="absolute inset-0 h-[50px] my-auto rounded-full bg-[#BA0000] scale-0 origin-center transition-transform duration-500 ease-in-out group-hover:scale-100"></span>
-                                    <svg
-                                        viewBox="0 0 1024 1024"
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        width="1em"
-                                        height="1em"
-                                        fill="white"
-                                        className="relative z-10"
-                                    >
-                                        <title>Best-Selling Items</title>
-                                        <path d="M542.7 34.1c58.8 0 110.7 40.1 127.6 98.8l0.7 2.5 0.5 1.1c0.3 0.9 0.6 1.8 0.9 2.7l0.7 2.8c6.2 29.5 9.5 59.1 9.5 88.8 0 26.2-2.4 52.3-7.2 78l-1.8 9.2 145.4 0.1c2.5 0 5 0.2 7.5 0.5l1.1 0.1 2.7 0.2c41.3 3.2 79.2 25.6 102.2 61.6l2.6 4.2c15.3 25.2 22.4 54.8 20.2 84.5l0.1-1.4 0.1-1.1 0 1.1c0.1 5.4-0.3 10.6-1.2 15.3l-0.8 3.4-74 340c-2.1 8.1-5.5 15.7-10.1 22.4l0.4-0.8 1.2-1.8-1.6 3.2c-9.9 18.7-23.9 34.8-40.8 47l-4.6 3.2c-21.9 14.4-47 21.9-72.5 21.9-0.9 0-1.7 0-2.5-0.1l-612.3-0.2c-36.4 0-66.4-29.7-68.2-67.4l-0.1-3.6c-0.1-1.6-0.2-2.7 0-4l0.3-389.6c0-34.8 24.3-64.4 57.2-70.1l3.4-0.4c102-11.9 169.3-32.5 200-59 42.2-36.2 80.1-108.7 80.1-154.3 0-78.4 59-138.7 133.3-138.8z m-218.4 460.8c-28.3 0-51.2 22.9-51.2 51.2l0 204.8c0 28.3 22.9 51.2 51.2 51.2 28.3 0 51.2-22.9 51.2-51.2l0-204.8c0-28.3-22.9-51.2-51.2-51.2z"></path>
-                                    </svg>
-                                    <span className="relative z-10">Best-Selling Items</span>
-                                </li>
-                                <li className="relative group flex items-center gap-1 font-semibold cursor-pointer text-white text-[14px] px-3 py-1">
-                                    <span className="absolute inset-0 h-[50px] my-auto rounded-full bg-[#BA0000] scale-0 origin-center transition-transform duration-500 ease-in-out group-hover:scale-100"></span>
-                                    <svg viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" className="relative z-10" alt="" aria-label="" fill="white" aria-hidden="true"><title>5-Star Rated</title><path d="M848.7 133.8c62.1 0 112.5 52.1 112.4 116.3l0 481c0 64.2-50.4 116.3-112.4 116.3l-212.5 0c-8.9 0-17.5 3.6-23.6 10.1l-86.8 90.5-0.8 0.8c-13 12.6-33.7 12.3-46.4-0.6l-88.5-90.9c-6.2-6.3-14.6-9.9-23.4-9.9l-191.4 0c-59.3 0-107.9-47.4-112.1-107.6l-0.3-8.7 0-481c0-64.2 50.4-116.3 112.4-116.3z m-329.7 178.4c-10-3.4-20.8 2.1-24.1 12.4l-34.2 106.1-108.2 0.8c-6 0-11.7 3-15.2 8-6.3 8.8-4.5 21.1 4 27.6l87.1 66.4-32.7 106.6c-1.8 5.9-0.8 12.4 2.7 17.4 6.1 8.9 18.1 10.9 26.6 4.6l88-65.1 88 65.1c4.9 3.6 11.1 4.6 16.8 2.7 10-3.3 15.6-14.4 12.4-24.7l-32.6-106.6 87-66.4c4.8-3.7 7.7-9.5 7.8-15.7 0.1-10.9-8.4-19.8-19-19.9l-108.1-0.8-34.2-106.1c-1.9-5.9-6.4-10.5-12.1-12.4z"></path></svg>
+                                <Link href="/best-seller">
+                                    <li className={` ${isHomePage ? "text-white " : "text-[#222222]"} relative flex items-center gap-1 font-semibold cursor-pointer  text-[14px] px-3 py-1 group rounded-md `}>
+                                        <span className={`${isHomePage ? "bg-[#BA0000]" : "bg-[#eeeeee]"} absolute inset-0 h-[50px] my-auto rounded-full scale-0 origin-center transition-transform duration-500 ease-in-out group-hover:scale-100 `}></span>
+                                        <svg
+                                            viewBox="0 0 1024 1024"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            width="1em"
+                                            height="1em"
+                                            fill={`${isHomePage ? "white" : "#222222"} `}
+                                            className="relative z-10"
+                                        >
+                                            <title>Best-Selling Items</title>
+                                            <path d="M542.7 34.1c58.8 0 110.7 40.1 127.6 98.8l0.7 2.5 0.5 1.1c0.3 0.9 0.6 1.8 0.9 2.7l0.7 2.8c6.2 29.5 9.5 59.1 9.5 88.8 0 26.2-2.4 52.3-7.2 78l-1.8 9.2 145.4 0.1c2.5 0 5 0.2 7.5 0.5l1.1 0.1 2.7 0.2c41.3 3.2 79.2 25.6 102.2 61.6l2.6 4.2c15.3 25.2 22.4 54.8 20.2 84.5l0.1-1.4 0.1-1.1 0 1.1c0.1 5.4-0.3 10.6-1.2 15.3l-0.8 3.4-74 340c-2.1 8.1-5.5 15.7-10.1 22.4l0.4-0.8 1.2-1.8-1.6 3.2c-9.9 18.7-23.9 34.8-40.8 47l-4.6 3.2c-21.9 14.4-47 21.9-72.5 21.9-0.9 0-1.7 0-2.5-0.1l-612.3-0.2c-36.4 0-66.4-29.7-68.2-67.4l-0.1-3.6c-0.1-1.6-0.2-2.7 0-4l0.3-389.6c0-34.8 24.3-64.4 57.2-70.1l3.4-0.4c102-11.9 169.3-32.5 200-59 42.2-36.2 80.1-108.7 80.1-154.3 0-78.4 59-138.7 133.3-138.8z m-218.4 460.8c-28.3 0-51.2 22.9-51.2 51.2l0 204.8c0 28.3 22.9 51.2 51.2 51.2 28.3 0 51.2-22.9 51.2-51.2l0-204.8c0-28.3-22.9-51.2-51.2-51.2z"></path>
+                                        </svg>
+                                        <span className="relative z-10">Best-Selling Items</span>
+                                    </li>
+                                </Link>
+                                <li className={` ${isHomePage ? "text-white " : "text-[#222222]"} relative group flex items-center gap-1 font-semibold cursor-pointer  text-[14px] px-3 py-1 `}>
+                                    <span className={`${isHomePage ? "bg-[#BA0000]" : "bg-[#eeeeee]"} absolute inset-0 h-[50px] my-auto rounded-full scale-0 origin-center transition-transform duration-500 ease-in-out group-hover:scale-100 `}></span>
+                                    <svg viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" className="relative z-10" alt="" aria-label="" fill={`${isHomePage ? "white" : "#222222"} `} aria-hidden="true"><title>5-Star Rated</title><path d="M848.7 133.8c62.1 0 112.5 52.1 112.4 116.3l0 481c0 64.2-50.4 116.3-112.4 116.3l-212.5 0c-8.9 0-17.5 3.6-23.6 10.1l-86.8 90.5-0.8 0.8c-13 12.6-33.7 12.3-46.4-0.6l-88.5-90.9c-6.2-6.3-14.6-9.9-23.4-9.9l-191.4 0c-59.3 0-107.9-47.4-112.1-107.6l-0.3-8.7 0-481c0-64.2 50.4-116.3 112.4-116.3z m-329.7 178.4c-10-3.4-20.8 2.1-24.1 12.4l-34.2 106.1-108.2 0.8c-6 0-11.7 3-15.2 8-6.3 8.8-4.5 21.1 4 27.6l87.1 66.4-32.7 106.6c-1.8 5.9-0.8 12.4 2.7 17.4 6.1 8.9 18.1 10.9 26.6 4.6l88-65.1 88 65.1c4.9 3.6 11.1 4.6 16.8 2.7 10-3.3 15.6-14.4 12.4-24.7l-32.6-106.6 87-66.4c4.8-3.7 7.7-9.5 7.8-15.7 0.1-10.9-8.4-19.8-19-19.9l-108.1-0.8-34.2-106.1c-1.9-5.9-6.4-10.5-12.1-12.4z"></path></svg>
                                     <span className="relative z-10">5-Star Rated</span>
                                 </li>
-                                <li className="relative cursor-pointer group py-1 px-3 text-white text-[14px] font-semibold">
-                                    <span className="absolute inset-0 h-[50px] my-auto rounded-full bg-[#BA0000] scale-0 origin-center transition-transform duration-500 ease-in-out group-hover:scale-100"></span>
+                                <li className={` ${isHomePage ? "text-white " : "text-[#222222]"} relative group flex items-center gap-1 font-semibold cursor-pointer text-[14px] px-3 py-1 `}>
+                                    <span className={`${isHomePage ? "bg-[#BA0000]" : "bg-[#eeeeee]"} absolute inset-0 h-[50px] my-auto rounded-full scale-0 origin-center transition-transform duration-500 ease-in-out group-hover:scale-100 `}></span>
                                     <span className="relative z-10"> New In</span>
                                 </li>
 
@@ -223,8 +228,8 @@ const Header = () => {
                                     onMouseEnter={() => setShowMegaMenu(true)}
                                     onMouseLeave={() => setShowMegaMenu(false)}
                                 >
-                                    <li className="relative cursor-pointer flex items-center gap-2 cursor-pointer group py-1 px-3 text-white text-[14px] font-semibold">
-                                        <span className="absolute inset-0 h-[50px] my-auto rounded-full bg-[#BA0000] scale-0 origin-center transition-transform duration-500 ease-in-out group-hover:scale-100"></span>
+                                    <li className={`${isHomePage ? "text-white" : "text-[#222222]"} relative cursor-pointer flex items-center gap-2 group py-1 px-3 text-[14px] font-semibold `}>
+                                        <span className={`${isHomePage ? "bg-[#BA0000]" : "bg-[#eeeeee]"} absolute inset-0 h-[50px] my-auto rounded-full scale-0 origin-center transition-transform duration-500 ease-in-out group-hover:scale-100`}></span>
                                         <span className="relative z-10">Categories</span>
                                         <IoIosArrowDown className="relative z-10" />
                                     </li>
@@ -298,8 +303,8 @@ const Header = () => {
                             <SearchBarHeader />
                             {/* Right Icons */}
                             <ul className="flex items-center shrink-0">
-                                <li onClick={() => setShowSignInModal(true)} className="relative group py-1 px-3 flex items-center gap-1 cursor-pointer text-white">
-                                    <span className="absolute inset-0 h-[50px] my-auto rounded-full bg-[#BA0000] scale-0 origin-center transition-transform duration-500 ease-in-out group-hover:scale-100"></span>
+                                <li onClick={() => setShowSignInModal(true)} className={`${isHomePage ? "text-white" : "text-[#222222]"} relative group py-1 px-3 flex items-center gap-1 cursor-pointer `}>
+                                    <span className={`${isHomePage ? "bg-[#BA0000]" : "bg-[#eeeeee]"} absolute inset-0 h-[50px] my-auto rounded-full scale-0 origin-center transition-transform duration-500 ease-in-out group-hover:scale-100`}></span>
                                     <FaRegUser className="text-xl relative z-10" />
                                     <span className="leading-4 relative z-10">
                                         <span className="text-[13px]"> Sign in / Register</span> <br />
@@ -307,9 +312,9 @@ const Header = () => {
                                     </span>
                                 </li>
 
-                                <li className="relative group py-1 px-3 cursor-pointer font-semibold text-white flex gap-1 items-center text-[14px]">
+                                <li className={`${isHomePage ? "text-white" : "text-[#222222]"} relative group py-1 px-3 cursor-pointer font-semibold flex gap-1 items-center text-[14px]`}>
                                     {/* Background animation */}
-                                    <span className="absolute inset-0 h-[50px] my-auto rounded-full bg-[#BA0000] scale-0 origin-center transition-transform duration-500 ease-in-out group-hover:scale-100"></span>
+                                    <span className={`${isHomePage ? "bg-[#BA0000]" : "bg-[#eeeeee]"} absolute inset-0 h-[50px] my-auto rounded-full scale-0 origin-center transition-transform duration-500 ease-in-out group-hover:scale-100`}></span>
 
                                     {/* Main content */}
                                     <span className="relative z-10 flex items-center gap-1">
@@ -339,8 +344,8 @@ const Header = () => {
                                         <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer tetx-[14px] font-[500] flex items-center gap-1"><AiOutlineMessage className='text-lg' />Term of use</li>
                                     </ul>
                                 </li>
-                                <li className="relative group py-1 px-3 cursor-pointer font-semibold text-white text-[14px]">
-                                    <span className="absolute inset-0 h-[50px] my-auto rounded-full bg-[#BA0000] scale-0 origin-center transition-transform duration-500 ease-in-out group-hover:scale-100"></span>
+                                <li className={`${isHomePage ? "text-white" : "text-[#222222]"} relative group py-1 px-3 cursor-pointer font-semibold text-[14px]`}>
+                                    <span className={` ${isHomePage ? "bg-[#BA0000]" : "bg-[#eeeeee]"} absolute inset-0 h-[50px] my-auto rounded-full scale-0 origin-center transition-transform duration-500 ease-in-out group-hover:scale-100`}></span>
                                     <span className="relative z-10 flex items-center gap-1">
                                         <Image className='w-4 h-4 rounded-full' src={Counrty} alt="country flag" />
                                         English
@@ -390,8 +395,8 @@ const Header = () => {
                                         </div>
                                     </ul>
                                 </li>
-                                <li className="relative group py-1 px-3 cursor-pointer text-white">
-                                    <span className="absolute inset-0 min-w-[50px] mx-auto h-[50px] my-auto rounded-full bg-[#BA0000] scale-0 origin-center transition-transform duration-500 ease-in-out group-hover:scale-100"></span>
+                                <li className={` ${isHomePage ? "text-white" : "text-[#222222]"} relative group py-1 px-3 cursor-pointer `}>
+                                    <span className={`${isHomePage ? "bg-[#BA0000]" : "bg-[#eeeeee]"} absolute inset-0 min-w-[50px] mx-auto h-[50px] my-auto rounded-full scale-0 origin-center transition-transform duration-500 ease-in-out group-hover:scale-100`}></span>
                                     <FiShoppingCart className="text-xl relative z-10" />
                                 </li>
                             </ul>
