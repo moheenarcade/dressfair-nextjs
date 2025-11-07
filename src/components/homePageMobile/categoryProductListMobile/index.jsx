@@ -37,7 +37,7 @@ const CategoryProductListMobile = () => {
     // ✅ Filter logic
     const filteredProducts = products.filter((p) => {
         if (activeTab === "All") return true;
-        if (activeTab === "5-Star Rated") return true;
+        if (activeTab === "5-Star Rated") return p.rating === 5;
         if (activeTab === "Best-Selling Items") return parseInt(p.sold) > 10;
         if (activeTab === "New In") return p.id > 5;
         return p.category === activeTab;
