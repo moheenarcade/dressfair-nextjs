@@ -1,6 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
 import { BiCartAdd } from "react-icons/bi";
+import { RiStarFill } from 'react-icons/ri';
 
 const ProductCard = ({ products = [] }) => {
   return (
@@ -39,6 +40,17 @@ const ProductCard = ({ products = [] }) => {
               <button className="border-[1.2px] hover:scale-[1.05] transition-all duration-500 ease-in-out border-black rounded-full px-3 py-[2px] flex justify-center items-center">
                 <BiCartAdd className="text-2xl" />
               </button>
+            </div>
+            <div className="deals-rating flex items-center gap-1">
+              <div className="flex items-center text-[13px] gap-1">
+                {[...Array(5)].map((_, index) => (
+                  <RiStarFill
+                    key={index}
+                    className={index < Math.floor(product.rating) ? 'text-black' : 'text-gray-300'}
+                  />
+                ))} <span className='text-[#777] font-semibold'>2323</span>
+              </div>
+              <p className='text-[13px]'>{product.reviewCount}</p>
             </div>
           </div>
         </div>
