@@ -4,7 +4,7 @@ const MobileUserPopup = () => {
 
     return (
 
-        <div className='bg-white rounded-[5px] shadow-lg z-[999999] left-0 right-0 md:right-4 -mt-2 absolute w-[90%] md:w-[400px] mx-auto md:mr-0 border-[1px] border-[#dfdfdf]'>
+        <div className='bg-white rounded-[5px] shadow-lg z-[999999999999999999] left-0 right-0 md:right-4 -mt-2 absolute w-[90%] md:w-[400px] mx-auto md:mr-0 border-[1px] border-[#dfdfdf]'>
             <div className="relative">
                 {/* <div
                     className="absolute right-4 shadow-lg top-[-10px] transform -translate-x-1/2 z-[60]
