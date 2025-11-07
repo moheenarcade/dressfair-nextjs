@@ -5,21 +5,20 @@ import WhyChooseDressfair from "@/components/homePageComponent/whyChooseDressfai
 import TopTabsSection from "@/components/homePageMobile/topTabSection";
 
 const Home = () => {
-
   return (
     <>
-    <div className="homePage-disktop hidden xl:block">
-       <HeroSection />
-       <WhyChooseDressfair />
-       <LightingDeals />
-       <DressfairFriday />
-    </div>
+      <div className="homePage-disktop hidden xl:block">
+        <HeroSection />
+        <WhyChooseDressfair />
+        <LightingDeals />
+        <DressfairFriday />
+      </div>
 
-    <div className="homepage-mobile block xl:hidden lg:px-16">
+      <div className="homepage-mobile block xl:hidden lg:px-16">
         <TopTabsSection />
-    </div>
+      </div>
     </>
   );
-}
+};
 
 export default Home;

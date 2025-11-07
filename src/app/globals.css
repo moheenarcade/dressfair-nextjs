@@ -45,6 +45,15 @@ button , a {
   scrollbar-width: none;  /* Firefox */
 }
 
+.mobile-promo-slider .swiper-pagination-bullet-active{
+  background: black !important
+}
+
+.mobile-promo-slider .swiper-pagination-clickable .swiper-pagination-bullet {
+  background-color: white;
+  opacity: 1 !important;
+}
+
 @media (min-width: 100px) and (max-width: 375px) {
   .mobile-sold-num {
     font-size: 9px !important;

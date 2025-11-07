@@ -3,6 +3,8 @@ import HeroSection from '@/components/homePageComponent/heroSection';
 import React, { useState, useRef } from 'react';
 import WhyChosseMobileSec from '../whyChosseMobileSec';
 import LightingDealsMobile from '../lightingDealsMobile';
+import PromotionalSliderMobile from '../promotionalSliderMobile';
+import ProductListingMobile from '../productListingMobile';
 
 const TopTabsSection = () => {
     const [activeTab, setActiveTab] = useState('All');
@@ -59,6 +61,8 @@ const TopTabsSection = () => {
                         <HeroSection />
                         <WhyChosseMobileSec />
                         <LightingDealsMobile />
+                        <PromotionalSliderMobile />
+                        <ProductListingMobile />
                     </>
                 }
                 {activeTab === 'Women' && <div>Women's Products Component</div>}
