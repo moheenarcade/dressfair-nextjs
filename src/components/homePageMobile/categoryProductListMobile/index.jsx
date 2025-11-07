@@ -69,10 +69,18 @@ const CategoryProductListMobile = () => {
                 </div>
                 <div className="tabs-main pt-3 pb-4 px-2">
                     {/* Tabs */}
+                    {/* <div
+                        ref={tabsContainerRef}
+                        className="overflow-x-auto scrollbar-hide whitespace-nowrap"
+                        style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+                    > */}
                     <div
                         ref={tabsContainerRef}
                         className="overflow-x-auto scrollbar-hide whitespace-nowrap"
                         style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+                        onTouchStart={(e) => e.stopPropagation()}
+                        onTouchMove={(e) => e.stopPropagation()}
+                        onTouchEnd={(e) => e.stopPropagation()}
                     >
                         <ul className="flex items-start text-[#777777] font-semibold text-[15px] min-w-max px-2">
                             {tabsProductList.map((tab) => (
