@@ -6,13 +6,13 @@ import { RiStarFill } from 'react-icons/ri';
 
 const ProductCardMobile = ({ products = [] }) => {
     return (
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-2">
+        <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-5 xl:grid-cols-5 gap-2">
             {products.map((product, index) => (
                 <div
                     key={index}
                     className="single-product group transition-all duration-500 ease-in-out cursor-pointer hover:bg-white rounded-md hover:shadow-[0px_4px_24px_0px_rgba(0,0,0,0.1)]"
                 >
-                    <div className="product-banner w-full h-[150px]">
+                    <div className="product-banner w-full aspect-square">
                         <Image
                             className="w-full h-full object-cover rounded-sm"
                             src={product.image}
@@ -33,7 +33,7 @@ const ProductCardMobile = ({ products = [] }) => {
                                         key={index}
                                         className={index < Math.floor(product.rating) ? 'text-black' : 'text-gray-300'}
                                     />
-                                ))}2323 
+                                ))} <span className='text-[#777] font-semibold'>2323</span>  
                             </div>
                             <p className='text-[13px]'>{product.reviewCount}</p>
                         </div>
