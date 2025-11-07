@@ -163,7 +163,7 @@ const SingleProduct = ({ product }) => {
   );
 
   useEffect(() => {
-    const randomInterval = Math.floor(Math.random() * 8000) + 7000; // 7–15s random interval
+    const randomInterval = Math.floor(Math.random() * 10000) + 12000; // 7–15s random interval
     const interval = setInterval(() => {
       setActiveMessageIndex((prev) => (prev + 1) % messages.length);
     }, randomInterval);
