@@ -36,10 +36,10 @@ const ProductCard = ({ products = [] }) => {
                   </span>
                 )}
                 {product.sold && (
-                                    <span className="text-[11px] text-[#555] font-medium flex items-center">
-                                       <svg xmlns='http://www.w3.org/2000/svg' className='text-[#fb7701]' viewBox='0 0 1024 1024' style={{width:'1em',height:'1em'}} fill='#fb7701' overflow='hidden'><path d='M433.9 8.5C580.2 94.2 679 249.2 682.6 427c29.6-29.3 51.3-66.4 61.6-107.8l.6-3.1c86.9 67.1 142.7 170.9 142.7 287.4 0 6.9-.2 13.8-.6 20.7.4 6.4.6 12.8.6 19.3 0 202.3-168.1 366.3-375.5 366.3s-375.5-164-375.5-366.3c0-101.3 42.1-192.9 110.3-259.3 88.6-101.4 152.8-223.8 183.4-358.4l3.7-17.3z' fill='#fb7701'/></svg> {product.sold}+sold
-                                    </span>
-                                )}
+                  <span className="text-[11px] text-[#555] font-medium flex items-center">
+                    <svg xmlns='http://www.w3.org/2000/svg' className='text-[#fb7701]' viewBox='0 0 1024 1024' style={{ width: '1em', height: '1em' }} fill='#fb7701' overflow='hidden'><path d='M433.9 8.5C580.2 94.2 679 249.2 682.6 427c29.6-29.3 51.3-66.4 61.6-107.8l.6-3.1c86.9 67.1 142.7 170.9 142.7 287.4 0 6.9-.2 13.8-.6 20.7.4 6.4.6 12.8.6 19.3 0 202.3-168.1 366.3-375.5 366.3s-375.5-164-375.5-366.3c0-101.3 42.1-192.9 110.3-259.3 88.6-101.4 152.8-223.8 183.4-358.4l3.7-17.3z' fill='#fb7701' /></svg> {product.sold}+sold
+                  </span>
+                )}
               </p>
 
               <button className="border-[1.2px] hover:scale-[1.05] transition-all duration-500 ease-in-out border-black rounded-full px-3 py-[2px] flex justify-center items-center">

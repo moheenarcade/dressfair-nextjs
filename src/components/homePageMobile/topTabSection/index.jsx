@@ -5,13 +5,13 @@ import WhyChosseMobileSec from '../whyChosseMobileSec';
 import LightingDealsMobile from '../lightingDealsMobile';
 import PromotionalSliderMobile from '../promotionalSliderMobile';
 import ProductListingMobile from '../productListingMobile';
+import CategoryProductListMobile from '../categoryProductListMobile';
 
 const TopTabsSection = () => {
   const [activeTab, setActiveTab] = useState('All');
   const tabsContainerRef = useRef(null);
   const touchStartX = useRef(0);
   const touchEndX = useRef(0);
-
   const tabs = [
     'All', 'Women', 'Home', 'Sports', 'Men', 'Crafts',
     'Electronics', 'Jewelry', 'Kids', 'Toy', 'Bags',
@@ -46,10 +46,8 @@ const TopTabsSection = () => {
     // threshold: minimal swipe distance
     if (Math.abs(diff) > 50) {
       if (diff > 0 && currentIndex < tabs.length - 1) {
-        // Swiped left → next tab
         handleTabClick(tabs[currentIndex + 1]);
       } else if (diff < 0 && currentIndex > 0) {
-        // Swiped right → previous tab
         handleTabClick(tabs[currentIndex - 1]);
       }
     }
@@ -96,7 +94,14 @@ const TopTabsSection = () => {
             <ProductListingMobile />
           </>
         )}
-        {activeTab === 'Women' && <div>Women's Products Component</div>}
+        {activeTab === 'Women' && (
+
+          <>
+            <CategoryProductListMobile />
+          </>
+
+        )}
+
         {activeTab === 'Home' && <div>Home Products Component</div>}
         {activeTab === 'Sports' && <div>Sports Products Component</div>}
         {activeTab === 'Men' && <div>Men's Products Component</div>}
