@@ -2,6 +2,7 @@
 import HeroSection from '@/components/homePageComponent/heroSection';
 import React, { useState, useRef } from 'react';
 import WhyChosseMobileSec from '../whyChosseMobileSec';
+import LightingDealsMobile from '../lightingDealsMobile';
 
 const TopTabsSection = () => {
     const [activeTab, setActiveTab] = useState('All');
@@ -33,7 +34,7 @@ const TopTabsSection = () => {
                     ref={tabsContainerRef}
                     className='overflow-x-auto scrollbar-hide whitespace-nowrap'
                     style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
-                > <ul className='flex text-[#777777] font-semibold gap-4 text-[17px] min-w-max px-2'>
+                > <ul className='flex text-[#777777] font-semibold gap-4 text-[15px] min-w-max px-2'>
                         {tabs.map((tab) => (
                             <li
                                 key={tab}
@@ -57,6 +58,7 @@ const TopTabsSection = () => {
                     <>
                         <HeroSection />
                         <WhyChosseMobileSec />
+                        <LightingDealsMobile />
                     </>
                 }
                 {activeTab === 'Women' && <div>Women's Products Component</div>}
