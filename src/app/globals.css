@@ -44,3 +44,14 @@ button , a {
   -ms-overflow-style: none;  /* IE and Edge */
   scrollbar-width: none;  /* Firefox */
 }
+
+@media (min-width: 100px) and (max-width: 375px) {
+  .mobile-sold-num {
+    font-size: 9px !important;
+  }
+
+  .delas-price-mobile {
+    font-size: 12px !important;
+  }
+}
+
