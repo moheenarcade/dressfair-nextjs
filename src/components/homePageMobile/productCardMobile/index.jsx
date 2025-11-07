@@ -47,7 +47,7 @@ const ProductCardMobile = ({ products = [] }) => {
                                 )}
                             </p>
 
-                            <button className="border-[1px] hover:scale-[1.05] transition-all duration-500 ease-in-out border-black rounded-full px-2 py-[1px] flex justify-center items-center">
+                            <button className="border hover:scale-[1.05] transition-all duration-500 ease-in-out border-black rounded-full px-2 py-[1px] flex justify-center items-center">
                                 <BiCartAdd className="text-xl" />
                             </button>
                         </div>
