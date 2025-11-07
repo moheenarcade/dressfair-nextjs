@@ -95,24 +95,66 @@ const TopTabsSection = () => {
           </>
         )}
         {activeTab === 'Women' && (
-
           <>
             <CategoryProductListMobile />
           </>
-
         )}
 
-        {activeTab === 'Home' && <div>Home Products Component</div>}
-        {activeTab === 'Sports' && <div>Sports Products Component</div>}
-        {activeTab === 'Men' && <div>Men's Products Component</div>}
-        {activeTab === 'Crafts' && <div>Crafts Component</div>}
-        {activeTab === 'Electronics' && <div>Electronics Component</div>}
-        {activeTab === 'Jewelry' && <div>Jewelry Component</div>}
-        {activeTab === 'Kids' && <div>Kids Component</div>}
-        {activeTab === 'Toy' && <div>Toy Component</div>}
-        {activeTab === 'Bags' && <div>Bags Component</div>}
-        {activeTab === 'Beauty' && <div>Beauty Component</div>}
-        {activeTab === 'Office' && <div>Office Component</div>}
+        {activeTab === 'Home' &&
+          <>
+            <CategoryProductListMobile />
+          </>
+        }
+        {activeTab === 'Sports' &&
+          <>
+            <CategoryProductListMobile />
+          </>
+        }
+        {activeTab === 'Men' &&
+          <>
+            <CategoryProductListMobile />
+          </>
+        }
+        {activeTab === 'Crafts' &&
+          <>
+            <CategoryProductListMobile />
+          </>
+        }
+        {activeTab === 'Electronics' &&
+          <>
+            <CategoryProductListMobile />
+          </>}
+
+        {activeTab === 'Jewelry' &&
+          <>
+            <CategoryProductListMobile />
+          </>
+        }
+        {activeTab === 'Kids' &&
+          <>
+            <CategoryProductListMobile />
+          </>
+        }
+        {activeTab === 'Toy' &&
+          <>
+            <CategoryProductListMobile />
+          </>
+        }
+        {activeTab === 'Bags' &&
+          <>
+            <CategoryProductListMobile />
+          </>
+        }
+        {activeTab === 'Beauty' &&
+          <>
+            <CategoryProductListMobile />
+          </>
+        }
+        {activeTab === 'Office' &&
+          <>
+            <CategoryProductListMobile />
+          </>
+        }
       </div>
     </>
   );

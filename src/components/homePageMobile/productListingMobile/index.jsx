@@ -69,6 +69,9 @@ const ProductListingMobile = () => {
                 ref={tabsContainerRef}
                 className="overflow-x-auto scrollbar-hide whitespace-nowrap"
                 style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+                onTouchStart={(e) => e.stopPropagation()}
+                onTouchMove={(e) => e.stopPropagation()}
+                onTouchEnd={(e) => e.stopPropagation()}
             >
                 <ul className="flex text-[#777777] font-semibold gap-4 text-[15px] min-w-max px-2">
                     {tabsProductList.map((tab) => (

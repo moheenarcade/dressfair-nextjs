@@ -69,11 +69,7 @@ const CategoryProductListMobile = () => {
                 </div>
                 <div className="tabs-main pt-3 pb-4 px-2">
                     {/* Tabs */}
-                    {/* <div
-                        ref={tabsContainerRef}
-                        className="overflow-x-auto scrollbar-hide whitespace-nowrap"
-                        style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
-                    > */}
+
                     <div
                         ref={tabsContainerRef}
                         className="overflow-x-auto scrollbar-hide whitespace-nowrap"
