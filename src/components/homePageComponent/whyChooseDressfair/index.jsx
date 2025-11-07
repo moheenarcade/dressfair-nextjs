@@ -6,7 +6,7 @@ import Link from "next/link";
 
 const mainItems = [
     {
-        title: "Why choose Temu?",
+        title: "Why choose Dressfair?",
         icon: (
             <svg
                 className="WPHi-Fur"
