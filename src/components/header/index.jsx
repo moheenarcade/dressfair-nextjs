@@ -217,26 +217,26 @@ const Header = () => {
                                     </li>
                                 </Link>
                                 <Link href="/star-rated">
-                                <li className={` ${isHomePage ? "text-white " : "text-[#222222]"} relative group flex items-center gap-1 font-semibold cursor-pointer  text-[14px] px-3 py-1 `}>
-                                    <span className={`${isHomePage ? "bg-[#BA0000]" : "bg-[#eeeeee]"} absolute inset-0 h-[50px] my-auto rounded-full scale-0 origin-center transition-transform duration-500 ease-in-out group-hover:scale-100 `}></span>
-                                    <svg viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" className="relative z-10" alt="" aria-label="" fill={`${isHomePage ? "white" : "#222222"} `} aria-hidden="true"><title>5-Star Rated</title><path d="M848.7 133.8c62.1 0 112.5 52.1 112.4 116.3l0 481c0 64.2-50.4 116.3-112.4 116.3l-212.5 0c-8.9 0-17.5 3.6-23.6 10.1l-86.8 90.5-0.8 0.8c-13 12.6-33.7 12.3-46.4-0.6l-88.5-90.9c-6.2-6.3-14.6-9.9-23.4-9.9l-191.4 0c-59.3 0-107.9-47.4-112.1-107.6l-0.3-8.7 0-481c0-64.2 50.4-116.3 112.4-116.3z m-329.7 178.4c-10-3.4-20.8 2.1-24.1 12.4l-34.2 106.1-108.2 0.8c-6 0-11.7 3-15.2 8-6.3 8.8-4.5 21.1 4 27.6l87.1 66.4-32.7 106.6c-1.8 5.9-0.8 12.4 2.7 17.4 6.1 8.9 18.1 10.9 26.6 4.6l88-65.1 88 65.1c4.9 3.6 11.1 4.6 16.8 2.7 10-3.3 15.6-14.4 12.4-24.7l-32.6-106.6 87-66.4c4.8-3.7 7.7-9.5 7.8-15.7 0.1-10.9-8.4-19.8-19-19.9l-108.1-0.8-34.2-106.1c-1.9-5.9-6.4-10.5-12.1-12.4z"></path></svg>
-                                    <span className="relative z-10">5-Star Rated</span>
-                                    {/* 🔹 active indicator bar */}
-                                    {pathname === "/star-rated" && (
-                                        <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-4 h-1 bg-[#FB7701] rounded-full"></div>
-                                    )}
-                                </li>
+                                    <li className={` ${isHomePage ? "text-white " : "text-[#222222]"} relative group flex items-center gap-1 font-semibold cursor-pointer  text-[14px] px-3 py-1 `}>
+                                        <span className={`${isHomePage ? "bg-[#BA0000]" : "bg-[#eeeeee]"} absolute inset-0 h-[50px] my-auto rounded-full scale-0 origin-center transition-transform duration-500 ease-in-out group-hover:scale-100 `}></span>
+                                        <svg viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" className="relative z-10" alt="" aria-label="" fill={`${isHomePage ? "white" : "#222222"} `} aria-hidden="true"><title>5-Star Rated</title><path d="M848.7 133.8c62.1 0 112.5 52.1 112.4 116.3l0 481c0 64.2-50.4 116.3-112.4 116.3l-212.5 0c-8.9 0-17.5 3.6-23.6 10.1l-86.8 90.5-0.8 0.8c-13 12.6-33.7 12.3-46.4-0.6l-88.5-90.9c-6.2-6.3-14.6-9.9-23.4-9.9l-191.4 0c-59.3 0-107.9-47.4-112.1-107.6l-0.3-8.7 0-481c0-64.2 50.4-116.3 112.4-116.3z m-329.7 178.4c-10-3.4-20.8 2.1-24.1 12.4l-34.2 106.1-108.2 0.8c-6 0-11.7 3-15.2 8-6.3 8.8-4.5 21.1 4 27.6l87.1 66.4-32.7 106.6c-1.8 5.9-0.8 12.4 2.7 17.4 6.1 8.9 18.1 10.9 26.6 4.6l88-65.1 88 65.1c4.9 3.6 11.1 4.6 16.8 2.7 10-3.3 15.6-14.4 12.4-24.7l-32.6-106.6 87-66.4c4.8-3.7 7.7-9.5 7.8-15.7 0.1-10.9-8.4-19.8-19-19.9l-108.1-0.8-34.2-106.1c-1.9-5.9-6.4-10.5-12.1-12.4z"></path></svg>
+                                        <span className="relative z-10">5-Star Rated</span>
+                                        {/* 🔹 active indicator bar */}
+                                        {pathname === "/star-rated" && (
+                                            <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-4 h-1 bg-[#FB7701] rounded-full"></div>
+                                        )}
+                                    </li>
                                 </Link>
                                 <Link href="/new-in">
 
-                                <li className={` ${isHomePage ? "text-white " : "text-[#222222]"} relative group flex items-center gap-1 font-semibold cursor-pointer text-[14px] px-3 py-1 `}>
-                                    <span className={`${isHomePage ? "bg-[#BA0000]" : "bg-[#eeeeee]"} absolute inset-0 h-[50px] my-auto rounded-full scale-0 origin-center transition-transform duration-500 ease-in-out group-hover:scale-100 `}></span>
-                                    <span className="relative z-10"> New In</span>
-                                    {/* 🔹 active indicator bar */}
-                                    {pathname === "/new-in" && (
-                                        <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-4 h-1 bg-[#FB7701] rounded-full"></div>
-                                    )}
-                                </li>
+                                    <li className={` ${isHomePage ? "text-white " : "text-[#222222]"} relative group flex items-center gap-1 font-semibold cursor-pointer text-[14px] px-3 py-1 `}>
+                                        <span className={`${isHomePage ? "bg-[#BA0000]" : "bg-[#eeeeee]"} absolute inset-0 h-[50px] my-auto rounded-full scale-0 origin-center transition-transform duration-500 ease-in-out group-hover:scale-100 `}></span>
+                                        <span className="relative z-10"> New In</span>
+                                        {/* 🔹 active indicator bar */}
+                                        {pathname === "/new-in" && (
+                                            <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-4 h-1 bg-[#FB7701] rounded-full"></div>
+                                        )}
+                                    </li>
                                 </Link>
 
                                 {/* Categories trigger and mega menu */}
@@ -245,12 +245,12 @@ const Header = () => {
                                     onMouseEnter={() => setShowMegaMenu(true)}
                                     onMouseLeave={() => setShowMegaMenu(false)}
                                 >
-                                    <li 
-                                      onMouseEnter={() => {
-                                        setShowMegaMenu(true);
-                                        window.scrollTo({ top: 0, behavior: 'smooth' });
-                                    }}
-                                    className={`${isHomePage ? "text-white" : "text-[#222222]"} relative cursor-pointer flex items-center gap-2 group py-1 px-3 text-[14px] font-semibold `}>
+                                    <li
+                                        onMouseEnter={() => {
+                                            setShowMegaMenu(true);
+                                            window.scrollTo({ top: 0, behavior: 'smooth' });
+                                        }}
+                                        className={`${isHomePage ? "text-white" : "text-[#222222]"} relative cursor-pointer flex items-center gap-2 group py-1 px-3 text-[14px] font-semibold `}>
                                         <span className={`${isHomePage ? "bg-[#BA0000]" : "bg-[#eeeeee]"} absolute inset-0 h-[50px] my-auto rounded-full scale-0 origin-center transition-transform duration-500 ease-in-out group-hover:scale-100`}></span>
                                         <span className="relative z-10">Categories</span>
                                         <IoIosArrowDown className="relative z-10" />
@@ -285,17 +285,21 @@ const Header = () => {
                                             {/* Left Side Categories */}
                                             <div className="w-1/4 bg-[#f6f6f6] border-r border-gray-200 overflow-y-auto">
                                                 <ul>
-                                                    {categoriesData.map((cat) => (
+                                                    {categoriesData.map((cat , index) => (
+                                                         <Link key={cat.id} href={`/c/${cat.name.toLowerCase().replace(/&/g, 'and').replace(/\s+/g, '-')}`}>
                                                         <li
-                                                            key={cat.id}
+                                                           
                                                             onMouseEnter={() => setActiveCategory(cat)}
                                                             className={`py-3 px-4 flex justify-between items-center cursor-pointer text-sm font-semibold ${activeCategory.id === cat.id
                                                                 ? "bg-white text-black border-l-4 border-[#fb7701]"
                                                                 : "text-gray-600 hover:bg-white hover:text-black border-l-4 border-l-transparent"
                                                                 }`}
                                                         >
-                                                            {cat.name} <GoChevronRight className='text-[14px] text-gray-400' />
+                                                           
+                                                                {cat.name} <GoChevronRight className='text-[14px] text-gray-400' />
                                                         </li>
+                                                        </Link>
+
                                                     ))}
                                                 </ul>
                                             </div>
@@ -305,14 +309,14 @@ const Header = () => {
                                                 <h3 className="font-bold text-lg mb-4">{activeCategory.name}</h3>
                                                 <div className="grid grid-cols-5 gap-4">
                                                     {activeCategory.subcategories.map((sub) => (
-                                                        <div key={sub.id} className="cursor-pointer group hover:scale-[1.06] tarnsition-all duration-500 ease-in-out  flex flex-col items-center text-center">
+                                                        <Link href={`/c/${activeCategory.name.toLowerCase().replace(/&/g, 'and').replace(/\s+/g, '-')}/${sub.name.toLowerCase().replace(/&/g, 'and').replace(/\s+/g, '-')}`} key={sub.id} className="cursor-pointer group hover:scale-[1.06] tarnsition-all duration-500 ease-in-out  flex flex-col items-center text-center">
                                                             <Image
                                                                 src={sub.image}
                                                                 alt={sub.name}
                                                                 className="w-[80px] h-[80px] rounded-full object-cover"
                                                             />
                                                             <p className="mt-2 text-[14px]">{sub.name}</p>
-                                                        </div>
+                                                        </Link>
                                                     ))}
                                                 </div>
                                             </div>
