@@ -157,21 +157,21 @@ const BestSellerFilters = () => {
                 setMobileCategoryOpen(false);
             }
         };
-    
+
         const handleScroll = () => {
             setmMobileDaysOpen(false);
             setMobileCategoryOpen(false);
         };
-    
+
         document.addEventListener("mousedown", handleClickOutside);
         window.addEventListener("scroll", handleScroll);
-    
+
         return () => {
             document.removeEventListener("mousedown", handleClickOutside);
             window.removeEventListener("scroll", handleScroll);
         };
     }, []);
-    
+
 
     return (
         <div className="best-seller-filters">
@@ -201,7 +201,7 @@ const BestSellerFilters = () => {
                     </div>
 
                     {/* Right side: Category dropdown */}
-                    <div className="flex items-center gap-2 relative">
+                    <div className="flex items-center gap-2 relative z-[1]">
                         <label
                             htmlFor=""
                             className="text-[#888888] text-[13px] font-semibold"
@@ -239,8 +239,15 @@ const BestSellerFilters = () => {
                 <h1 className="text-center font-bold text-xl py-2">Best Sellers</h1>
                 <div className="mobile-filters-best-seller border-t border-t-gray-300 px-2 pt-4 relative">
                     <div className="flex items-center justify-between gap-4 pb-4" >
-                        {/* <div className="w-[50%]" ref={dropdownRef} >
-                            <div onClick={() => setmMobileDaysOpen(prev => !prev)} className="bg-[#f6f6f6] rounded-full w-full text-cenetr flex justify-center items-center py-1 px-2 ">
+            
+                        <div className="w-[50%]" ref={dropdownRef}>
+                            <div
+                                onClick={() => {
+                                    setmMobileDaysOpen(prev => !prev);
+                                    setMobileCategoryOpen(false); // close category dropdown
+                                }}
+                                className="bg-[#f6f6f6] rounded-full w-full text-center flex justify-center items-center py-1 px-2"
+                            >
                                 <p className="text-[14px] font-semibold flex justify-between gap-1 items-center">
                                     Within last {selectedDays} days <IoIosArrowDown />
                                 </p>
@@ -249,27 +256,30 @@ const BestSellerFilters = () => {
                                 <div className="within-days-list py-2 bg-white w-full absolute top-14 left-0 right-0 px-3 border-t border-t-gray-300 z-[9999]">
                                     <ul className="font-semibold text-[13px]">
                                         {[30, 14, 7].map((days) => (
-                                            <li key={days}
+                                            <li
+                                                key={days}
                                                 onClick={() => {
                                                     setSelectedDays(days);
                                                     setmMobileDaysOpen(false);
-                                                }} className={`py-2 px-1 flex justify-between items-center border-b border-b-gray-200 ${selectedDays === days
-                                                    ? "text-black"
-                                                    : "text-[#828282]"
-                                                    }`}>
+                                                }}
+                                                className={`py-2 px-1 flex justify-between items-center border-b border-b-gray-200 ${selectedDays === days ? "text-black" : "text-[#828282]"
+                                                    }`}
+                                            >
                                                 Within last {days} days
-
                                                 {selectedDays === days && <FaCheck className="text-black" />}
-
                                             </li>
                                         ))}
                                     </ul>
                                 </div>
                             )}
                         </div>
+
                         <div className="w-[50%]" ref={dropdownCategoryRef}>
                             <div
-                                onClick={() => setMobileCategoryOpen(prev => !prev)}
+                                onClick={() => {
+                                    setMobileCategoryOpen(prev => !prev);
+                                    setmMobileDaysOpen(false); // close days dropdown
+                                }}
                                 className="bg-[#f6f6f6] rounded-full w-full flex justify-center items-center py-1 px-2 cursor-pointer"
                             >
                                 <p className="text-[14px] font-semibold flex justify-between gap-1 items-center">
@@ -291,83 +301,12 @@ const BestSellerFilters = () => {
                                                     }`}
                                             >
                                                 {cat}
-                                           
                                             </li>
                                         ))}
                                     </ul>
                                 </div>
                             )}
-                        </div> */}
-
-<div className="w-[50%]" ref={dropdownRef}>
-    <div
-        onClick={() => {
-            setmMobileDaysOpen(prev => !prev);
-            setMobileCategoryOpen(false); // close category dropdown
-        }}
-        className="bg-[#f6f6f6] rounded-full w-full text-center flex justify-center items-center py-1 px-2"
-    >
-        <p className="text-[14px] font-semibold flex justify-between gap-1 items-center">
-            Within last {selectedDays} days <IoIosArrowDown />
-        </p>
-    </div>
-    {mobileDaysOpen && (
-        <div className="within-days-list py-2 bg-white w-full absolute top-14 left-0 right-0 px-3 border-t border-t-gray-300 z-[9999]">
-            <ul className="font-semibold text-[13px]">
-                {[30, 14, 7].map((days) => (
-                    <li
-                        key={days}
-                        onClick={() => {
-                            setSelectedDays(days);
-                            setmMobileDaysOpen(false);
-                        }}
-                        className={`py-2 px-1 flex justify-between items-center border-b border-b-gray-200 ${
-                            selectedDays === days ? "text-black" : "text-[#828282]"
-                        }`}
-                    >
-                        Within last {days} days
-                        {selectedDays === days && <FaCheck className="text-black" />}
-                    </li>
-                ))}
-            </ul>
-        </div>
-    )}
-</div>
-
-<div className="w-[50%]" ref={dropdownCategoryRef}>
-    <div
-        onClick={() => {
-            setMobileCategoryOpen(prev => !prev);
-            setmMobileDaysOpen(false); // close days dropdown
-        }}
-        className="bg-[#f6f6f6] rounded-full w-full flex justify-center items-center py-1 px-2 cursor-pointer"
-    >
-        <p className="text-[14px] font-semibold flex justify-between gap-1 items-center">
-            {selectedCategory} <IoIosArrowDown />
-        </p>
-    </div>
-
-    {mobileCategoryOpen && (
-        <div className="category-mobile-list py-2 bg-white w-full absolute top-14 left-0 right-0 px-3 border-t border-t-gray-300 z-[9999] shadow-lg rounded-md">
-            <ul className="font-semibold text-[13px] flex gap-2 flex-wrap max-h-[50vh] overflow-y-auto">
-                {categories.map((cat) => (
-                    <li
-                        key={cat}
-                        onClick={() => {
-                            setSelectedCategory(cat);
-                            setMobileCategoryOpen(false);
-                        }}
-                        className={`py-1 px-2 border rounded-full flex justify-between items-center cursor-pointer hover:bg-gray-100 ${
-                            selectedCategory === cat ? "text-black font-bold border-black" : "text-black border-gray-300"
-                        }`}
-                    >
-                        {cat}
-                    </li>
-                ))}
-            </ul>
-        </div>
-    )}
-</div>
+                        </div>
 
                     </div>
                 </div>

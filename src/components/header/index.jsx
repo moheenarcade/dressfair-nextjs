@@ -236,11 +236,16 @@ const Header = () => {
 
                                 {/* Categories trigger and mega menu */}
                                 <div
-                                    className="relative"
+                                    className="relative z-[999999999999]"
                                     onMouseEnter={() => setShowMegaMenu(true)}
                                     onMouseLeave={() => setShowMegaMenu(false)}
                                 >
-                                    <li className={`${isHomePage ? "text-white" : "text-[#222222]"} relative cursor-pointer flex items-center gap-2 group py-1 px-3 text-[14px] font-semibold `}>
+                                    <li 
+                                      onMouseEnter={() => {
+                                        setShowMegaMenu(true);
+                                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                                    }}
+                                    className={`${isHomePage ? "text-white" : "text-[#222222]"} relative cursor-pointer flex items-center gap-2 group py-1 px-3 text-[14px] font-semibold `}>
                                         <span className={`${isHomePage ? "bg-[#BA0000]" : "bg-[#eeeeee]"} absolute inset-0 h-[50px] my-auto rounded-full scale-0 origin-center transition-transform duration-500 ease-in-out group-hover:scale-100`}></span>
                                         <span className="relative z-10">Categories</span>
                                         <IoIosArrowDown className="relative z-10" />
@@ -265,7 +270,7 @@ const Header = () => {
                                     )}
                                     {/* Mega Menu */}
                                     <div
-                                        className={`fixed left-0 top-[110px] mx-auto right-0 overflow-hidden rounded-md z-[50] bg-white shadow-lg transition-all duration-300 ease-in-out ${showMegaMenu ? "opacity-100 visible" : "opacity-0 invisible"
+                                        className={`fixed left-0 top-[110px] mx-auto right-0 overflow-hidden rounded-md z-[9999999] bg-white shadow-lg transition-all duration-300 ease-in-out ${showMegaMenu ? "opacity-100 visible" : "opacity-0 invisible"
                                             }`}
                                         style={{ height: "70vh", width: "50%" }}
                                         onMouseEnter={() => setShowMegaMenu(true)}
