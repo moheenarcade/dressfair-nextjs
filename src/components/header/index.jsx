@@ -254,7 +254,7 @@ const Header = () => {
                                     {/* Overlay (dark background) */}
                                     {showMegaMenu && (
                                         <div
-                                            className="fixed inset-0 bg-black/50"
+                                            className="fixed top-30 inset-0 bg-black/50"
                                             onClick={() => setShowMegaMenu(false)}
                                         ></div>
                                     )}
