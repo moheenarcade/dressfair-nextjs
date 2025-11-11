@@ -477,7 +477,7 @@ const Header = () => {
             />
 
             {showMobileCategory && (
-                <MobileCategories />
+                <MobileCategories   onClose={() => setMobileCategory(false)} />
             )}
             {showMobileUser && (
                 <div ref={popupRef}>
