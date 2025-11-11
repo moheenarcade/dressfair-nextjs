@@ -75,28 +75,35 @@ const CategoryFilters = () => {
                     {filters.map((label, i) => (
                         <li key={i} className="relative">
                             <button
-                                onClick={() => setOpenDropdown(openDropdown === label ? null : label)}
+                                onClick={() =>
+                                    setOpenDropdown(openDropdown === label ? null : label)
+                                }
                                 className="flex whitespace-nowrap items-center h-[40px] cursor-pointer gap-1 rounded-full py-2 px-3 bg-[#f6f6f6] text-[#555] text-[14px]"
                             >
                                 {i === 0 && <LiaFilterSolid />}
                                 {getLabelText(label)}
                             </button>
-                            {openDropdown === label && label === "Sort by: Relevance" && (
-                                <div className="absolute left-0 top-[110%] z-[9999] bg-white border border-gray-200 shadow-lg rounded-lg p-2 w-44">
-                                    <div className="absolute left-1/3 top-[-10px] transform -translate-x-1/2 w-0 h-0 
-                      border-l-[10px] border-l-transparent border-r-[10px] border-r-transparent border-b-[10px] border-b-gray-200"></div>
 
-                                    <ul className="flex flex-col text-sm text-gray-700">
-                                        {sortOptions.map((option, idx) => (
-                                            <li
-                                                key={idx}
-                                                onClick={() => handleSelect(label, option)}
-                                                className="px-3 py-2 hover:bg-gray-100 cursor-pointer rounded text-[14px]"
-                                            >
-                                                {option}
-                                            </li>
-                                        ))}
-                                    </ul>
+                            {openDropdown === label && (
+                                <div className="absolute left-1/2 top-[110%] z-[9999] bg-white border border-gray-200 shadow-lg rounded-lg p-2 w-44 transform -translate-x-1/2">
+                                    {/* Caret centered above dropdown */}
+                                    <div className="absolute left-1/2 top-[-10px] transform -translate-x-1/2 w-0 h-0
+          border-l-[10px] border-l-transparent border-r-[10px] border-r-transparent border-b-[10px] border-b-gray-200">
+                                    </div>
+
+                                    {label === "Sort by: Relevance" && (
+                                        <ul className="flex flex-col text-sm text-gray-700">
+                                            {sortOptions.map((option, idx) => (
+                                                <li
+                                                    key={idx}
+                                                    onClick={() => handleSelect(label, option)}
+                                                    className="px-3 py-2 hover:bg-gray-100 cursor-pointer rounded text-[14px]"
+                                                >
+                                                    {option}
+                                                </li>
+                                            ))}
+                                        </ul>
+                                    )}
                                 </div>
                             )}
                         </li>
@@ -104,17 +111,15 @@ const CategoryFilters = () => {
                 </ul>
 
                 {openDropdown === "Color" && (
-                    <div className="absolute left-0 right-0 top-[50px] z-[9999] w-full">
+                    <div className="absolute left-0 right-0 top-[44px] z-[9999] w-full">
                         <div className="relative w-full mx-auto rounded-lg bg-white p-4 shadow-xl border border-gray-200">
-                            <div className="absolute left-1/5 top-[-10px] transform -translate-x-1/2 w-0 h-0 
-                      border-l-[10px] border-l-transparent border-r-[10px] border-r-transparent border-b-[10px] border-b-gray-200"></div>
 
                             {/* Color Options */}
                             <ul className="flex flex-wrap gap-3 border-b border-gray-200 pb-4">
                                 {colorOptions.map((color, idx) => (
                                     <li
                                         key={idx}
-                        
+
                                         onClick={() => handleSelect("Color", color)}
                                         className="px-3 py-2 hover:bg-gray-100 cursor-pointer rounded text-[14px] flex flex-col items-center gap-2"
                                     >
