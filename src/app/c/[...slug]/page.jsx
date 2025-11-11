@@ -9,6 +9,7 @@ import ProductImage from "../../../../public/deals-product4.avif";
 import ProductImage2 from "../../../../public/deals-product3.avif";
 import { LuChevronRight } from 'react-icons/lu';
 import CategoryFilters from '@/utils/CategoryFilters';
+import ProductCardMobile from '@/components/homePageMobile/productCardMobile';
 
 const categoriesData = [
   {
@@ -210,7 +211,7 @@ const CategoryPage = () => {
   }
 
   return (
-    <div className="container mx-auto px-2 2xl:px-22 py-6">
+    <div className="container mx-auto 2xl:px-22 py-6">
       {subcategory && (
         <nav className="flex items-center space-x-2 text-sm text-gray-500 mb-6 px-2">
           <Link href="/" className="hover:text-gray-700">
@@ -261,8 +262,14 @@ const CategoryPage = () => {
       />
 
       {/* Products Section */}
-      <div className="pt-6">
+
+
+      <div className="pt-6 hidden xl:block">
         <ProductCard products={filteredProducts} />
+      </div>
+
+      <div className="block xl:hidden px-2 pt-6">
+        <ProductCardMobile products={filteredProducts} />
       </div>
     </div>
   );

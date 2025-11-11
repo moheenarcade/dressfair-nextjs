@@ -59,6 +59,14 @@ button , a {
 }
 
 
+/* hide default scrollbar (optional) */
+.scrollbar-hide::-webkit-scrollbar { display: none; }
+.scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* ensure parent doesn't clip (if any parent sets overflow:hidden it will still clip) */
+.category-filters, .filter-wrapper {
+  overflow: visible;
+}
 
 @media (min-width: 100px) and (max-width: 375px) {
   .mobile-sold-num {
