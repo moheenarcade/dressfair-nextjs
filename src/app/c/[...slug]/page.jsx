@@ -203,9 +203,8 @@ const CategoryPage = () => {
 
   if (!category) {
     return (
-      <div className="container mx-auto px-4 py-8">
-        <h1 className="text-2xl font-bold">Category Not Found</h1>
-        <p>The category you're looking for doesn't exist.</p>
+      <div className="container mx-auto px-4 xl:px-22 py-8">
+        {/* <h1 className="text-2xl font-bold">Category Not Found</h1> */}
       </div>
     );
   }
