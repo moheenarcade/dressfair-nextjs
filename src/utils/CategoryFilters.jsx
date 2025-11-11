@@ -153,17 +153,17 @@ const CategoryFilters = () => {
 
         return (
             <>
-                <ul className={`flex flex-wrap gap-3 border-b border-gray-200 pb-4 ${label === "Color" ? "" : "px-4"}`}>
+                <ul className={`flex flex-wrap gap-1 lg:gap-3 border-b border-gray-200 pb-4 ${label === "Color" ? "" : "px-2 lg:px-4"}`}>
                     {options.map((option, idx) => (
                         <li
                             key={idx}
                             onClick={() => handleSelect(label, option)}
-                            className={`cursor-pointer rounded text-[14px] flex flex-col items-center gap-2 ${label === "Color" ? "px-3 py-2" : ""}`}
+                            className={`cursor-pointer rounded text-[14px] flex flex-col items-center gap-1 lg:gap-2 ${label === "Color" ? "px-3 py-2" : ""}`}
                         >
                             {label === "Color" ? (
                                 <>
                                     <div
-                                        className={`w-14 h-14 rounded-full border-[2px] p-[2px] transition-all duration-150 ${selectedFilters[label].includes(option)
+                                        className={`w-8 lg:w-14 h-8 lg:h-14 rounded-full border-[2px] p-[2px] transition-all duration-150 ${selectedFilters[label].includes(option)
                                             ? "border-black scale-110"
                                             : "border-gray-300"
                                             }`}
@@ -173,16 +173,16 @@ const CategoryFilters = () => {
                                             style={{ backgroundColor: option.toLowerCase() }}
                                         ></div>
                                     </div>
-                                    <span className="text-[14px]">{option}</span>
+                                    <span className="text-[12px] lg:text-[14px]">{option}</span>
                                 </>
                             ) : (
                                 <div
-                                    className={`px-4 py-2 rounded-full border-[2px] transition-all duration-150 ${selectedFilters[label].includes(option)
+                                    className={`px-4 py-1 lg:py-2 rounded-full border-[2px] transition-all duration-150 ${selectedFilters[label].includes(option)
                                         ? "border-black bg-black text-white scale-105"
                                         : "border-gray-300 bg-gray-50 hover:bg-gray-100"
                                         } flex items-center justify-center`}
                                 >
-                                    <span className="font-semibold text-[14px]">{option}</span>
+                                    <span className="font-semibold text-[12px] lg:text-[14px]">{option}</span>
                                 </div>
                             )}
                         </li>
@@ -192,13 +192,13 @@ const CategoryFilters = () => {
                 <div className="pt-4 flex gap-3 justify-end px-6">
                     <button
                         onClick={() => setSelectedFilters((prev) => ({ ...prev, [label]: [] }))}
-                        className="py-2 px-6 border border-[#949494] text-black font-semibold rounded-full hover:border-black transition-colors"
+                        className="py-1 lg:py-2 px-4 lg:px-6 text-[13px] lg:text-[16px] border border-[#949494] text-black font-semibold rounded-full hover:border-black transition-colors"
                     >
                         Reset
                     </button>
                     <button
                         onClick={() => setOpenDropdown(null)}
-                        className="py-2 px-6 rounded-full bg-[#fb7701] text-white font-semibold hover:bg-[#e56a00] transition-colors"
+                        className="py-2 lg:py-2 px-4 lg:px-6 text-[13px] lg:text-[16px] rounded-full bg-[#fb7701] text-white font-semibold hover:bg-[#e56a00] transition-colors"
                     >
                         Show {options.length * 10}+ Results
                     </button>
@@ -239,46 +239,16 @@ const CategoryFilters = () => {
         <>
             <div ref={dropdownRef} className="relative w-full">
                 <div id="filter-scroll" className="flex items-center gap-2 px-2 relative w-full">
-                    {/* <div className="flex items-center w-full gap-2">
-                        <button
-                            onClick={() => setIsSidebarOpen(true)}
-                            className="flex items-center h-[40px] cursor-pointer gap-1 rounded-full py-2 px-3 bg-[#f6f6f6] text-[#555] text-[14px] hover:bg-[#eaeaea] hover:text-black transition-all"
-                        >
-                            <LiaFilterSolid size={18} /> Filters
-                        </button>
-                        <ul className="flex gap-2 items-center w-max">
-                            {filters.map((label, i) => (
-                                <li key={i} className="relative">
-                                    <button
-                                        onClick={(e) => handleDropdownToggle(label, e)}
-                                        className="flex whitespace-nowrap items-center h-[40px] cursor-pointer gap-1 rounded-full py-2 px-3 bg-[#f6f6f6] text-[#555] text-[14px] hover:bg-[#eaeaea] hover:text-black transition-all"
-                                    >
-                                        {getLabelText(label)}
-                                    </button>
-
-                                    {openDropdown === label && !isFullWidthDropdown(label) && (
-                                        <div className="absolute left-1/2 top-[110%] z-[9999] bg-white border border-gray-200 shadow-lg rounded-lg p-2 w-44 transform -translate-x-1/2">
-                                            <div className="absolute left-1/2 top-[-10px] transform -translate-x-1/2 w-0 h-0 border-l-[10px] border-l-transparent border-r-[10px] border-r-transparent border-b-[10px] border-b-gray-200"></div>
-                                            {renderDropdownContent(label)}
-                                        </div>
-                                    )}
-                                </li>
-                            ))}
-                        </ul>
-                    </div> */}
                     <div className="relative w-full">
-                        {/* Left Scroll Button */}
                         <button
                             onClick={() => {
                                 const scrollContainer = document.getElementById("filter-scroll-container");
                                 scrollContainer.scrollBy({ left: -200, behavior: "smooth" });
                             }}
-                            className="hidden md:flex absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white shadow-md rounded-full p-2 items-center justify-center hover:bg-gray-100 transition"
+                            className="hidden md:flex absolute w-6 h-6 -left-5 top-1/2 -translate-y-1/2 z-10 bg-white shadow-md rounded-full p-2 items-center justify-center hover:bg-gray-100 transition"
                         >
                             &#8592;
                         </button>
-
-                        {/* Scrollable Filter Section */}
                         <div
                             id="filter-scroll-container"
                             className="flex items-center gap-2 overflow-x-auto scrollbar-hide scroll-smooth px-2"
@@ -314,16 +284,15 @@ const CategoryFilters = () => {
                                 const scrollContainer = document.getElementById("filter-scroll-container");
                                 scrollContainer.scrollBy({ left: 200, behavior: "smooth" });
                             }}
-                            className="hidden md:flex absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white shadow-md rounded-full p-2 items-center justify-center hover:bg-gray-100 transition"
+                            className="hidden md:flex absolute -right-5 w-6 h-6 top-1/2 -translate-y-1/2 z-10 bg-white shadow-md rounded-full p-2 items-center justify-center hover:bg-gray-100 transition"
                         >
                             &#8594;
                         </button>
                     </div>
 
-                    {/* Full-width Dropdowns */}
                     {openDropdown && isFullWidthDropdown(openDropdown) && (
                         <div className="absolute left-0 right-0 top-[44px] z-[9999] w-full">
-                            <div className="relative w-full mx-auto rounded-lg bg-white p-4 shadow-xl border border-gray-200">
+                            <div className="relative w-full mx-auto rounded-lg bg-white p-2 lg:p-4 shadow-xl border border-gray-200">
                                 {/* Dynamic Caret */}
                                 <div
                                     className="absolute top-[-10px] transform -translate-x-1/2 w-0 h-0 border-l-[10px] border-l-transparent border-r-[10px] border-r-transparent border-b-[10px] border-b-gray-200"
@@ -336,7 +305,6 @@ const CategoryFilters = () => {
                 </div>
             </div>
 
-            {/* Sidebar Filter Modal */}
             <SidebarFilterModal
                 isOpen={isSidebarOpen}
                 onClose={() => setIsSidebarOpen(false)}

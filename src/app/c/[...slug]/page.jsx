@@ -235,7 +235,7 @@ const CategoryPage = () => {
       )}
 
       {!subcategory && (
-        <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-12 gap-4 pt-6 pb-6 mb-6 border-b border-b-gray-300 px-2">
+        <div className="grid grid-cols-4 md:grid-cols-4 lg:grid-cols-12 gap-4 pt-6 pb-6 mb-6 border-b border-b-gray-300 px-2">
           {category.subcategories.map((sub, index) => (
             <Link
               key={index}
