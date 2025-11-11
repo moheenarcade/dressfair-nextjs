@@ -143,7 +143,7 @@ const MobileCategories = ({ onClose }) => {
 
                 <div className="cat-list h-full flex">
                     {/* Left Side Categories */}
-                    <div className="left-side bg-[#f6f6f6] w-[34%] h-full overflow-y-scroll pb-12">
+                    <div className="left-side bg-[#f6f6f6] w-[36%] h-full overflow-y-scroll pb-12">
                         <ul className="mobile-cat-list text-[13px] font-semibold">
                             {categoriesData.map((cat) => (
                                 // <Link onClick={() => onClose()}  key={cat.id} href={`/c/${cat.name.toLowerCase().replace(/&/g, 'and').replace(/\s+/g, '-')}`}>
