@@ -7,6 +7,8 @@ import Image from 'next/image';
 import ProductCard from '@/components/homePageComponent/productCard';
 import ProductImage from "../../../../public/deals-product4.avif";
 import ProductImage2 from "../../../../public/deals-product3.avif";
+import { LuChevronRight } from 'react-icons/lu';
+import CategoryFilters from '@/utils/CategoryFilters';
 
 const categoriesData = [
   {
@@ -141,104 +143,6 @@ const products = [
 ];
 
 
-// const CategoryPage = () => {
-//   const params = useParams();
-//   const slug = params.slug || [];
-//   const swiperRef = useRef(null);
-//   const [selectedCategory, setSelectedCategory] = useState("Recommended");
-
-//   // 🔹 Filter products based on selected category
-//   const filteredProducts =
-//     selectedCategory === "Recommended"
-//       ? products // Show all
-//       : products.filter((p) => p.category === selectedCategory);
-
-//   // Find category and subcategory based on slug
-//   const findCategoryData = () => {
-//     if (slug.length === 0) return { category: null, subcategory: null };
-
-//     const categorySlug = slug[0];
-//     const subcategorySlug = slug[1];
-
-//     // Convert category name to URL-friendly slug
-//     const category = categoriesData.find(cat =>
-//       cat.name.toLowerCase().replace(/&/g, 'and').replace(/\s+/g, '-') === categorySlug
-//     );
-
-//     if (!category) return { category: null, subcategory: null };
-
-//     if (subcategorySlug) {
-//       const subcategory = category.subcategories.find(sub =>
-//         sub.name.toLowerCase().replace(/&/g, 'and').replace(/\s+/g, '-') === subcategorySlug
-//       );
-//       return { category, subcategory };
-//     }
-
-//     return { category, subcategory: null };
-//   };
-
-//   const { category, subcategory } = findCategoryData();
-
-//   if (!category) {
-//     return (
-//       <div className="container mx-auto px-2 2xl:px-22 py-8">
-//         <h1 className="text-2xl font-bold">Category Not Found</h1>
-//         <p>The category you're looking for doesn't exist.</p>
-//       </div>
-//     );
-//   }
-
-//   return (
-//     <div className="container mx-auto px-2 2xl:px-22 py-8">
-//       {/* Breadcrumb */}
-//       <nav className="flex items-center space-x-2 text-sm text-gray-500 mb-6">
-//         <Link href="/" className="hover:text-gray-700">Home</Link>
-//         <span>/</span>
-//         <Link href="/c" className="hover:text-gray-700">Categories</Link>
-//         <span>/</span>
-//         <Link
-//           href={`/c/${category.name.toLowerCase().replace(/&/g, 'and').replace(/\s+/g, '-')}`}
-//           className="hover:text-gray-700"
-//         >
-//           {category.name}
-//         </Link>
-//         {subcategory && (
-//           <>
-//             <span>/</span>
-//             <span className="text-gray-800 font-medium">{subcategory.name}</span>
-//           </>
-//         )}
-//       </nav>
-
-//       <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-12 gap-4 pt-3">
-//         {category.subcategories.map((sub, index) => (
-//           <Link href={`/c/${category.name.toLowerCase().replace(/&/g, 'and').replace(/\s+/g, '-')}/${sub.name.toLowerCase().replace(/&/g, 'and').replace(/\s+/g, '-')}`}>
-//             <div
-//               key={index}
-//               className="single-cat cursor-pointer flex flex-col items-center"
-//             >
-//               <Image
-//                 className="w-[90%] h-auto rounded-full"
-//                 src={sub.image}
-//                 alt={sub.name}
-//               />
-//               <p className="text-[13px] font-normal text-center mt-1">
-//                 {sub.name}
-//               </p>
-//             </div>
-//           </Link>
-//         ))}
-//       </div>
-
-//       <ProductCard products={filteredProducts} />
-//     </div>
-//   );
-// };
-
-// export default CategoryPage;
-
-
-
 const CategoryPage = () => {
   const params = useParams();
   const slug = params.slug || [];
@@ -246,10 +150,9 @@ const CategoryPage = () => {
   const [filteredProducts, setFilteredProducts] = useState(products);
   const [category, setCategory] = useState(null);
   const [subcategory, setSubcategory] = useState(null);
-
-  // Utility to make slugs consistent
   const toSlug = (name) =>
     name.toLowerCase().replace(/&/g, "and").replace(/\s+/g, "-");
+
 
   useEffect(() => {
     if (slug.length === 0) return;
@@ -275,14 +178,12 @@ const CategoryPage = () => {
     }
   }, [slug]);
 
-  // 🔹 Filter products whenever category/subcategory changes
   useEffect(() => {
     if (!category) return;
 
     let filtered = [];
 
     if (subcategory) {
-      // Filter by subcategory name
       filtered = products.filter(
         (p) =>
           p.category.toLowerCase() === subcategory.name.toLowerCase() ||
@@ -309,56 +210,58 @@ const CategoryPage = () => {
   }
 
   return (
-    <div className="container mx-auto px-4 py-8">
-      {/* Breadcrumb */}
-      <nav className="flex items-center space-x-2 text-sm text-gray-500 mb-6">
-        <Link href="/" className="hover:text-gray-700">
-          Home
-        </Link>
-        <span>/</span>
-        <Link href="/c" className="hover:text-gray-700">
-          Categories
-        </Link>
-        <span>/</span>
-        <Link
-          href={`/c/${toSlug(category.name)}`}
-          className="hover:text-gray-700"
-        >
-          {category.name}
-        </Link>
-        {subcategory && (
-          <>
-            <span>/</span>
-            <span className="text-gray-800 font-medium">
-              {subcategory.name}
-            </span>
-          </>
-        )}
-      </nav>
-
-      {/* Subcategories Grid */}
-      <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-12 gap-4 pt-3">
-        {category.subcategories.map((sub, index) => (
-          <Link
-            key={index}
-            href={`/c/${toSlug(category.name)}/${toSlug(sub.name)}`}
-          >
-            <div className="single-cat cursor-pointer flex flex-col items-center">
-              <Image
-                className="w-[90%] h-auto rounded-full"
-                src={sub.image}
-                alt={sub.name}
-              />
-              <p className="text-[13px] font-normal text-center mt-1">
-                {sub.name}
-              </p>
-            </div>
+    <div className="container mx-auto px-2 2xl:px-22 py-6">
+      {subcategory && (
+        <nav className="flex items-center space-x-2 text-sm text-gray-500 mb-6 px-2">
+          <Link href="/" className="hover:text-gray-700">
+            Home
           </Link>
-        ))}
-      </div>
+          <LuChevronRight />
+          <Link
+            href={`/c/${toSlug(category.name)}`}
+            className="hover:text-gray-700"
+          >
+            {category.name}
+          </Link>
+          {subcategory && (
+            <>
+              <LuChevronRight />
+              <span className="text-gray-800 font-medium">
+                {subcategory.name}
+              </span>
+            </>
+          )}
+        </nav>
+      )}
+
+      {!subcategory && (
+        <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-12 gap-4 pt-6 pb-6 mb-6 border-b border-b-gray-300 px-2">
+          {category.subcategories.map((sub, index) => (
+            <Link
+              key={index}
+              href={`/c/${toSlug(category.name)}/${toSlug(sub.name)}`}
+            >
+              <div className="single-cat cursor-pointer flex flex-col items-center">
+                <Image
+                  className="w-[90%] h-auto rounded-full"
+                  src={sub.image}
+                  alt={sub.name}
+                />
+                <p className="text-[13px] font-normal text-center mt-1">
+                  {sub.name}
+                </p>
+              </div>
+            </Link>
+          ))}
+        </div>
+      )}
+
+      {/* Category Filters Section */}
+      <CategoryFilters
+      />
 
       {/* Products Section */}
-      <div className="">
+      <div className="pt-6">
         <ProductCard products={filteredProducts} />
       </div>
     </div>
