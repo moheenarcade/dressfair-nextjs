@@ -29,6 +29,7 @@ const sortOptions = [
 ];
 
 const colorOptions = ["Red", "Blue", "Green", "Yellow", "Black", "White"];
+const sizeOptions = ["S", "M", "L", "XL", "XXL" , "Free Size"];
 
 const CategoryFilters = () => {
     const dropdownRef = useRef(null);
@@ -36,18 +37,19 @@ const CategoryFilters = () => {
     const [selectedFilters, setSelectedFilters] = useState({
         "Sort by: Relevance": "Relevance",
         Color: [],
+        Size: [],
     });
 
     useOutsideClick(dropdownRef, () => setOpenDropdown(null));
 
     const handleSelect = (label, value) => {
-        if (label === "Color") {
+        if (label === "Color" || label === "Size") {
             setSelectedFilters((prev) => {
-                const alreadySelected = prev.Color.includes(value);
-                const newColors = alreadySelected
-                    ? prev.Color.filter((c) => c !== value)
-                    : [...prev.Color, value];
-                return { ...prev, Color: newColors };
+                const alreadySelected = prev[label].includes(value);
+                const newValues = alreadySelected
+                    ? prev[label].filter((v) => v !== value)
+                    : [...prev[label], value];
+                return { ...prev, [label]: newValues };
             });
             return;
         }
@@ -56,17 +58,19 @@ const CategoryFilters = () => {
         setOpenDropdown(null);
     };
 
+
     const getLabelText = (label) => {
-        if (label === "Color") {
-            return selectedFilters.Color.length === 0
-                ? "Color"
-                : `Color (${selectedFilters.Color.length})`;
+        if (label === "Color" || label === "Size") {
+            return selectedFilters[label].length === 0
+                ? label
+                : `${label} (${selectedFilters[label].length})`;
         }
         if (label === "Sort by: Relevance") {
             return `Sort by: ${selectedFilters[label]}`;
         }
         return selectedFilters[label] || label;
     };
+
 
     return (
         <div ref={dropdownRef} className="relative w-full">
@@ -140,6 +144,41 @@ const CategoryFilters = () => {
                             <div className="pt-4 flex gap-3 justify-end px-6">
                                 <button
                                     onClick={() => setSelectedFilters((prev) => ({ ...prev, Color: [] }))}
+                                    className="py-2 px-6 border border-[#949494] text-black font-semibold rounded-full hover:border-black"
+                                >
+                                    Reset
+                                </button>
+                                <button className="py-2 px-6 rounded-full bg-[#fb7701] text-white font-semibold">
+                                    Show 100+ Result
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                )}
+
+                {openDropdown === "Size" && (
+                    <div className="absolute left-0 right-0 top-[44px] z-[9999] w-full">
+                        <div className="relative w-full mx-auto rounded-lg bg-white p-4 shadow-xl border border-gray-200">
+                            <ul className="flex flex-wrap gap-4 border-b border-gray-200 pb-4">
+                                {sizeOptions.map((size, idx) => (
+                                    <li
+                                        key={idx}
+                                        onClick={() => handleSelect("Size", size)}
+                                        className="cursor-pointer rounded-full text-[14px] flex flex-col items-center gap-2"
+                                    >
+                                        <div
+                                            className={`px-3 py-1 rounded-full border-[2px] p-[2px] transition-all duration-150 ${selectedFilters.Size.includes(size) ? "border-black scale-110" : "border-gray-300"
+                                                } flex items-center justify-center`}
+                                        >
+                                            <span className="font-semibold">{size}</span>
+                                        </div>
+                                    </li>
+                                ))}
+                            </ul>
+
+                            <div className="pt-4 flex gap-3 justify-end px-6">
+                                <button
+                                    onClick={() => setSelectedFilters((prev) => ({ ...prev, Size: [] }))}
                                     className="py-2 px-6 border border-[#949494] text-black font-semibold rounded-full hover:border-black"
                                 >
                                     Reset
