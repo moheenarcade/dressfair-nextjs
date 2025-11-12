@@ -231,7 +231,6 @@ const SignInModal = ({ isOpen, onClose }) => {
               {/* Social login */}
               <div className="flex justify-center gap-4 mb-4">
                 <button 
-                  onClick={() => handleSocialLogin('google')}
                   disabled={loading}
                   className="border border-gray-300 rounded-full p-2 hover:bg-gray-100 transition disabled:opacity-50"
                 >
