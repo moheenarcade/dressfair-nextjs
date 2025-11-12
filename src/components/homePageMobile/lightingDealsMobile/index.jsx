@@ -137,6 +137,8 @@ const products = [
 
 const LightingDealsMobile = () => {
     const swiperRef = useRef(null);
+        const tabsContainerRef = useRef(null);
+    
     return (
         <>
             <div className='px-3 lg:px-0 pb-2'>
@@ -154,7 +156,11 @@ const LightingDealsMobile = () => {
                 </div>
             </div>
 
-            <div className="lighting-deals-cards relative px-3 lg:px-0 pb-1">
+            <div className="lighting-deals-cards relative px-3 lg:px-0 pb-1"   ref={tabsContainerRef}
+               onTouchStart={(e) => e.stopPropagation()}
+               onTouchMove={(e) => e.stopPropagation()}
+               onTouchEnd={(e) => e.stopPropagation()}
+            >
                 <Swiper
                     ref={swiperRef}
                     modules={[Navigation]}
