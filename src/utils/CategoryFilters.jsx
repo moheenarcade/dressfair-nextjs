@@ -255,7 +255,7 @@ const CategoryFilters = () => {
                         >
                             <button
                                 onClick={() => setIsSidebarOpen(true)}
-                                className="flex items-center h-[40px] cursor-pointer gap-1 rounded-full py-2 px-3 bg-[#f6f6f6] text-[#555] text-[14px] hover:bg-[#eaeaea] hover:text-black transition-all flex-shrink-0"
+                                className="flex items-center h-[30px] xl:h-[40px] cursor-pointer gap-1 rounded-full py-2 px-3 bg-[#f6f6f6] text-[#555] text-[14px] hover:bg-[#eaeaea] hover:text-black transition-all flex-shrink-0"
                             >
                                 <LiaFilterSolid size={18} /> Filters
                             </button>
@@ -264,7 +264,7 @@ const CategoryFilters = () => {
                                     <li key={i} className="relative flex-shrink-0">
                                         <button
                                             onClick={(e) => handleDropdownToggle(label, e)}
-                                            className="flex whitespace-nowrap items-center h-[40px] cursor-pointer gap-1 rounded-full py-2 px-3 bg-[#f6f6f6] text-[#555] text-[14px] hover:bg-[#eaeaea] hover:text-black transition-all"
+                                            className="flex whitespace-nowrap items-center h-[30px] xl:h-[40px] cursor-pointer gap-1 rounded-full py-1 xl:py-2 px-3 bg-[#f6f6f6] text-[#555] text-[14px] hover:bg-[#eaeaea] hover:text-black transition-all"
                                         >
                                             {getLabelText(label)}
                                         </button>

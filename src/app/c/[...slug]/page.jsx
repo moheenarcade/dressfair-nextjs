@@ -210,7 +210,8 @@ const CategoryPage = () => {
   }
 
   return (
-    <div className="container mx-auto 2xl:px-22 py-6">
+    <div className="container mx-auto 2xl:px-22 py-3 xl:py-6">
+      <div className="hidden xl:block">
       {subcategory && (
         <nav className="flex items-center space-x-2 text-sm text-gray-500 mb-6 px-2">
           <Link href="/" className="hover:text-gray-700">
@@ -233,6 +234,21 @@ const CategoryPage = () => {
           )}
         </nav>
       )}
+      </div>
+
+      <div className="block xl:hidden">
+      {subcategory && (
+        <nav className="flex items-center text-center justify-center space-x-2 text-sm text-gray-500 pb-3 px-2">
+          {subcategory && (
+            <>
+              <span className="text-gray-800 font-semibold text-lg">
+                {subcategory.name}
+              </span>
+            </>
+          )}
+        </nav>
+      )}
+      </div>
 
       {!subcategory && (
         <div className="grid grid-cols-4 md:grid-cols-4 lg:grid-cols-12 gap-4 pt-6 pb-6 mb-6 border-b border-b-gray-300 px-2">
@@ -267,7 +283,7 @@ const CategoryPage = () => {
         <ProductCard products={filteredProducts} />
       </div>
 
-      <div className="block xl:hidden px-2 pt-6">
+      <div className="block xl:hidden px-2 pt-3">
         <ProductCardMobile products={filteredProducts} />
       </div>
     </div>
