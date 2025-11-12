@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
 import SignInModal from '../models/SignInModal';
 import { useUser } from '../../context/UserContext';
+import { RiMessage3Line } from "react-icons/ri";
+import { TbLogout2 } from 'react-icons/tb';
+import { AiOutlineUserSwitch } from 'react-icons/ai';
 
 
-const MobileUserPopup = () => {
+const MobileUserPopup = ({ onOpenSignIn }) => {
     const [showSignInModal, setShowSignInModal] = useState(false);
     const { user, logout } = useUser();
     const handleLogout = () => {
@@ -14,13 +17,26 @@ const MobileUserPopup = () => {
         <>
             <div className='bg-white rounded-[5px] shadow-lg z-[999999999999999999] left-0 right-0 md:right-4 -mt-2 absolute w-[90%] md:w-[400px] mx-auto md:mr-0 border-[1px] border-[#dfdfdf]'>
                 <div className="relative">
-                  
+
                     <div className="p-4">
-                    {!user && (
-                        <button onClick={() => setShowSignInModal(true)} className='bg-[#fb7701] cursor-pointer py-2 px-4 w-full rounded-full text-white text-lg font-semibold '>
-                            SIGN IN / REGISTER
-                        </button>
-)}
+                        {!user && (
+                            <button  onClick={onOpenSignIn} className='bg-[#fb7701] cursor-pointer py-2 px-4 w-full rounded-full text-white text-lg font-semibold '>
+                                SIGN IN / REGISTER
+                            </button>
+                        )}
+                        {user && (
+                            <div className="flex justify-between items-center">
+                                <div className="flex items-center gap-1">
+                                    <div className="userAvator w-8 h-8 bg-[#771e9c] rounded-full flex items-center justify-center text-white">
+                                        <span>M</span>
+                                    </div>
+                                    <p className='text-black font-semibold text-md line-clamp-1 whitespace-nowrap max-w-[120px]'>user name</p>
+                                </div>
+                                <button className='flex items-center gap-1 border border-black rounded-full py-1 px-2'>
+                                    <RiMessage3Line /> Messages
+                                </button>
+                            </div>
+                        )}
                         <div className="flex justify-center items-center text-center text-[13px] gap-4 pt-4">
                             <div className="flex items-center flex-col">
                                 <div className="bg-black rounded-full w-10 h-10 flex justify-center items-center">
@@ -69,10 +85,18 @@ const MobileUserPopup = () => {
                         <li className='cursor-pointer flex items-center gap-1 text-[15px] font-normal py-3'>
                             <svg viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" width="1.5rem" height="1.5rem" class="icon-33dOL"><path d="M400 154.9c56.1-32.4 125.2-32.4 181.3 0l173.3 100c56.1 32.4 90.7 92.3 90.7 157l0 200.2c0 64.8-34.6 124.6-90.7 157l-173.3 100c-56.1 32.4-125.2 32.4-181.3 0l-173.3-100c-56.1-32.4-90.7-92.3-90.7-157l0-200.2c0-64.8 34.6-124.6 90.7-157z m147.2 59.1c-35-20.2-78.1-20.2-113.1 0l-173.3 100c-35 20.2-56.5 57.5-56.5 97.9l0 200.2c0 40.4 21.6 77.7 56.5 97.9l173.3 100c35 20.2 78.1 20.2 113.1 0l173.3-100c35-20.2 56.5-57.5 56.5-97.9l0-200.2c0-40.4-21.6-77.7-56.5-97.9z m-56.5 157.2c77.8 0 140.8 63 140.8 140.8 0 77.7-63 140.8-140.8 140.8-77.8 0-140.8-63.1-140.8-140.8 0-77.8 63-140.8 140.8-140.8z m0 68.3c-40.1 0-72.5 32.5-72.6 72.5 0 40 32.5 72.5 72.6 72.5 40.1 0 72.5-32.5 72.5-72.5 0-40.1-32.5-72.5-72.5-72.5z"></path></svg>
                             Settings</li>
+                        {user && (
+                            <>
+                                <li className='cursor-pointer flex items-center gap-1 text-[15px] font-normal py-3 border-b border-b-gray-200'>
+                                    <AiOutlineUserSwitch className="text-2xl" />
+                                    Switch accounts</li>
+                                <li onClick={handleLogout} className='cursor-pointer flex items-center gap-1 text-[15px] font-normal py-3'>
+                                    <TbLogout2 className='text-2xl' />
+                                    Sign out</li>
+                            </>
+                        )}
                     </ul>
                 </div>
-
-
             </div>
             <SignInModal
                 isOpen={showSignInModal}

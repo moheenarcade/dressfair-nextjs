@@ -353,7 +353,7 @@ const Header = () => {
                                             {user ? (
                                                 <>
                                                     <p className="text-[13px] max-w-[120px] line-clamp-1 overflow-hidden whitespace-nowrap"> {user.name || user.email || user.phone}</p>
-                                                  
+
                                                     <b className="text-[14px]">Order & Account</b>
                                                 </>
                                             ) : (
@@ -554,19 +554,37 @@ const Header = () => {
                 </div>
             </header>
 
+            {/* <SignInModal
+                isOpen={showSignInModal}
+                onClose={() => setShowSignInModal(false)}
+            /> */}
+            {/* Mobile popup */}
+            {showMobileUser && (
+                <div ref={popupRef}>
+                    <MobileUserPopup
+                        onOpenSignIn={() => {
+                            setShowSignInModal(true);
+                            setShowMobileUser(false); // Close popup
+                        }}
+                    />
+                </div>
+            )}
+
+            {/* SignIn Modal */}
             <SignInModal
                 isOpen={showSignInModal}
                 onClose={() => setShowSignInModal(false)}
             />
 
+
             {showMobileCategory && (
                 <MobileCategories onClose={() => setMobileCategory(false)} />
             )}
-            {showMobileUser && (
+            {/* {showMobileUser && (
                 <div ref={popupRef}>
                     <MobileUserPopup />
                 </div>
-            )}
+            )} */}
             <MobileHeaderSearchModel isOpen={showMobileSearchModel} onClose={() => setMobileSearchModel(false)} />
         </>
     )

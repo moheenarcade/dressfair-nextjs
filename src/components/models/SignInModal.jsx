@@ -113,7 +113,7 @@ const SignInModal = ({ isOpen, onClose }) => {
           />
 
           <motion.div
-            className="fixed inset-0 flex items-center justify-center z-50 px-4"
+            className="fixed inset-0 flex items-center justify-center z-[9999999999999999] px-4"
             initial={{ scale: 0.8, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             exit={{ scale: 0.8, opacity: 0 }}
