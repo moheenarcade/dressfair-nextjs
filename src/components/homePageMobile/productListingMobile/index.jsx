@@ -92,7 +92,11 @@ const ProductListingMobile = () => {
             </div>
 
             {activeTab === "5-Star Rated" && (
-                <div className="product-list-cat pb-4 relative px-2 mt-3">
+                <div className="product-list-cat pb-4 relative px-2 mt-3"
+                onTouchStart={(e) => e.stopPropagation()}
+                onTouchMove={(e) => e.stopPropagation()}
+                onTouchEnd={(e) => e.stopPropagation()}
+                >
                     <Swiper
                         ref={swiperRef}
                         modules={[Navigation]}
