@@ -257,9 +257,9 @@ const CategoryPage = () => {
               key={index}
               href={`/c/${toSlug(category.name)}/${toSlug(sub.name)}`}
             >
-              <div className="single-cat cursor-pointer flex flex-col items-center">
+              <div className="single-cat group cursor-pointer flex flex-col items-center ">
                 <Image
-                  className="w-[90%] h-auto rounded-full"
+                  className="w-[90%] h-auto rounded-full group-hover:scale-[1.05] transition-all duration-300 ease-in-out"
                   src={sub.image}
                   alt={sub.name}
                 />

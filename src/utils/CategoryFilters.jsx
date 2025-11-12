@@ -304,7 +304,7 @@ const CategoryFilters = () => {
                             ref={scrollContainerRef}
                             onScroll={handleScroll}
                             onLoad={handleScroll}
-                            className="flex items-center gap-2 overflow-x-auto scrollbar-hide scroll-smooth px-2"
+                            className="flex items-center gap-2 overflow-x-auto scrollbar-hide scroll-smooth"
                         >
                             <button
                                 onClick={() => setIsSidebarOpen(true)}

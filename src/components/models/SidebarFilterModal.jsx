@@ -146,13 +146,13 @@ const SidebarFilterModal = ({
           <div className="flex gap-3">
             <button
               onClick={onResetAll}
-              className="flex-1 py-3 px-4 border border-gray-400 text-gray-700 font-semibold rounded-full hover:border-gray-600 transition-colors"
+              className="flex-1 py-2 lg:py-3 px-4 border border-gray-400 text-gray-700 font-semibold rounded-full hover:border-gray-600 transition-colors"
             >
               Reset All
             </button>
             <button
               onClick={onClose}
-              className="flex-1 py-3 px-4 rounded-full bg-[#fb7701] text-white font-semibold hover:bg-[#e56a00] transition-colors"
+              className="flex-1 py-2 lg:py-3 px-4 rounded-full bg-[#fb7701] text-white font-semibold hover:bg-[#e56a00] transition-colors"
             >
               Show Results
             </button>
