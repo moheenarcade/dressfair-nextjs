@@ -2,10 +2,9 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { usePathname } from 'next/navigation';
 import Image from 'next/image';
-import Logo from "../../../public/temu-logo.png";
 import { FiSearch } from "react-icons/fi";
 import { FaRegUser } from "react-icons/fa6";
-import { RiChatSmile3Line, RiCoupon5Line, RiGitRepositoryPrivateFill, RiGitRepositoryPrivateLine } from "react-icons/ri";
+import { RiChatSmile3Line, RiCoupon5Line, RiGitRepositoryPrivateLine } from "react-icons/ri";
 import { FiShoppingCart } from "react-icons/fi";
 import Counrty from "../../../public/pak-eng.avif";
 import HeaderTopContent from '../headerTopContent';
@@ -15,20 +14,19 @@ import MobileCategories from '../mobileCategories';
 import MobileUserPopup from "../../components/mobileUserPopup/index";
 import Link from 'next/link';
 import { IoIosArrowDown } from "react-icons/io";
-import AllCatIcon from "../../../public/all-category-icon.avif";
 import CatImage from "../../../public/prsonilized_product.avif";
 import { FaChevronRight } from "react-icons/fa6";
 import { GoChevronRight } from "react-icons/go";
 import SearchBarHeader from '../searchBarHeader';
 import SignInModal from '../models/SignInModal';
-import { BiSolidUser, BiSupport } from "react-icons/bi";
+import { BiSupport } from "react-icons/bi";
 import { AiOutlineMessage, AiOutlinePropertySafety, AiOutlineSafety, AiOutlineSecurityScan, AiOutlineUserSwitch } from 'react-icons/ai';
 import { useUser } from '../../context/UserContext';
 import { TbLogout2 } from 'react-icons/tb';
-import { BsBorderStyle, BsCreditCard2Front } from 'react-icons/bs';
+import { BsCreditCard2Front } from 'react-icons/bs';
 import { PiBookBookmarkLight } from "react-icons/pi";
-import { CiUser } from "react-icons/ci";
-import { HiOutlineUser } from "react-icons/hi";
+import ProductBanner from "../../../public/deals-product3.avif";
+import { MdAddShoppingCart } from 'react-icons/md';
 
 const categoriesData = [
     {
@@ -367,15 +365,194 @@ const Header = () => {
                                         {/* User Dropdown Menu */}
                                         {user && showUserDropdown && (
                                             <ul
-                                                className="absolute left-1/2 top-full py-3 mt-1 w-68 bg-white text-black rounded-md shadow-lg z-20 transform -translate-x-1/2"
+                                                className="absolute left-1/2 top-full py-3 mt-1 w-68 bg-white text-black rounded-r-md shadow-lg z-20 transform -translate-x-1/2"
                                             >
-                                                <div
+                                                     <div
                                                     className="absolute left-1/2 top-[-8px] transform -translate-x-1/2 z-[60]
                                                  w-0 h-0 
                                                  border-l-[10px] border-l-transparent 
                                                  border-r-[10px] border-r-transparent 
                                                  border-b-[10px] border-b-white"
                                                 />
+                                                <div className="relative">
+                                           
+                                                <div className="browsing-history shadow-lg top-[-12px] bottom-[-12px] z-[9999999] absolute bg-white w-62 right-full py-4 rounded-l-lg border-r border-r-gray-200">
+                                                    <p className='font-bold px-4 text-[#1f1f1f] flex items-center gap-2'>Browsing History <FaChevronRight className='text-sm' /></p>
+                                                    <ul className='pt-4 flex flex-col gap-3 overflow-y-auto h-[450px] px-4'>
+                                                        <li className='flex gap-2'>
+                                                            <div className="product-banner w-16 h-16">
+                                                                <Image className='w-full h-full' src={ProductBanner} alt='product banner' />
+                                                            </div>
+                                                            <div className="product-content">
+                                                                <p className='text-black text-[13px] line-clamp-1'>Mens Breathable Shoes</p>
+                                                                <p className='text-[12px] text-yellow-500'>only 17 left</p>
+                                                                <div className="flex items-center justify-between">
+                                                                    <p className='text-black tetx-md font-semibold'>Rs. <span className='text-lg '>721</span></p>
+                                                                    <MdAddShoppingCart className='text-xl' />
+                                                                </div>
+                                                            </div>
+                                                        </li>
+                                                        <li className='flex gap-2'>
+                                                            <div className="product-banner w-16 h-16">
+                                                                <Image className='w-full h-full' src={ProductBanner} alt='product banner' />
+                                                            </div>
+                                                            <div className="product-content">
+                                                                <p className='text-black text-[13px] line-clamp-1'>Mens Breathable Shoes</p>
+                                                                <p className='text-[12px] text-yellow-500'>only 17 left</p>
+                                                                <div className="flex items-center justify-between">
+                                                                    <p className='text-black tetx-md font-semibold'>Rs. <span className='text-lg '>721</span></p>
+                                                                    <MdAddShoppingCart className='text-xl' />
+                                                                </div>
+                                                            </div>
+                                                        </li>
+                                                        <li className='flex gap-2'>
+                                                            <div className="product-banner w-16 h-16">
+                                                                <Image className='w-full h-full' src={ProductBanner} alt='product banner' />
+                                                            </div>
+                                                            <div className="product-content">
+                                                                <p className='text-black text-[13px] line-clamp-1'>Mens Breathable Shoes</p>
+                                                                <p className='text-[12px] text-yellow-500'>only 17 left</p>
+                                                                <div className="flex items-center justify-between">
+                                                                    <p className='text-black tetx-md font-semibold'>Rs. <span className='text-lg '>721</span></p>
+                                                                    <MdAddShoppingCart className='text-xl' />
+                                                                </div>
+                                                            </div>
+                                                        </li> <li className='flex gap-2'>
+                                                            <div className="product-banner w-16 h-16">
+                                                                <Image className='w-full h-full' src={ProductBanner} alt='product banner' />
+                                                            </div>
+                                                            <div className="product-content">
+                                                                <p className='text-black text-[13px] line-clamp-1'>Mens Breathable Shoes</p>
+                                                                <p className='text-[12px] text-yellow-500'>only 17 left</p>
+                                                                <div className="flex items-center justify-between">
+                                                                    <p className='text-black tetx-md font-semibold'>Rs. <span className='text-lg '>721</span></p>
+                                                                    <MdAddShoppingCart className='text-xl' />
+                                                                </div>
+                                                            </div>
+                                                        </li> <li className='flex gap-2'>
+                                                            <div className="product-banner w-16 h-16">
+                                                                <Image className='w-full h-full' src={ProductBanner} alt='product banner' />
+                                                            </div>
+                                                            <div className="product-content">
+                                                                <p className='text-black text-[13px] line-clamp-1'>Mens Breathable Shoes</p>
+                                                                <p className='text-[12px] text-yellow-500'>only 17 left</p>
+                                                                <div className="flex items-center justify-between">
+                                                                    <p className='text-black tetx-md font-semibold'>Rs. <span className='text-lg '>721</span></p>
+                                                                    <MdAddShoppingCart className='text-xl' />
+                                                                </div>
+                                                            </div>
+                                                        </li> <li className='flex gap-2'>
+                                                            <div className="product-banner w-16 h-16">
+                                                                <Image className='w-full h-full' src={ProductBanner} alt='product banner' />
+                                                            </div>
+                                                            <div className="product-content">
+                                                                <p className='text-black text-[13px] line-clamp-1'>Mens Breathable Shoes</p>
+                                                                <p className='text-[12px] text-yellow-500'>only 17 left</p>
+                                                                <div className="flex items-center justify-between">
+                                                                    <p className='text-black tetx-md font-semibold'>Rs. <span className='text-lg '>721</span></p>
+                                                                    <MdAddShoppingCart className='text-xl' />
+                                                                </div>
+                                                            </div>
+                                                        </li> <li className='flex gap-2'>
+                                                            <div className="product-banner w-16 h-16">
+                                                                <Image className='w-full h-full' src={ProductBanner} alt='product banner' />
+                                                            </div>
+                                                            <div className="product-content">
+                                                                <p className='text-black text-[13px] line-clamp-1'>Mens Breathable Shoes</p>
+                                                                <p className='text-[12px] text-yellow-500'>only 17 left</p>
+                                                                <div className="flex items-center justify-between">
+                                                                    <p className='text-black tetx-md font-semibold'>Rs. <span className='text-lg '>721</span></p>
+                                                                    <MdAddShoppingCart className='text-xl' />
+                                                                </div>
+                                                            </div>
+                                                        </li> <li className='flex gap-2'>
+                                                            <div className="product-banner w-16 h-16">
+                                                                <Image className='w-full h-full' src={ProductBanner} alt='product banner' />
+                                                            </div>
+                                                            <div className="product-content">
+                                                                <p className='text-black text-[13px] line-clamp-1'>Mens Breathable Shoes</p>
+                                                                <p className='text-[12px] text-yellow-500'>only 17 left</p>
+                                                                <div className="flex items-center justify-between">
+                                                                    <p className='text-black tetx-md font-semibold'>Rs. <span className='text-lg '>721</span></p>
+                                                                    <MdAddShoppingCart className='text-xl' />
+                                                                </div>
+                                                            </div>
+                                                        </li> <li className='flex gap-2'>
+                                                            <div className="product-banner w-16 h-16">
+                                                                <Image className='w-full h-full' src={ProductBanner} alt='product banner' />
+                                                            </div>
+                                                            <div className="product-content">
+                                                                <p className='text-black text-[13px] line-clamp-1'>Mens Breathable Shoes</p>
+                                                                <p className='text-[12px] text-yellow-500'>only 17 left</p>
+                                                                <div className="flex items-center justify-between">
+                                                                    <p className='text-black tetx-md font-semibold'>Rs. <span className='text-lg '>721</span></p>
+                                                                    <MdAddShoppingCart className='text-xl' />
+                                                                </div>
+                                                            </div>
+                                                        </li> <li className='flex gap-2'>
+                                                            <div className="product-banner w-16 h-16">
+                                                                <Image className='w-full h-full' src={ProductBanner} alt='product banner' />
+                                                            </div>
+                                                            <div className="product-content">
+                                                                <p className='text-black text-[13px] line-clamp-1'>Mens Breathable Shoes</p>
+                                                                <p className='text-[12px] text-yellow-500'>only 17 left</p>
+                                                                <div className="flex items-center justify-between">
+                                                                    <p className='text-black tetx-md font-semibold'>Rs. <span className='text-lg '>721</span></p>
+                                                                    <MdAddShoppingCart className='text-xl' />
+                                                                </div>
+                                                            </div>
+                                                        </li> <li className='flex gap-2'>
+                                                            <div className="product-banner w-16 h-16">
+                                                                <Image className='w-full h-full' src={ProductBanner} alt='product banner' />
+                                                            </div>
+                                                            <div className="product-content">
+                                                                <p className='text-black text-[13px] line-clamp-1'>Mens Breathable Shoes</p>
+                                                                <p className='text-[12px] text-yellow-500'>only 17 left</p>
+                                                                <div className="flex items-center justify-between">
+                                                                    <p className='text-black tetx-md font-semibold'>Rs. <span className='text-lg '>721</span></p>
+                                                                    <MdAddShoppingCart className='text-xl' />
+                                                                </div>
+                                                            </div>
+                                                        </li> <li className='flex gap-2'>
+                                                            <div className="product-banner w-16 h-16">
+                                                                <Image className='w-full h-full' src={ProductBanner} alt='product banner' />
+                                                            </div>
+                                                            <div className="product-content">
+                                                                <p className='text-black text-[13px] line-clamp-1'>Mens Breathable Shoes</p>
+                                                                <p className='text-[12px] text-yellow-500'>only 17 left</p>
+                                                                <div className="flex items-center justify-between">
+                                                                    <p className='text-black tetx-md font-semibold'>Rs. <span className='text-lg '>721</span></p>
+                                                                    <MdAddShoppingCart className='text-xl' />
+                                                                </div>
+                                                            </div>
+                                                        </li> <li className='flex gap-2'>
+                                                            <div className="product-banner w-16 h-16">
+                                                                <Image className='w-full h-full' src={ProductBanner} alt='product banner' />
+                                                            </div>
+                                                            <div className="product-content">
+                                                                <p className='text-black text-[13px] line-clamp-1'>Mens Breathable Shoes</p>
+                                                                <p className='text-[12px] text-yellow-500'>only 17 left</p>
+                                                                <div className="flex items-center justify-between">
+                                                                    <p className='text-black tetx-md font-semibold'>Rs. <span className='text-lg '>721</span></p>
+                                                                    <MdAddShoppingCart className='text-xl' />
+                                                                </div>
+                                                            </div>
+                                                        </li> <li className='flex gap-2'>
+                                                            <div className="product-banner w-16 h-16">
+                                                                <Image className='w-full h-full' src={ProductBanner} alt='product banner' />
+                                                            </div>
+                                                            <div className="product-content">
+                                                                <p className='text-black text-[13px] line-clamp-1'>Mens Breathable Shoes</p>
+                                                                <p className='text-[12px] text-yellow-500'>only 17 left</p>
+                                                                <div className="flex items-center justify-between">
+                                                                    <p className='text-black tetx-md font-semibold'>Rs. <span className='text-lg '>721</span></p>
+                                                                    <MdAddShoppingCart className='text-xl' />
+                                                                </div>
+                                                            </div>
+                                                        </li>
+                                                       
+                                                    </ul>
+                                                </div>
                                                 <ul className='px-1'>
                                                     <li className='cursor-pointer flex items-center gap-1 text-[15px] font-normal px-3 py-2 rounded-sm hover:bg-gray-200'>
                                                         <PiBookBookmarkLight className='text-xl' />
@@ -423,12 +600,12 @@ const Header = () => {
                                                         </div>
                                                     )}
                                                 </ul>
+                                                </div>
                                             </ul>
                                         )}
                                     </li>
                                 )}
 
-                                {/* If user is not logged in, show the login modal trigger */}
                                 {!user && (
                                     <li
                                         onClick={() => setShowSignInModal(true)}
