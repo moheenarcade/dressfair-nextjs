@@ -365,7 +365,7 @@ const CategoryFilters = () => {
 
 
                     {openDropdown && isFullWidthDropdown(openDropdown) && (
-                        <div className="absolute left-0 right-0 top-[38px] xl:top-[44px] z-[9999] w-full">
+                        <div className="absolute left-0 right-0 top-[38px] xl:top-[50px] z-[9999] w-full">
                             <div className="relative w-full mx-auto rounded-lg bg-white p-2 lg:p-4 shadow-xl border border-gray-200">
                                 {/* Dynamic Caret */}
                                 <div
