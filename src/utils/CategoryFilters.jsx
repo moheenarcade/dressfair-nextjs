@@ -45,6 +45,11 @@ const CategoryFilters = () => {
     const dropdownRef = useRef(null);
     const [openDropdown, setOpenDropdown] = useState(null);
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+    const [showLeftButton, setShowLeftButton] = useState(false);
+    const [showRightButton, setShowRightButton] = useState(false);
+    const scrollContainerRef = useRef(null);
+
+
     const [selectedFilters, setSelectedFilters] = useState({
         "Sort by: Relevance": "Relevance",
         Color: [],
@@ -64,6 +69,24 @@ const CategoryFilters = () => {
     const [buttonPositions, setButtonPositions] = useState({});
 
     useOutsideClick(dropdownRef, () => setOpenDropdown(null));
+
+    const handleScroll = () => {
+        const container = scrollContainerRef.current;
+        if (!container) return;
+
+        const { scrollLeft, scrollWidth, clientWidth } = container;
+
+        setShowLeftButton(scrollLeft > 10);
+        setShowRightButton(scrollLeft + clientWidth < scrollWidth - 10);
+    };
+
+    const scrollByAmount = (amount) => {
+        const container = scrollContainerRef.current;
+        if (container) {
+            container.scrollBy({ left: amount, behavior: "smooth" });
+        }
+    };
+
 
     const handleSelect = (label, value) => {
         if (label !== "Sort by: Relevance") {
@@ -227,7 +250,7 @@ const CategoryFilters = () => {
 
                     setButtonPositions(prev => ({
                         ...prev,
-                        [label]: Math.max(10, Math.min(90, percentage))
+                        [label]: Math.max(10, Math.min(100, percentage))
                     }));
                 }
             }
@@ -240,17 +263,22 @@ const CategoryFilters = () => {
             <div ref={dropdownRef} className="relative w-full">
                 <div id="filter-scroll" className="flex items-center gap-2 px-2 relative w-full">
                     <div className="relative w-full">
-                        <button
-                            onClick={() => {
-                                const scrollContainer = document.getElementById("filter-scroll-container");
-                                scrollContainer.scrollBy({ left: -200, behavior: "smooth" });
-                            }}
-                            className="hidden md:flex absolute w-6 h-6 -left-5 top-1/2 -translate-y-1/2 z-10 bg-white shadow-md rounded-full p-2 items-center justify-center hover:bg-gray-100 transition"
-                        >
-                            &#8592;
-                        </button>
+                        {/* Left Scroll Button */}
+                        {showLeftButton && (
+                            <button
+                                onClick={() => scrollByAmount(-200)}
+                                className="hidden xl:flex absolute w-8 h-8 -left-5 top-1/2 -translate-y-1/2 z-10 bg-white shadow-md rounded-full items-center justify-center hover:bg-gray-100 transition"
+                            >
+                                &#8592;
+                            </button>
+                        )}
+
+                        {/* Scrollable container */}
                         <div
                             id="filter-scroll-container"
+                            ref={scrollContainerRef}
+                            onScroll={handleScroll}
+                            onLoad={handleScroll}
                             className="flex items-center gap-2 overflow-x-auto scrollbar-hide scroll-smooth px-2"
                         >
                             <button
@@ -259,6 +287,7 @@ const CategoryFilters = () => {
                             >
                                 <LiaFilterSolid size={18} /> Filters
                             </button>
+
                             <ul className="flex gap-2 items-center w-max flex-nowrap">
                                 {filters.map((label, i) => (
                                     <li key={i} className="relative flex-shrink-0">
@@ -268,6 +297,7 @@ const CategoryFilters = () => {
                                         >
                                             {getLabelText(label)}
                                         </button>
+
                                         {openDropdown === label && !isFullWidthDropdown(label) && (
                                             <div className="absolute left-1/2 top-[110%] z-[9999] bg-white border border-gray-200 shadow-lg rounded-lg p-2 w-44 transform -translate-x-1/2">
                                                 <div className="absolute left-1/2 top-[-10px] transform -translate-x-1/2 w-0 h-0 border-l-[10px] border-l-transparent border-r-[10px] border-r-transparent border-b-[10px] border-b-gray-200"></div>
@@ -279,19 +309,20 @@ const CategoryFilters = () => {
                             </ul>
                         </div>
 
-                        <button
-                            onClick={() => {
-                                const scrollContainer = document.getElementById("filter-scroll-container");
-                                scrollContainer.scrollBy({ left: 200, behavior: "smooth" });
-                            }}
-                            className="hidden md:flex absolute -right-5 w-6 h-6 top-1/2 -translate-y-1/2 z-10 bg-white shadow-md rounded-full p-2 items-center justify-center hover:bg-gray-100 transition"
-                        >
-                            &#8594;
-                        </button>
+                        {/* Right Scroll Button */}
+                        {showRightButton && (
+                            <button
+                                onClick={() => scrollByAmount(200)}
+                                className="hidden xl:flex absolute -right-5 w-8 h-8 top-1/2 -translate-y-1/2 z-10 bg-white shadow-md rounded-full items-center justify-center hover:bg-gray-100 transition"
+                            >
+                                &#8594;
+                            </button>
+                        )}
                     </div>
 
+
                     {openDropdown && isFullWidthDropdown(openDropdown) && (
-                        <div className="absolute left-0 right-0 top-[44px] z-[9999] w-full">
+                        <div className="absolute left-0 right-0 top-[38px] xl:top-[44px] z-[9999] w-full">
                             <div className="relative w-full mx-auto rounded-lg bg-white p-2 lg:p-4 shadow-xl border border-gray-200">
                                 {/* Dynamic Caret */}
                                 <div
