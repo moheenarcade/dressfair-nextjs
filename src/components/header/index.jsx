@@ -23,6 +23,7 @@ import SearchBarHeader from '../searchBarHeader';
 import SignInModal from '../models/SignInModal';
 import { BiSupport } from "react-icons/bi";
 import { AiOutlineMessage, AiOutlinePropertySafety, AiOutlineSafety } from 'react-icons/ai';
+import { useUser } from '../../context/UserContext';
 
 
 const categoriesData = [
@@ -145,6 +146,15 @@ const Header = () => {
     const [activeCategory, setActiveCategory] = useState(categoriesData[0]);
     const [showMegaMenu, setShowMegaMenu] = useState(false);
     const [showSignInModal, setShowSignInModal] = useState(false);
+    const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
+    const { user, logout } = useUser();
+    const [showUserDropdown, setShowUserDropdown] = useState(false);
+    const userDropdownRef = useRef(null);
+    const handleLogout = () => {
+        logout();
+        setShowUserDropdown(false);
+    };
+
 
     useEffect(() => {
         const handleClickOutside = (event) => {
@@ -285,19 +295,19 @@ const Header = () => {
                                             {/* Left Side Categories */}
                                             <div className="w-1/4 bg-[#f6f6f6] border-r border-gray-200 overflow-y-auto">
                                                 <ul>
-                                                    {categoriesData.map((cat , index) => (
-                                                         <Link key={cat.id} href={`/c/${cat.name.toLowerCase().replace(/&/g, 'and').replace(/\s+/g, '-')}`}>
-                                                        <li
-                                                           
-                                                            onMouseEnter={() => setActiveCategory(cat)}
-                                                            className={`py-3 px-4 flex justify-between items-center cursor-pointer text-sm font-semibold ${activeCategory.id === cat.id
-                                                                ? "bg-white text-black border-l-4 border-[#fb7701]"
-                                                                : "text-gray-600 hover:bg-white hover:text-black border-l-4 border-l-transparent"
-                                                                }`}
-                                                        >
-                                                           
+                                                    {categoriesData.map((cat, index) => (
+                                                        <Link key={cat.id} href={`/c/${cat.name.toLowerCase().replace(/&/g, 'and').replace(/\s+/g, '-')}`}>
+                                                            <li
+
+                                                                onMouseEnter={() => setActiveCategory(cat)}
+                                                                className={`py-3 px-4 flex justify-between items-center cursor-pointer text-sm font-semibold ${activeCategory.id === cat.id
+                                                                    ? "bg-white text-black border-l-4 border-[#fb7701]"
+                                                                    : "text-gray-600 hover:bg-white hover:text-black border-l-4 border-l-transparent"
+                                                                    }`}
+                                                            >
+
                                                                 {cat.name} <GoChevronRight className='text-[14px] text-gray-400' />
-                                                        </li>
+                                                            </li>
                                                         </Link>
 
                                                     ))}
@@ -329,14 +339,87 @@ const Header = () => {
                             <SearchBarHeader />
                             {/* Right Icons */}
                             <ul className="flex items-center shrink-0">
-                                <li onClick={() => setShowSignInModal(true)} className={`${isHomePage ? "text-white" : "text-[#222222]"} relative group py-1 px-3 flex items-center gap-1 cursor-pointer `}>
-                                    <span className={`${isHomePage ? "bg-[#BA0000]" : "bg-[#eeeeee]"} absolute inset-0 h-[50px] my-auto rounded-full scale-0 origin-center transition-transform duration-500 ease-in-out group-hover:scale-100`}></span>
-                                    <FaRegUser className="text-xl relative z-10" />
-                                    <span className="leading-4 relative z-10">
-                                        <span className="text-[13px]"> Sign in / Register</span> <br />
-                                        <b className="text-[14px]">Order & Account</b>
-                                    </span>
-                                </li>
+                                {/* User Account Section */}
+                                {user && (
+                                    <li
+                                        ref={userDropdownRef}
+                                        className={`${isHomePage ? "text-white" : "text-[#222222]"} relative group py-1 px-3 flex items-center gap-1 cursor-pointer`}
+                                        onMouseEnter={() => setShowUserDropdown(true)}
+                                        onMouseLeave={() => setShowUserDropdown(false)}
+                                    >
+                                        <span className={`${isHomePage ? "bg-[#BA0000]" : "bg-[#eeeeee]"} absolute inset-0 h-[50px] my-auto rounded-full scale-0 origin-center transition-transform duration-500 ease-in-out group-hover:scale-100`}></span>
+                                        <FaRegUser className="text-xl relative z-10" />
+                                        <span className="leading-4 relative z-10">
+                                            {user ? (
+                                                <>
+                                                    <p className="text-[13px] max-w-[120px] line-clamp-1 overflow-hidden whitespace-nowrap"> {user.name || user.email || user.phone}</p>
+                                                  
+                                                    <b className="text-[14px]">Order & Account</b>
+                                                </>
+                                            ) : (
+                                                <>
+                                                    <span className="text-[13px]">Sign in / Register</span> <br />
+                                                    <b className="text-[14px]">Order & Account</b>
+                                                </>
+                                            )}
+                                        </span>
+
+                                        {/* User Dropdown Menu */}
+                                        {user && showUserDropdown && (
+                                            <ul
+                                                className="absolute left-1/2 top-full py-3 mt-1 w-48 bg-white text-black rounded-md shadow-lg z-20 transform -translate-x-1/2"
+                                            >
+                                                <div
+                                                    className="absolute left-1/2 top-[-8px] transform -translate-x-1/2 z-[60]
+                                                 w-0 h-0 
+                                                 border-l-[10px] border-l-transparent 
+                                                 border-r-[10px] border-r-transparent 
+                                                 border-b-[10px] border-b-white"
+                                                />
+                                                <li className="px-4 py-2 border-b border-gray-100">
+                                                    <p className="text-sm font-semibold truncate">
+                                                        {user.name || user.email || user.phone}
+                                                    </p>
+                                                    <p className="text-xs text-gray-500">
+                                                        {user.loginMethod === 'whatsapp' ? 'WhatsApp' : 'Email'} User
+                                                    </p>
+                                                </li>
+                                                <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer text-[14px] font-[500]">
+                                                    My Orders
+                                                </li>
+                                                <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer text-[14px] font-[500]">
+                                                    Account Settings
+                                                </li>
+                                                <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer text-[14px] font-[500]">
+                                                    Wishlist
+                                                </li>
+                                                <li
+                                                    onClick={handleLogout}
+                                                    className="px-4 py-2 hover:bg-gray-100 cursor-pointer text-[14px] font-[500] text-red-600 border-t border-gray-100"
+                                                >
+                                                    Logout
+                                                </li>
+                                            </ul>
+                                        )}
+                                    </li>
+                                )}
+
+                                {/* If user is not logged in, show the login modal trigger */}
+                                {!user && (
+                                    <li
+                                        onClick={() => setShowSignInModal(true)}
+                                        className={`${isHomePage ? "text-white" : "text-[#222222]"} relative group py-1 px-3 flex items-center gap-1 cursor-pointer`}
+                                    >
+                                        <span className={`${isHomePage ? "bg-[#BA0000]" : "bg-[#eeeeee]"} absolute inset-0 h-[50px] my-auto rounded-full scale-0 origin-center transition-transform duration-500 ease-in-out group-hover:scale-100`}></span>
+                                        <FaRegUser className="text-xl relative z-10" />
+                                        <span className="leading-4 relative z-10">
+                                            <span className="text-[13px]">Sign in / Register</span> <br />
+                                            <b className="text-[14px]">Order & Account</b>
+                                        </span>
+                                    </li>
+                                )}
+
+
 
                                 <li className={`${isHomePage ? "text-white" : "text-[#222222]"} relative group py-1 px-3 cursor-pointer font-semibold flex gap-1 items-center text-[14px]`}>
                                     {/* Background animation */}
@@ -477,7 +560,7 @@ const Header = () => {
             />
 
             {showMobileCategory && (
-                <MobileCategories   onClose={() => setMobileCategory(false)} />
+                <MobileCategories onClose={() => setMobileCategory(false)} />
             )}
             {showMobileUser && (
                 <div ref={popupRef}>

@@ -212,46 +212,46 @@ const CategoryPage = () => {
   return (
     <div className="container mx-auto 2xl:px-22 py-3 xl:py-6">
       <div className="hidden xl:block">
-      {subcategory && (
-        <nav className="flex items-center space-x-2 text-sm text-gray-500 mb-6 px-2">
-          <Link href="/" className="hover:text-gray-700">
-            Home
-          </Link>
-          <LuChevronRight />
-          <Link
-            href={`/c/${toSlug(category.name)}`}
-            className="hover:text-gray-700"
-          >
-            {category.name}
-          </Link>
-          {subcategory && (
-            <>
-              <LuChevronRight />
-              <span className="text-gray-800 font-medium">
-                {subcategory.name}
-              </span>
-            </>
-          )}
-        </nav>
-      )}
+        {subcategory && (
+          <nav className="flex items-center space-x-2 text-sm text-gray-500 mb-6 px-2">
+            <Link href="/" className="hover:text-gray-700">
+              Home
+            </Link>
+            <LuChevronRight />
+            <Link
+              href={`/c/${toSlug(category.name)}`}
+              className="hover:text-gray-700"
+            >
+              {category.name}
+            </Link>
+            {subcategory && (
+              <>
+                <LuChevronRight />
+                <span className="text-gray-800 font-medium">
+                  {subcategory.name}
+                </span>
+              </>
+            )}
+          </nav>
+        )}
       </div>
 
       <div className="block xl:hidden">
-      {subcategory && (
-        <nav className="flex items-center text-center justify-center space-x-2 text-sm text-gray-500 pb-3 px-2">
-          {subcategory && (
-            <>
-              <span className="text-gray-800 font-semibold text-lg">
-                {subcategory.name}
-              </span>
-            </>
-          )}
-        </nav>
-      )}
+        {subcategory && (
+          <nav className="flex items-center text-center justify-center space-x-2 text-sm text-gray-500 pb-3 px-2">
+            {subcategory && (
+              <>
+                <span className="text-gray-800 font-semibold text-lg">
+                  {subcategory.name}
+                </span>
+              </>
+            )}
+          </nav>
+        )}
       </div>
 
       {!subcategory && (
-        <div className="grid grid-cols-4 md:grid-cols-4 lg:grid-cols-12 gap-4 pt-6 pb-6 mb-6 border-b border-b-gray-300 px-2">
+        <div className="grid grid-cols-4 md:grid-cols-7 lg:grid-cols-12 gap-4 pt-6 pb-6 mb-6 border-b border-b-gray-300 px-2">
           {category.subcategories.map((sub, index) => (
             <Link
               key={index}
