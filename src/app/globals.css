@@ -58,7 +58,6 @@ button , a {
   width: 0px !important;
 }
 
-
 /* hide default scrollbar (optional) */
 .scrollbar-hide::-webkit-scrollbar { display: none; }
 .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
@@ -68,19 +67,29 @@ button , a {
   overflow: visible;
 }
 
-/* @keyframes slideUp {
-  from {
-    transform: translateY(100%);
-  }
-  to {
-    transform: translateY(0);
-  }
-} */
 
 .animate-slideUp {
   animation: slideUp 0.25s ease-out;
 }
 
+.product-detail-main .swiper-button-prev , .product-detail-main .swiper-button-next {
+  border-radius: 100% !important;
+  background-color: white !important;
+}
+
+.product-detail-main .swiper-button-prev, .product-detail-main .swiper-button-next svg {
+  color: black !important;
+
+}
+
+:is(.swiper-button-prev, .swiper-button-next) svg {
+  object-fit: contain;
+  transform-origin: center;
+  fill: currentColor;
+  pointer-events: none;
+  width: 26% !important;
+  height: 100%;
+}
 
 @media (min-width: 100px) and (max-width: 375px) {
   .mobile-sold-num {

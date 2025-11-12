@@ -9,7 +9,7 @@ import Image from "next/image";
 import LoginCar from "../../../public/LOGINCAR.avif";
 import FreeReturnimg from "../../../public/loginapidadjustment.avif";
 import { signIn } from "next-auth/react";
-import { useUser } from "../../context/UserContext"; // Adjust path as needed
+import { useUser } from "../../context/UserContext";
 
 const SignInModal = ({ isOpen, onClose }) => {
   const [activeTab, setActiveTab] = useState("whatsapp");
