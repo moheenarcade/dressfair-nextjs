@@ -68,6 +68,20 @@ button , a {
   overflow: visible;
 }
 
+/* @keyframes slideUp {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+} */
+
+.animate-slideUp {
+  animation: slideUp 0.25s ease-out;
+}
+
+
 @media (min-width: 100px) and (max-width: 375px) {
   .mobile-sold-num {
     font-size: 9px !important;

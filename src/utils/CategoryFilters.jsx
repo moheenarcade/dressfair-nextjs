@@ -3,6 +3,7 @@ import React, { useRef, useState } from "react";
 import { LiaFilterSolid } from "react-icons/lia";
 import { useOutsideClick } from "./useOutsideClick";
 import SidebarFilterModal from "../components/models/SidebarFilterModal";
+import DropdownPortal from "@/components/models/DropdownPortal";
 
 const filters = [
     "Sort by: Relevance",
@@ -48,7 +49,8 @@ const CategoryFilters = () => {
     const [showLeftButton, setShowLeftButton] = useState(false);
     const [showRightButton, setShowRightButton] = useState(false);
     const scrollContainerRef = useRef(null);
-
+    const [portalDropdown, setPortalDropdown] = useState(null);
+    const [portalPosition, setPortalPosition] = useState({ top: 0, left: 0 });
 
     const [selectedFilters, setSelectedFilters] = useState({
         "Sort by: Relevance": "Relevance",
@@ -70,6 +72,7 @@ const CategoryFilters = () => {
 
     useOutsideClick(dropdownRef, () => setOpenDropdown(null));
 
+    
     const handleScroll = () => {
         const container = scrollContainerRef.current;
         if (!container) return;
@@ -100,6 +103,7 @@ const CategoryFilters = () => {
         } else {
             setSelectedFilters((prev) => ({ ...prev, [label]: value }));
             setOpenDropdown(null);
+            setPortalDropdown(null);
         }
     };
 
@@ -234,6 +238,25 @@ const CategoryFilters = () => {
         return !["Sort by: Relevance"].includes(label);
     };
 
+    // 1️⃣ Portal Dropdown (for Sort by: Relevance)
+    const handlePortalDropdownToggle = (label, event) => {
+        if (portalDropdown === label) {
+            setPortalDropdown(null);
+            return;
+        }
+
+        if (event && event.currentTarget) {
+            const rect = event.currentTarget.getBoundingClientRect();
+            setPortalPosition({
+                top: rect.bottom + window.scrollY,
+                left: rect.left + rect.width / 2 + window.scrollX,
+            });
+        }
+
+        setPortalDropdown(label);
+    };
+
+    // 2️⃣ Normal Inline Dropdown (for other filters)
     const handleDropdownToggle = (label, event) => {
         if (openDropdown === label) {
             setOpenDropdown(null);
@@ -248,15 +271,17 @@ const CategoryFilters = () => {
                     const buttonCenter = relativeLeft + buttonRect.width / 2;
                     const percentage = (buttonCenter / containerRect.width) * 100;
 
-                    setButtonPositions(prev => ({
+                    setButtonPositions((prev) => ({
                         ...prev,
-                        [label]: Math.max(10, Math.min(100, percentage))
+                        [label]: Math.max(10, Math.min(100, percentage)),
                     }));
                 }
             }
             setOpenDropdown(label);
         }
     };
+
+
 
     return (
         <>
@@ -292,17 +317,35 @@ const CategoryFilters = () => {
                                 {filters.map((label, i) => (
                                     <li key={i} className="relative flex-shrink-0">
                                         <button
-                                            onClick={(e) => handleDropdownToggle(label, e)}
+                                            onClick={(e) => {
+                                                if (label === "Sort by: Relevance") {
+                                                    handlePortalDropdownToggle(label, e); // Floating portal dropdown
+                                                } else {
+                                                    handleDropdownToggle(label, e); // Normal inline dropdown
+                                                }
+                                            }}
+
                                             className="flex whitespace-nowrap items-center h-[30px] xl:h-[40px] cursor-pointer gap-1 rounded-full py-1 xl:py-2 px-3 bg-[#f6f6f6] text-[#555] text-[14px] hover:bg-[#eaeaea] hover:text-black transition-all"
                                         >
                                             {getLabelText(label)}
                                         </button>
 
-                                        {openDropdown === label && !isFullWidthDropdown(label) && (
-                                            <div className="absolute left-1/2 top-[110%] z-[9999] bg-white border border-gray-200 shadow-lg rounded-lg p-2 w-44 transform -translate-x-1/2">
-                                                <div className="absolute left-1/2 top-[-10px] transform -translate-x-1/2 w-0 h-0 border-l-[10px] border-l-transparent border-r-[10px] border-r-transparent border-b-[10px] border-b-gray-200"></div>
-                                                {renderDropdownContent(label)}
-                                            </div>
+                                        {portalDropdown && (
+                                            <DropdownPortal>
+                                                <div
+                                                    className="absolute z-[99999] bg-white border border-gray-200 shadow-lg rounded-lg p-2 w-44"
+                                                    style={{
+                                                        top: `${portalPosition.top}px`,
+                                                        left: `${portalPosition.left}px`,
+                                                        transform: "translate(-50%, 10px)",
+                                                        position: "absolute",
+                                                    }}
+                                                >
+                                                    <div className="absolute left-1/2 top-[-10px] transform -translate-x-1/2 w-0 h-0 
+        border-l-[10px] border-l-transparent border-r-[10px] border-r-transparent border-b-[10px] border-b-gray-200"></div>
+                                                    {renderDropdownContent(portalDropdown)}
+                                                </div>
+                                            </DropdownPortal>
                                         )}
                                     </li>
                                 ))}
