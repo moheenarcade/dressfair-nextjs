@@ -4,30 +4,21 @@ import { useParams } from "next/navigation";
 import Image from "next/image";
 import { GoChevronRight } from "react-icons/go";
 import Link from "next/link";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { FreeMode, Navigation, Thumbs } from "swiper/modules";
-import "swiper/css";
-import "swiper/css/free-mode";
-import "swiper/css/navigation";
-import "swiper/css/thumbs";
-import { FaStar } from "react-icons/fa6";
+import { FaFreeCodeCamp, FaStar } from "react-icons/fa6";
+import PromotionalContent from "../../../../public/productdetail-promotional-content.avif";
+import { LuCheck } from "react-icons/lu";
+import PriceSection from "../../../../public/priceicons.avif";
+import { HiQuestionMarkCircle } from "react-icons/hi";
+import ProductMainSlider from "@/components/productDetailPageComponent/productMainSlider";
+import ProductColorSize from "@/components/productDetailPageComponent/productColorSize";
+import { FaShippingFast } from "react-icons/fa";
+import { RiCashLine } from "react-icons/ri";
+import ExploreInterestProducts from "@/components/productDetailPageComponent/exploreInterestProducts";
 
 const ProductDetailPage = () => {
-    const { slug } = useParams();
-    const [thumbsSwiper, setThumbsSwiper] = useState(null);
-
-    const productImages = [
-        "/deals-product3.avif",
-        "/deals-product3.avif",
-        "/deals-product3.avif",
-        "/deals-product3.avif",
-        "/deals-product3.avif",
-        "/deals-product3.avif",
-        "/deals-product3.avif",
-    ];
 
     return (
-        <div className="product-detail-main container mx-auto px-2 2xl:px-22 pt-3 pb-12">
+        <div className="product-detail-main relative container mx-auto px-2 2xl:px-22 pt-3 pb-12">
             <div className="flex flex-col lg:flex-row gap-12">
                 <div className="w-full lg:w-[52%] flex flex-col">
                     <div className="breadcrupms pb-3">
@@ -39,61 +30,13 @@ const ProductDetailPage = () => {
                             <li className="text-black">Mens winter clothing</li>
                         </ul>
                     </div>
-                    <div className="flex">
-                        {/* Thumbnail Gallery (Left Side) */}
-                        <div className="w-[15%] mr-4">
-                            <Swiper
-                                onSwiper={setThumbsSwiper}
-                                direction="vertical"
-                                spaceBetween={10}
-                                slidesPerView={7}
-                                freeMode={true}
-                                watchSlidesProgress={true}
-                                modules={[FreeMode, Navigation, Thumbs]}
-                                className="product-thumbs-swiper h-[570px]"
-                            >
-                                {productImages.map((img, index) => (
-                                    <SwiperSlide key={index}>
-                                        <Image
-                                            src={img}
-                                            alt={`thumb-${index}`}
-                                            width={80}
-                                            height={100}
-                                            className="cursor-pointer object-cover w-full h-full rounded-lg border hover:border-gray-400 transition-all"
-                                        />
-                                    </SwiperSlide>
-                                ))}
-                            </Swiper>
-                        </div>
-
-                        {/* Main Image Swiper */}
-                        <div className="w-[80%]">
-                            <Swiper
-                                spaceBetween={10}
-                                navigation={true}
-                                thumbs={{ swiper: thumbsSwiper }}
-                                modules={[FreeMode, Navigation, Thumbs]}
-                                className="product-main-swiper rounded-xl overflow-hidden"
-                            >
-                                {productImages.map((img, index) => (
-                                    <SwiperSlide key={index}>
-                                        <Image
-                                            src={img}
-                                            alt={`main-${index}`}
-                                            width={600}
-                                            height={700}
-                                            className="object-contain w-full h-auto rounded-xl"
-                                        />
-                                    </SwiperSlide>
-                                ))}
-                            </Swiper>
-                        </div>
-                    </div>
+                    <ProductMainSlider />
                 </div>
 
-                <div className="w-full lg:w-[44%] pt-6">
+                <div className="w-full lg:w-[44%] pt-8 self-start lg:sticky top-0">
+
                     <div className="flex items-start gap-4">
-                        <h1 className="text-[16px] text-[#222] font-semibold mb-4">
+                        <h1 className="text-[16px] text-[#222] font-[500] mb-2">
                             Men's Winter Casual PU Leather Jacket, Stand Collar, Zippered Sleeves, Pockets, Classic Fashion Style Coat
                         </h1>
                         <button className="hover:scale-[1.04] transition-all duration-300 ease-in-out">
@@ -103,26 +46,88 @@ const ProductDetailPage = () => {
 
                     <div className="flex items-center justify-between">
                         <div className="flex items-center gap-1">
-                            <p>2.8K+ sold</p>
-
-                            <p>
-                                Sold by
+                            <p className="text-[#757575] text-[15px]">2.8K+ sold</p>
+                            <div className="bg-black h-3 w-px"></div>
+                            <p className="flex items-center gap-1">
+                                Sold by.
+                                <Image className="w-4 h-4 rounded-full" src={PromotionalContent} alt="promotional content" />
+                                <GoChevronRight />
                             </p>
                         </div>
 
                         <div className="product-rating flex items-center gap-1">
                             <p>
-                            4.7
+                                4.7
                             </p>
                             <FaStar />
                             <FaStar />
                             <FaStar />
                             <FaStar />
                             <FaStar />
+                        </div>
+                    </div>
 
+                    <div className="prices-sec flex items-center flex-wrap gap-2 pt-3 pb-4">
+                        <p className="text-[#000000] text-[20px] font-semibold relative">
+                            <span className="absolute top-[15px] bg-[#FB7701] w-full h-[2.5px]"></span>
+                            27452
+                        </p>
+                        <div className="flex items-end text-[#FB7701]">
+                            <Image className="w-4 h-4" src={PriceSection} alt="promotional content" />
+                            <p className="text-[20px] font-semibold leading-[20px]">Rs. <span className="text-[28px]">13,661</span></p>
+                        </div>
+                        <p className="text-[#FB7701] text-[15px] font-bold border border-[#FB7701] rounded-sm px-1 leading-[18px]">
+                            50% OFF limited time
+                        </p>
+                        <p className="text-[#FB7701] flex items-center gap-2 text-[15px] font-bold border border-[#FB7701] rounded-sm px-1 leading-[18px]">
+                            ALMOST SOLD OUT <HiQuestionMarkCircle />
+                        </p>
+                    </div>
+                    <div className="promotional-sec mb-4 flex items-center gap-6 bg-[#eb0101] rounded-md overflow-hidden">
+                        <Image className="w-30 h-10" src={PromotionalContent} alt="promotional content" />
+                        <div className="flex items-center gap-3">
+                            <p className="text-white flex items-center gap-1 font-semibold"><LuCheck /> Free shipping</p>
+                            <div className="bg-white h-4 w-px"></div>
+                            <p className="text-white flex items-center gap-1 font-semibold"><LuCheck /> Rs.280 Credit for delay</p>
+                        </div>
+                    </div>
+                    <ProductColorSize />
+
+                    <div className="pt-6 flex items-center gap-4">
+                        <button className="bg-[#fb5d01] hover:bg-[#fb7701] hover:scale-[1.03] text-white font-semibold text-lg py-3 px-6 rounded-full w-full transition-all duration-300 ease-in-out">
+                            Add to cart!
+                        </button>
+                        <button className="bg-[#fb5d01] main-button-buy hover:bg-[#fb7701] hover:scale-[1.03] text-white font-semibold text-lg py-3 px-6 rounded-full w-full transition-all duration-300 ease-in-out">
+                            Buy now
+                        </button>
+                    </div>
+
+                    <div className="shipping-info pt-8">
+                        <div className=" pb-3 border-b border-b-gray-300">
+                            <p className="text-[16px] flex items-center gap-2 text-[#0A8800] font-semibold">
+                            <FaShippingFast className="text-xl" />
+                                Fast Shipping</p>
+                            <p className="text-gray-600 text-[14px]">Normally delivered in 2-3 days</p>
+                        </div>
+                        <div className="py-3 border-b border-b-gray-300">
+                            <p className="text-[16px] flex items-center gap-2 text-[#0A8800] font-semibold">
+                            <FaFreeCodeCamp className="text-xl"/>
+                                Free Shipping</p>
+                            <p className="text-gray-600 text-[14px]">Free Shipping Over Shopping 150 AED.</p>
+                        </div>
+                        <div className="py-3 border-b border-b-gray-300">
+                            <p className="text-[16px] flex items-center gap-2 text-[#0A8800] font-semibold">
+                            <RiCashLine />
+                                Cash On Delivery</p>
+                            <p className="text-gray-600 text-[14px]">Pay when you receive your order</p>
                         </div>
                     </div>
                 </div>
+            </div>
+
+            <div className="explore-interest pt-18">
+                <h3 className="text-[#222] font-bold text-[18px] px-2">Explore your interests</h3>
+                <ExploreInterestProducts />
             </div>
         </div>
     );
