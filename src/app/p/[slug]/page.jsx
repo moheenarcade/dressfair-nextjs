@@ -21,6 +21,9 @@ import ProductListingMobile from "@/components/homePageMobile/productListingMobi
 import MobileAddToCartBottomModal from "../../../components/models/MobileAddToCartBottomModal";
 import { CgClose } from "react-icons/cg";
 import BuyNowModel from "../../../components/models/BuyNowModel";
+import { useCart } from "@/context/CartContext";
+
+
 
 const product = {
     title: "Men's Winter Casual PU Leather Jacket",
@@ -32,10 +35,11 @@ const product = {
 const ProductDetailPage = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [isBuyNowOpen, setIsBuyNowOpen] = useState(false);
+    const { openCart } = useCart();
 
     return (
         <>
-            <div className="product-detail-main relative container mx-auto px-0 lg:px-16 2xl:px-22 lg:pt-3 pb-12">
+            <div className="product-detail-main relative container mx-auto px-0 lg:px-16 xl:px-2 2xl:px-22 lg:pt-3 pb-12">
                 <div className="flex flex-col lg:flex-row lg:gap-12">
                     <div className="w-full lg:w-[52%] flex flex-col ">
                         <div className="breadcrupms pb-3 hidden lg:block">
@@ -122,7 +126,10 @@ const ProductDetailPage = () => {
                         <ProductColorSize />
                         <div className="px-2">
                             <div className="pt-6 flex items-center justify-start gap-2 lg:gap-4">
-                                <button className="bg-[#fb5d01] hover:bg-[#fb7701] hidden lg:block hover:scale-[1.03] text-white font-semibold text-md lg:text-lg py-2 xl:py-3 px-3 lg:px-6 rounded-full w-full transition-all duration-300 ease-in-out">
+                                <button   onClick={() => {
+        // add to cart logic
+        openCart();
+      }} className="bg-[#fb5d01] hover:bg-[#fb7701] hidden lg:block hover:scale-[1.03] text-white font-semibold text-md lg:text-lg py-2 xl:py-3 px-3 lg:px-6 rounded-full w-full transition-all duration-300 ease-in-out">
                                     Add to cart!
                                 </button>
                                 <button onClick={() => setIsBuyNowOpen(true)} className="bg-[#fb5d01] main-button-buy hover:bg-[#fb7701] hover:scale-[1.03] text-white font-semibold text-md lg:text-lg py-2 xl:py-3 px-3 lg:px-6 rounded-full w-[80%] mx-auto lg:w-full transition-all duration-300 ease-in-out">
