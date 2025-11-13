@@ -220,7 +220,7 @@ const ProductDetailPage = () => {
                     <ProductColorSize />
                     <button
                         onClick={() => setIsModalOpen(false)}
-                        className="mt-4 bg-[#fb5d01] hover:bg-[#fb7701] text-white py-2 px-6 rounded-full w-full font-semibold"
+                        className="mt-4 bg-[#fb5d01] hover:bg-[#fb7701] text-white py-3 px-6 rounded-full w-full font-semibold"
                     >
                         Confirm Add to Cart
                     </button>
