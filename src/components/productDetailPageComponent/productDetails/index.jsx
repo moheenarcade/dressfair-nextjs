@@ -94,7 +94,7 @@ const ProductDetails = () => {
             </div>
 
             {/* See More / See Less Button */}
-            <div className="text-center flex justify-center items-center mt-6 relative z-20">
+            <div className="text-center flex justify-center items-center relative z-20">
                 <button
                     onClick={() => setShowMore(!showMore)}
                     className="text-[#222] flex items-center gap-1 font-semibold text-sm px-4 py-2 rounded transition"
