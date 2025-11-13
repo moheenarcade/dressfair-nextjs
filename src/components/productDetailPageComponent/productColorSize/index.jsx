@@ -21,7 +21,7 @@ const ProductColorSize = () => {
     const qtyOptions = [1, 2, 3, 4, 5];
 
     return (
-        <div className="product-color-size">
+        <div className="product-color-size px-2 lg:px-0">
             {/* Color Section */}
             <div className="color-sect pb-4">
                 <p className="text-[#222] font-semibold">
@@ -43,13 +43,13 @@ const ProductColorSize = () => {
                                 }`}
                         >
                             <Image
-                                className="w-22 h-auto"
+                                className="w-18 xl:w-22 h-auto"
                                 width={50}
                                 height={50}
                                 src={color.image}
                                 alt={color.name}
                             />
-                            <p className="px-1 py-2 text-[#222] text-[12px] font-bold">
+                            <p className="px-1 py-1 xl:py-2 text-[#222] text-[12px] font-bold">
                                 {color.name}
                             </p>
                         </div>

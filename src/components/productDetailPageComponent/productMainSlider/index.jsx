@@ -33,7 +33,7 @@ const ProductMainSlider = () => {
         <>
             <div className="flex">
                 {/* Thumbnail Gallery (Left Side) */}
-                <div className="w-[12%] mr-4">
+                <div className="w-[12%] mr-4 hidden md:block">
                     <Swiper
                         onSwiper={setThumbsSwiper}
                         direction="vertical"
@@ -42,7 +42,7 @@ const ProductMainSlider = () => {
                         freeMode={true}
                         watchSlidesProgress={true}
                         modules={[FreeMode, Navigation, Thumbs]}
-                        className="product-thumbs-swiper h-[600px]"
+                        className="product-thumbs-swiper h-[400px] xl:h-[600px]"
                     >
                         {productImages.map((img, index) => (
                             <SwiperSlide key={index}>
@@ -59,13 +59,13 @@ const ProductMainSlider = () => {
                 </div>
 
                 {/* Main Image Swiper */}
-                <div className="w-[86%]">
+                <div className="w-full lg:w-[86%]">
                     <Swiper
                         spaceBetween={10}
                         navigation={true}
                         thumbs={{ swiper: thumbsSwiper }}
                         modules={[FreeMode, Navigation, Thumbs]}
-                        className="product-main-swiper rounded-xl overflow-hidden"
+                        className="product-main-swiper lg:rounded-xl overflow-hidden"
                     >
                         {productImages.map((img, index) => (
                             <SwiperSlide key={index}>
@@ -74,14 +74,15 @@ const ProductMainSlider = () => {
                                     alt={`main-${index}`}
                                     width={600}
                                     height={700}
-                                    className="object-contain w-full h-auto rounded-xl"
+                                    className="object-contain w-full h-auto lg:rounded-xl"
                                 />
                             </SwiperSlide>
                         ))}
                     </Swiper>
                 </div>
             </div>
-            <div className="review-sec pt-6 flex items-center justify-between">
+            <div className="hidden lg:block">
+            <div className="review-sec pt-6 flex items-center justify-between ">
                 <div className="flex items-center gap-3">
                     <p className="text-[18px] font-semibold tetx-[#222]">1,009 reviews</p>
                     <div className="h-4 bg-black w-px"></div>
@@ -106,13 +107,14 @@ const ProductMainSlider = () => {
                     </span>
                 </div>
             </div>
-            <div className="reviews-main-sec">
+            </div>
+            <div className="reviews-main-sec hidden lg:block">
                 <ProductReviews />
             </div>
-            <div className="product-store-info">
+            <div className="product-store-info hidden lg:block">
                 <ProductStoreInfo />
             </div>
-            <div className="product-detail-sec">
+            <div className="product-detail-sec hidden lg:block">
                 <ProductDetails />
             </div>
         </>

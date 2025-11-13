@@ -7,13 +7,13 @@ const ProductDetails = () => {
     const [showMore, setShowMore] = useState(false);
 
     return (
-        <section className="product-details relative">
+        <section className="product-details relative px-2 lg:px-0">
             <div className="flex items-center justify-between mb-6">
-                <h2 className="text-[20px] font-semibold text-[#222]">
+                <h2 className="text-[17px] md:text-[20px] font-semibold text-[#222]">
                     Product Details
                 </h2>
                 <div className="flex items-center gap-2">
-                    <p className="text-[14px] text-[#222] font-semibold flex items-center gap-1 cursor-pointer">
+                    <p className="text-[12px] md:text-[14px] text-[#222] font-semibold flex items-center gap-1 cursor-pointer">
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
                             viewBox="0 0 1024 1024"
@@ -26,7 +26,7 @@ const ProductDetails = () => {
                         Save
                     </p>
                     <p className="w-px h-3 bg-black"></p>
-                    <p className="text-[14px] cursor-pointer hover:underline font-bold text-[#222] flex items-center gap-1">
+                    <p className="text-[12px] md:text-[14px] cursor-pointer hover:underline font-bold text-[#222] flex items-center gap-1">
                         Report this item <FaChevronRight />
                     </p>
                 </div>
