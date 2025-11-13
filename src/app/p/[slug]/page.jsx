@@ -107,12 +107,12 @@ const ProductDetailPage = () => {
                         </div>
                     </div>
                     <ProductColorSize />
-                    <div className="hidden lg:block">
-                        <div className="pt-6 flex items-center gap-4">
-                            <button className="bg-[#fb5d01] hover:bg-[#fb7701] hover:scale-[1.03] text-white font-semibold text-lg py-2 xl:py-3 px-6 rounded-full w-full transition-all duration-300 ease-in-out">
+                    <div className="px-2">
+                        <div className="pt-6 flex items-center justify-start gap-2 lg:gap-4">
+                            <button className="bg-[#fb5d01] hover:bg-[#fb7701] hidden lg:block hover:scale-[1.03] text-white font-semibold text-md lg:text-lg py-2 xl:py-3 px-3 lg:px-6 rounded-full w-full transition-all duration-300 ease-in-out">
                                 Add to cart!
                             </button>
-                            <button className="bg-[#fb5d01] main-button-buy hover:bg-[#fb7701] hover:scale-[1.03] text-white font-semibold text-lg py-2 xl:py-3 px-6 rounded-full w-full transition-all duration-300 ease-in-out">
+                            <button className="bg-[#fb5d01] main-button-buy hover:bg-[#fb7701] hover:scale-[1.03] text-white font-semibold text-md lg:text-lg py-2 xl:py-3 px-3 lg:px-6 rounded-full w-[80%] mx-auto lg:w-full transition-all duration-300 ease-in-out">
                                 Buy now
                             </button>
                         </div>
@@ -181,6 +181,13 @@ const ProductDetailPage = () => {
             <div className="explore-interest lg:pt-18 hidden xl:block">
                 <h3 className="text-[#222] font-bold text-[18px] px-2">Explore your interests</h3>
                 <ExploreInterestProducts />
+            </div>
+
+
+            <div className="fixed w-full bottom-0 py-3 px-4 z-[99999] bg-white block lg:hidden">
+            <button className="bg-[#fb5d01] hover:bg-[#fb7701]  hover:scale-[1.03] text-white font-semibold text-md lg:text-lg py-3 px-3 lg:px-6 rounded-full w-full transition-all duration-300 ease-in-out">
+                                Add to cart!
+            </button>
             </div>
         </div>
     );
