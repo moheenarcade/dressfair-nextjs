@@ -20,10 +20,18 @@ import ProductDetails from "@/components/productDetailPageComponent/productDetai
 import ProductListingMobile from "@/components/homePageMobile/productListingMobile";
 import MobileAddToCartBottomModal from "../../../components/models/MobileAddToCartBottomModal";
 import { CgClose } from "react-icons/cg";
+import BuyNowModel from "../../../components/models/BuyNowModel";
 
-
+const product = {
+    title: "Men's Winter Casual PU Leather Jacket",
+    image: "/deals-product3.avif",
+    oldPrice: "27,452",
+    price: "13,661",
+  };
+  
 const ProductDetailPage = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [isBuyNowOpen, setIsBuyNowOpen] = useState(false);
 
     return (
         <>
@@ -117,7 +125,7 @@ const ProductDetailPage = () => {
                                 <button className="bg-[#fb5d01] hover:bg-[#fb7701] hidden lg:block hover:scale-[1.03] text-white font-semibold text-md lg:text-lg py-2 xl:py-3 px-3 lg:px-6 rounded-full w-full transition-all duration-300 ease-in-out">
                                     Add to cart!
                                 </button>
-                                <button className="bg-[#fb5d01] main-button-buy hover:bg-[#fb7701] hover:scale-[1.03] text-white font-semibold text-md lg:text-lg py-2 xl:py-3 px-3 lg:px-6 rounded-full w-[80%] mx-auto lg:w-full transition-all duration-300 ease-in-out">
+                                <button onClick={() => setIsBuyNowOpen(true)} className="bg-[#fb5d01] main-button-buy hover:bg-[#fb7701] hover:scale-[1.03] text-white font-semibold text-md lg:text-lg py-2 xl:py-3 px-3 lg:px-6 rounded-full w-[80%] mx-auto lg:w-full transition-all duration-300 ease-in-out">
                                     Buy now
                                 </button>
                             </div>
@@ -226,6 +234,12 @@ const ProductDetailPage = () => {
                     </button>
                 </div>
             </MobileAddToCartBottomModal>
+
+            <BuyNowModel 
+             isOpen={isBuyNowOpen}
+             onClose={() => setIsBuyNowOpen(false)}
+             product={product}
+            />
 
         </>
     );

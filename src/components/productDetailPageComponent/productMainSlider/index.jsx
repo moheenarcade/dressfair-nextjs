@@ -42,7 +42,7 @@ const ProductMainSlider = () => {
                         freeMode={true}
                         watchSlidesProgress={true}
                         modules={[FreeMode, Navigation, Thumbs]}
-                        className="product-thumbs-swiper h-[400px] xl:h-[600px]"
+                        className="product-thumbs-swiper h-[400px] xl:h-[500px] 2xl:h-[600px]"
                     >
                         {productImages.map((img, index) => (
                             <SwiperSlide key={index}>
