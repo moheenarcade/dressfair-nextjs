@@ -10,7 +10,7 @@ export default function CartSidebar() {
       initial={{ x: "100%" }}
       animate={{ x: isCartOpen ? "0%" : "100%" }}
       transition={{ type: "spring", stiffness: 300, damping: 30 }}
-      className="fixed top-0 right-0 h-full w-[200px] bg-white shadow-xl z-[999998989899898998] border-l border-gray-200"
+      className="fixed top-0 right-0 h-full w-[15%] xl:w-[12%] 2xl:w-[14%] bg-white shadow-xl z-[999998989899898998] border-l border-gray-200"
     >
       <div className="p-4 flex justify-between items-center border-b">
         <h2 className="text-lg font-semibold">Your Cart</h2>

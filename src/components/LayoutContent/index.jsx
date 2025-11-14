@@ -11,7 +11,7 @@ export default function LayoutContent({ children }) {
   return (
     <motion.div
       animate={{
-        width: isCartOpen ? "calc(100% - 130px)" : "100%",
+        width: isCartOpen ? "calc(100% - 12%)" : "100%",
       }}
       transition={{ type: "spring", stiffness: 250, damping: 30 }}
       className="relative min-h-screen bg-white origin-right"
