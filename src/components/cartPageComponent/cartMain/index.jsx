@@ -82,7 +82,7 @@ const CartMain = () => {
                 </ul>
              
             </div>
-            <div className="flex justify-between relative">
+            <div className="flex justify-between relative pb-10">
                     <div className="w-full xl:w-[65%]">
                         <div className="free-shipping flex items-center justify-between bg-[#e6f3e5] py-2 px-3 rounded-md">
                             <p className='flex gap-3 items-center text-[16px] text-[#000000] font-semibold'><GiCheckMark className='text-[#088703] text-xl' />
