@@ -51,7 +51,7 @@ const BuyNowModel = ({ isOpen, onClose, product }) => {
                 <>
                     {/* Overlay */}
                     <motion.div
-                        className="fixed inset-0 bg-black/40 z-[99998]"
+                        className="fixed inset-0 bg-black/70 z-[99998]"
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
@@ -68,14 +68,14 @@ const BuyNowModel = ({ isOpen, onClose, product }) => {
                     >
                         {/* Actual modal box */}
                         <motion.div
-                            className="relative bg-white rounded-2xl shadow-lg w-full max-w-md p-4 sm:p-6 my-6"
+                            className="relative bg-white rounded-2xl shadow-lg w-full max-w-md pt-4 pb-6 px-6 my-3"
                             initial={{ scale: 0.9, opacity: 0 }}
                             animate={{ scale: 1, opacity: 1 }}
                             exit={{ scale: 0.9, opacity: 0 }}
                             transition={{ type: "spring", stiffness: 150, damping: 20 }}
                         >
                             {/* Header */}
-                            <div className="flex justify-between items-center pb-3 border-b border-gray-200 sticky top-0 bg-white z-10">
+                            <div className="flex justify-between items-center pb-3 border-b border-gray-200 bg-white z-10">
                                 <h3 className="text-lg font-semibold text-gray-800">Order Now</h3>
                                 <button
                                     onClick={onClose}
@@ -119,9 +119,9 @@ const BuyNowModel = ({ isOpen, onClose, product }) => {
                             {/* Form Section */}
                             <form className="pt-4 space-y-3">
                                 <div>
-                                    <label className="block text-sm font-medium text-gray-700">
+                                    {/* <label className="block text-sm font-medium text-gray-700">
                                         Full Name
-                                    </label>
+                                    </label> */}
                                     <input
                                         type="text"
                                         placeholder="Enter your name"
@@ -131,9 +131,9 @@ const BuyNowModel = ({ isOpen, onClose, product }) => {
                                 </div>
 
                                 <div>
-                                    <label className="block text-sm font-medium text-gray-700">
+                                    {/* <label className="block text-sm font-medium text-gray-700">
                                         Enter Email
-                                    </label>
+                                    </label> */}
                                     <input
                                         type="email"
                                         placeholder="Enter your email"
@@ -142,13 +142,13 @@ const BuyNowModel = ({ isOpen, onClose, product }) => {
                                     />
                                 </div>
 
-                                <div>
-                                    <label className="block text-sm font-medium text-gray-700">
-                                        Mobile Number
-                                    </label>
+                                <div className="flex gap-1">
+                                    <p className="border border-gray-300 rounded-md px-3 py-2 mt-1 w-fit">
+                                        +92
+                                    </p>
                                     <input
                                         type="tel"
-                                        placeholder="03XXXXXXXXX"
+                                        placeholder="3XXXXXXXXX"
                                         className="w-full border border-gray-300 rounded-md px-3 py-2 mt-1 focus:ring-2 focus:ring-[#fb5d01] focus:border-[#fb5d01] outline-none text-sm"
                                         required
                                     />
@@ -156,9 +156,9 @@ const BuyNowModel = ({ isOpen, onClose, product }) => {
 
                                 {/* City Dropdown */}
                                 <div className="relative">
-                                    <label className="block text-sm font-medium text-gray-700">
+                                    {/* <label className="block text-sm font-medium text-gray-700">
                                         Select City
-                                    </label>
+                                    </label> */}
                                     <button
                                         type="button"
                                         onClick={toggleCityDropdown}
@@ -166,9 +166,8 @@ const BuyNowModel = ({ isOpen, onClose, product }) => {
                                     >
                                         {selectedCity || "Choose a city"}
                                         <IoIosArrowDown
-                                            className={`transition-transform duration-300 ${
-                                                isCityOpen ? "rotate-180" : "rotate-0"
-                                            }`}
+                                            className={`transition-transform duration-300 ${isCityOpen ? "rotate-180" : "rotate-0"
+                                                }`}
                                         />
                                     </button>
 
@@ -197,27 +196,25 @@ const BuyNowModel = ({ isOpen, onClose, product }) => {
 
                                 {/* Area Dropdown */}
                                 <div className="relative">
-                                    <label className="block text-sm font-medium text-gray-700">
+                                    {/* <label className="block text-sm font-medium text-gray-700">
                                         Select Area
-                                    </label>
+                                    </label> */}
                                     <button
                                         type="button"
                                         disabled={!selectedCity}
                                         onClick={toggleAreaDropdown}
-                                        className={`w-full flex justify-between items-center border rounded-md px-3 py-2 mt-1 text-sm transition ${
-                                            selectedCity
+                                        className={`w-full flex justify-between items-center border rounded-md px-3 py-2 mt-1 text-sm transition ${selectedCity
                                                 ? "border-gray-300 text-gray-700"
                                                 : "border-gray-200 text-gray-400 cursor-not-allowed"
-                                        }`}
+                                            }`}
                                     >
                                         {selectedArea ||
                                             (selectedCity
                                                 ? "Choose an area"
                                                 : "Select a city first")}
                                         <IoIosArrowDown
-                                            className={`transition-transform duration-300 ${
-                                                isAreaOpen ? "rotate-180" : "rotate-0"
-                                            }`}
+                                            className={`transition-transform duration-300 ${isAreaOpen ? "rotate-180" : "rotate-0"
+                                                }`}
                                         />
                                     </button>
 
@@ -245,9 +242,9 @@ const BuyNowModel = ({ isOpen, onClose, product }) => {
                                 </div>
 
                                 <div>
-                                    <label className="block text-sm font-medium text-gray-700">
+                                    {/* <label className="block text-sm font-medium text-gray-700">
                                         Address
-                                    </label>
+                                    </label> */}
                                     <textarea
                                         placeholder="Enter your delivery address"
                                         className="w-full border border-gray-300 rounded-md px-3 py-2 mt-1 focus:ring-2 focus:ring-[#fb5d01] focus:border-[#fb5d01] outline-none text-sm"
