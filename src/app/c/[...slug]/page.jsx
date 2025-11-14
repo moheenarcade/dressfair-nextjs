@@ -10,7 +10,7 @@ const CategoryPage = () => {
         <CategroyComponents />
       </div>
 
-      <div className='block xl:hidden px-2 lg:px-16 py-4 xl:py-6'>
+      <div className='block xl:hidden lg:px-16 pt-4'>
         <CategroyComponents />
       </div>
     </>

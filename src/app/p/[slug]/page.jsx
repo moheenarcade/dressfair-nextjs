@@ -6,11 +6,11 @@ const ProductDetailPage = () => {
 
     return (
         <>
-            <div className='container mx-auto hidden xl:block xl:px-2 2xl:px-22 py-4 xl:py-6'>
+            <div className='container mx-auto hidden xl:block xl:px-2 2xl:px-22'>
                 <ProductDetailMain />
             </div>
 
-            <div className='block xl:hidden px-2 lg:px-16 py-4 xl:py-6'>
+            <div className='block xl:hidden lg:px-16'>
                 <ProductDetailMain />
             </div>
         </>
