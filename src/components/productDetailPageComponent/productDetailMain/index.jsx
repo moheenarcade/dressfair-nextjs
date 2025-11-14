@@ -203,7 +203,7 @@ const ProductDetailMain = () => {
                 </div>
 
                 <div className="fixed left-0 right-0 w-full bottom-0 py-3 px-4 z-[99999] bg-white block lg:hidden">
-                    <button onClick={() => setIsModalOpen(true)} className="bg-[#fb5d01] hover:bg-[#fb7701] hover:scale-[1.03] text-white font-semibold text-md lg:text-lg py-3 px-3 lg:px-6 rounded-full w-full transition-all duration-300 ease-in-out">
+                    <button onClick={() => setIsModalOpen(true)} className="bg-[#fb5d01] hover:bg-[#fb7701] hover:scale-[1.03] text-white font-semibold text-lg py-3 px-3 lg:px-6 rounded-full w-full transition-all duration-300 ease-in-out">
                         Add to cart!
                     </button>
                 </div>
