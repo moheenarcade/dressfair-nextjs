@@ -40,7 +40,9 @@ const ProductDetailPage = () => {
     return (
         <>
             <div className="product-detail-main relative container mx-auto px-0 lg:px-16 xl:px-2 2xl:px-22 lg:pt-3 pb-12">
-                <div className="flex flex-col lg:flex-row lg:gap-12">
+                {/* <div className="flex flex-col lg:flex-row lg:gap-12"> */}
+                <div className="flex flex-col lg:flex-row lg:gap-12 items-start">
+
                     <div className="w-full lg:w-[52%] flex flex-col ">
                         <div className="breadcrupms pb-3 hidden lg:block">
                             <ul className="flex items-center gap-1 text-[#777] text-sm">
@@ -54,7 +56,7 @@ const ProductDetailPage = () => {
                         <ProductMainSlider />
                     </div>
 
-                    <div className="w-full lg:w-[44%] lg:pt-8 self-start lg:sticky top-0">
+                    <div className="w-full lg:w-[44%] lg:pt-8 self-start lg:sticky top-4 h-fit">
                         <div className="block lg:hidden">
                             <div className="promotional-sec mb-4 flex items-center gap-6 bg-[#eb0101] lg:rounded-md overflow-hidden">
                                 <Image className="w-30 h-10" src={PromotionalContent} alt="promotional content" />
@@ -203,7 +205,7 @@ const ProductDetailPage = () => {
                     <ExploreInterestProducts />
                 </div>
 
-                <div className="fixed w-full bottom-0 py-3 px-4 z-[99999] bg-white block lg:hidden">
+                <div className="fixed left-0 right-0 w-full bottom-0 py-3 px-4 z-[99999] bg-white block lg:hidden">
                     <button onClick={() => setIsModalOpen(true)} className="bg-[#fb5d01] hover:bg-[#fb7701] hover:scale-[1.03] text-white font-semibold text-md lg:text-lg py-3 px-3 lg:px-6 rounded-full w-full transition-all duration-300 ease-in-out">
                         Add to cart!
                     </button>
