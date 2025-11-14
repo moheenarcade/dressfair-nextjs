@@ -9,6 +9,7 @@ import { GoCheckCircleFill, GoCircle } from "react-icons/go";
 import { IoIosArrowDown } from "react-icons/io";
 import { AnimatePresence } from "framer-motion";
 import { BsCheckCircleFill } from "react-icons/bs";
+import Link from "next/link";
 
 export default function CartSidebar() {
   const { isCartOpen, closeCart } = useCart();
@@ -102,9 +103,9 @@ export default function CartSidebar() {
               <button className="hover:bg-[#fb7701] hover:scale-[1.03] text-md transition-all duration-300 ease-in-out w-full py-[10px] px-4 rounded-full border border-transparent text-white bg-[#fb5d01] text-md font-semibold">
                 Checkout (12)
               </button>
-              <button className="w-full py-[10px] px-4 rounded-full text-[#222] border-gray-500 hover:border-black border text-md font-semibold">
+              <Link href="/cart" className="w-full text-center py-[10px] px-4 rounded-full text-[#222] border-gray-500 hover:border-black border text-md font-semibold">
                 Go to cart
-              </button>
+              </Link>
             </div>
 
             <div className="cart-list pt-3">

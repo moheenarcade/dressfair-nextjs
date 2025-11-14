@@ -16,9 +16,10 @@ const messages = [
   { title: "Exclusive Deal", subtitle: "Just for You" },
 ];
 
-const ProductCard = ({ products = [] }) => {
+const ProductCard = ({ products = [] ,  gridClass }) => {
+  const defaultGrid = "grid-cols-1 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5";
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-1">
+    <div className={`grid ${gridClass ? gridClass : defaultGrid} gap-1`}>
       {products.map((product, index) => (
         <SingleProduct key={index} product={product} />
       ))}
