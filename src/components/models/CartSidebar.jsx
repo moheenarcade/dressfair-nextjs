@@ -14,8 +14,7 @@ export default function CartSidebar() {
   const { isCartOpen, closeCart } = useCart();
   const [openQty, setOpenQty] = useState(false);
   const [selectedQty, setSelectedQty] = useState(1);
-  const qtyOptions = [0 ,1, 2, 3, 4, 5];
-
+  const qtyOptions = [0, 1, 2, 3, 4, 5];
 
   const [cartItems, setCartItems] = useState([
     { id: 1, img: "/deals-product5.avif", price: 13233, selected: true, qty: 1, openQty: false },
@@ -61,10 +60,9 @@ export default function CartSidebar() {
     setCartItems(prev =>
       prev
         .map(item => (item.id === id ? { ...item, qty, openQty: false } : item))
-        .filter(item => item.qty > 0) // remove item if qty is 0
+        .filter(item => item.qty > 0)
     );
   };
-
 
   return (
     <>
@@ -121,7 +119,7 @@ export default function CartSidebar() {
                 )}
 
                 <p className="text-[14px] text-[#222] font-[600]">
-                Select all ({cartItems.filter(item => item.selected).length})
+                  Select all ({cartItems.filter(item => item.selected).length})
                 </p>
               </div>
 

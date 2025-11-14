@@ -126,7 +126,7 @@ const ProductDetailMain = () => {
                         <div className="px-2">
                             <div className="pt-6 flex items-center justify-start gap-2 lg:gap-4">
                                 <button onClick={() => {
-                                    // add to cart logic
+                                 
                                     openCart();
                                 }} className="bg-[#fb5d01] hover:bg-[#fb7701] hidden lg:block hover:scale-[1.03] text-white font-semibold text-md lg:text-lg py-2 xl:py-3 px-3 lg:px-6 rounded-full w-full transition-all duration-300 ease-in-out">
                                     Add to cart!
