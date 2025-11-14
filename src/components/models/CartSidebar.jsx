@@ -2,7 +2,7 @@
 import { useCart } from "@/context/CartContext";
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FaOpencart } from "react-icons/fa6";
 import { FiCheck } from "react-icons/fi";
 import { GoCheckCircleFill, GoCircle } from "react-icons/go";
@@ -14,7 +14,8 @@ export default function CartSidebar() {
   const { isCartOpen, closeCart } = useCart();
   const [openQty, setOpenQty] = useState(false);
   const [selectedQty, setSelectedQty] = useState(1);
-  const qtyOptions = [1, 2, 3, 4, 5];
+  const qtyOptions = [0 ,1, 2, 3, 4, 5];
+
 
   const [cartItems, setCartItems] = useState([
     { id: 1, img: "/deals-product5.avif", price: 13233, selected: true, qty: 1, openQty: false },
@@ -24,8 +25,14 @@ export default function CartSidebar() {
     { id: 5, img: "/deals-product5.avif", price: 13233, selected: true, qty: 1, openQty: false },
   ]);
 
+  const allSelected = cartItems.length > 0 && cartItems.every(item => item.selected);
 
-  const allSelected = cartItems.every((item) => item.selected);
+
+  useEffect(() => {
+    if (cartItems.length === 0) {
+      closeCart();
+    }
+  }, [cartItems, closeCart]);
 
   const toggleQtyDropdown = (id) => {
     setCartItems(prev =>
@@ -34,7 +41,6 @@ export default function CartSidebar() {
       )
     );
   };
-
 
   const toggleSelectAll = () => {
     const updated = cartItems.map((item) => ({
@@ -53,9 +59,9 @@ export default function CartSidebar() {
 
   const updateQty = (id, qty) => {
     setCartItems(prev =>
-      prev.map(item =>
-        item.id === id ? { ...item, qty, openQty: false } : item
-      )
+      prev
+        .map(item => (item.id === id ? { ...item, qty, openQty: false } : item))
+        .filter(item => item.qty > 0) // remove item if qty is 0
     );
   };
 
@@ -115,12 +121,12 @@ export default function CartSidebar() {
                 )}
 
                 <p className="text-[14px] text-[#222] font-[600]">
-                  Select all ({cartItems.length})
+                Select all ({cartItems.filter(item => item.selected).length})
                 </p>
               </div>
 
 
-              <div className="cart-items px-5 pt-4 flex flex-col gap-5 max-h-[65vh] pb-14 overflow-y-auto">
+              <div className="cart-items px-5 pt-4 flex flex-col gap-5 h-[65vh] pb-14 overflow-y-auto">
                 {cartItems.map((item) => (
                   <div key={item.id} className="single-item">
                     <div className="relative border border-gray-100 overflow-hidden rounded-md">
