@@ -9,9 +9,9 @@ const ProductCardMobile = ({ products = [] }) => {
     return (
         <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-5 xl:grid-cols-5 gap-2">
             {products.map((product, index) => (
-                <Link href={`/p/${product.id}`}>
+                <Link key={index} href={`/p/${product.id}`}>
                     <div
-                        key={index}
+                      
                         className="single-product group transition-all duration-500 ease-in-out cursor-pointer hover:bg-white rounded-md hover:shadow-[0px_4px_24px_0px_rgba(0,0,0,0.1)]"
                     >
                         <div className="product-banner w-full aspect-square">
