@@ -268,7 +268,7 @@ const CartMainMobileView = () => {
                 <ProductListingMobile />
             </div>
 
-            <div className="fixed left-0 right-0 w-full bottom-0 py-3 px-1 md:px-6 z-[99999] bg-white block xl:hidden">
+            <div className="fixed left-0 right-0 w-full bottom-0 py-3 px-1 md:px-6 z-[9] bg-white block xl:hidden">
                 <div className="flex items-center gap-1 justify-between rounded-full py-2 px-3 bg-white" style={{ boxShadow: "0 .04rem .1rem 0 rgba(0, 0, 0, .16)" }}>
                     <button
                         onClick={(e) => {
