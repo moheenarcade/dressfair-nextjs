@@ -746,7 +746,9 @@ const Header = () => {
                             </button>
                         </div>
                         <button>
+                            <Link href="/cart">
                             <FiShoppingCart className="text-2xl" />
+                            </Link>
                         </button>
                     </div>
                 </div>
