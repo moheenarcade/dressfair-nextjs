@@ -12,9 +12,14 @@ import CheckoutCartItemSlider from '../checkoutCartItemSlider';
 
 const paymentMethods = [
     {
-        id: "applepay",
-        label: "Apple Pay",
-        icon: "/applwpay.avif",
+        id: "cod",
+        label: "Cash on Delivery",
+        icon: "/cashondel.png",
+    },
+    {
+        id: "paypal",
+        label: "PayPal",
+        icon: "/paypal.png",
     },
     {
         id: "card",
@@ -25,11 +30,6 @@ const paymentMethods = [
             "/mastercard.avif",
             "/amarcan.avif",
         ],
-    },
-    {
-        id: "googlepay",
-        label: "Google Pay",
-        icon: "/googlepay.avif",
     },
     {
         id: "jazzcash",
