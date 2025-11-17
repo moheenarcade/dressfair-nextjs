@@ -116,42 +116,58 @@ const CheckoutMain = () => {
 
                         <div className="space-y-1 w-fit">
                             {paymentMethods.map((item) => (
-                            <label
-                            key={item.id}
-                            className={`flex items-center gap-3 p-2 rounded-md cursor-pointer transition relative
+                                <label
+                                    key={item.id}
+                                    className={`flex items-center gap-3 p-2 rounded-md cursor-pointer transition relative
                                 ${item.disabled ? "opacity-50 cursor-not-allowed" : ""}
                                 ${selectedPayment === item.id ? "" : ""}
                             `}
-                            onClick={() => !item.disabled && setSelectedPayment(item.id)}
-                        >
-                            <input
-                                type="radio"
-                                name="payment"
-                                checked={selectedPayment === item.id}
-                                disabled={item.disabled}
-                                onChange={() => !item.disabled && setSelectedPayment(item.id)}
-                                className="w-4 h-4"
-                            />
-                        
-                            <Image src={item.icon} alt={item.label} width={40} height={40} />
-                        
-                            <div className="flex items-center gap-2 flex-wrap">
-                                <span className="text-[15px] font-[600] text-[#222]">{item.label}</span>
-                        
-                                {item.providers && (
-                                    <div className="flex items-center gap-1">
-                                        {item.providers.map((logo, i) => (
-                                            <Image key={i} src={logo} alt="provider" width={35} height={18} />
-                                        ))}
+                                    onClick={() => !item.disabled && setSelectedPayment(item.id)}
+                                >
+                                    <input
+                                        type="radio"
+                                        name="payment"
+                                        checked={selectedPayment === item.id}
+                                        disabled={item.disabled}
+                                        onChange={() => !item.disabled && setSelectedPayment(item.id)}
+                                        className="w-4 h-4 hidden"
+                                    />
+
+                                    <label className="flex items-center space-x-2 cursor-pointer">
+                                        <div
+                                            className={
+                                                selectedPayment === item.id
+                                                    ? "w-5 h-5 border-black flex items-center justify-center border-2 rounded-full bg-white"
+                                                    : "w-5 h-5 border-gray-500 border-2 rounded-full"
+                                            }
+                                            onClick={() => !item.disabled && setSelectedPayment(item.id)}
+                                        >
+                                            {selectedPayment === item.id && (
+                                                <div className="h-3 w-3 rounded-full bg-black"></div>
+                                            )}
+                                        </div>
+                                    </label>
+
+
+                                    <Image src={item.icon} alt={item.label} width={40} height={40} />
+
+                                    <div className="flex items-center gap-2 flex-wrap">
+                                        <span className="text-[15px] font-[600] text-[#222]">{item.label}</span>
+
+                                        {item.providers && (
+                                            <div className="flex items-center gap-1">
+                                                {item.providers.map((logo, i) => (
+                                                    <Image key={i} src={logo} alt="provider" width={35} height={18} />
+                                                ))}
+                                            </div>
+                                        )}
+
+                                        {item.subtitle && (
+                                            <span className="text-[13px] text-gray-500">{item.subtitle}</span>
+                                        )}
                                     </div>
-                                )}
-                        
-                                {item.subtitle && (
-                                    <span className="text-[13px] text-gray-500">{item.subtitle}</span>
-                                )}
-                            </div>
-                        </label>
-                        
+                                </label>
+
                             ))}
                         </div>
                     </div>

@@ -146,6 +146,10 @@ button , a {
 }
 
 
+
+
+
+
 @media (min-width: 100px) and (max-width: 375px) {
   .mobile-sold-num {
     font-size: 9px !important;
