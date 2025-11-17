@@ -134,6 +134,17 @@ button , a {
 }
 
 
+.default-addresses:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -1px;
+  width: 1.04rem;
+  height: 100%;
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAYAAARlCAMAAACtPUadAAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7OHOkAAAAPUExURf///xWn1tojP+2Rn4rT6zXCHwQAAAAJcEhZcwAADsMAAA7DAcdvqGQAAACmSURBVFhH7dQxDoQwDETRJHD/M6+dGRpXFCtLwHfz+kTzx9z3UE4hhwzSJNyMU7z/DrHkkksGaRJuFvyLQ8h47TQfP0zCzfVD7z9vbsopY59pzjVMws2tvcMdqGI5b44qtkMVy3lzVLEdqljOm6OK7VDFct4cVWyHKpbz5qhiO1SxnDdHFduhiuW8OarYDlUs581RxXaoYjlvjiq2QxXLeXPfq+KcP5A3GIuAJ2ctAAAAAElFTkSuQmCC) repeat-y 0 0;
+  background-size: 4px 380px;
+}
+
 
 @media (min-width: 100px) and (max-width: 375px) {
   .mobile-sold-num {

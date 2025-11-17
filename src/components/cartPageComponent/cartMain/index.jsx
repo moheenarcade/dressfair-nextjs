@@ -223,9 +223,9 @@ const CartMain = () => {
                         </div>
                     </div>
 
-                    <button className="hover:bg-[#fb7701] hover:scale-[1.03] text-md transition-all duration-300 ease-in-out w-full py-[10px] px-4 rounded-full border border-transparent text-white bg-[#fb5d01] text-md font-semibold">
-                        Checkout (7)
-                    </button>
+                    <Link href="/checkout" className="hover:bg-[#fb7701] hover:scale-[1.03] text-md transition-all duration-300 ease-in-out w-full py-[10px] px-4 rounded-full border border-transparent text-white bg-[#fb5d01] text-md font-semibold">
+                      <button className="w-full">  Checkout (7)</button>
+                    </Link>
                     <p className="text-[13px] text-[#555555] flex items-start pt-3">
                         <HiMiniExclamationCircle className="mt-1 mr-1" />
                         Item availability and pricing are not guaranteed until payment is final.

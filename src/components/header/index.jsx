@@ -717,8 +717,10 @@ const Header = () => {
                                     </ul>
                                 </li>
                                 <li className={` ${isHomePage ? "text-white" : "text-[#222222]"} relative group py-1 px-3 cursor-pointer `}>
-                                    <span className={`${isHomePage ? "bg-[#BA0000]" : "bg-[#eeeeee]"} absolute inset-0 min-w-[50px] mx-auto h-[50px] my-auto rounded-full scale-0 origin-center transition-transform duration-500 ease-in-out group-hover:scale-100`}></span>
-                                    <FiShoppingCart className="text-xl relative z-10" />
+                                    <Link href="/cart">
+                                        <span className={`${isHomePage ? "bg-[#BA0000]" : "bg-[#eeeeee]"} absolute inset-0 min-w-[50px] mx-auto h-[50px] my-auto rounded-full scale-0 origin-center transition-transform duration-500 ease-in-out group-hover:scale-100`}></span>
+                                        <FiShoppingCart className="text-xl relative z-10" />
+                                    </Link>
                                 </li>
                             </ul>
                         </div>
