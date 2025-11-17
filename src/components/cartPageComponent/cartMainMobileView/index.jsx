@@ -71,8 +71,8 @@ const CartMainMobileView = () => {
 
         <div className=''>
             <div className="w-full xl:w-[65%]">
-                <div className="cart-list pt-3 px-3">
-                    <div className="flex items-center justify-between pb-2">
+                <div className="cart-list pt-2 px-3">
+                    <div className="flex items-center z-[99999] justify-between py-2 sticky top-0 bg-white">
                         <div
                             className="flex items-center gap-1 cursor-pointer"
                             onClick={toggleSelectAll}
@@ -220,7 +220,7 @@ const CartMainMobileView = () => {
             </div>
 
             <div className="fixed left-0 right-0 w-full bottom-0 py-3 px-1 md:px-6 z-[99999] bg-white block lg:hidden">
-                <div className="flex items-center gap-1 justify-between rounded-full shadow-lg py-2 px-3 bg-white" style={{ boxShadow: "0 .04rem .1rem 0 rgba(0, 0, 0, .16)" }}>
+                <div className="flex items-center gap-1 justify-between rounded-full py-2 px-3 bg-white" style={{ boxShadow: "0 .04rem .1rem 0 rgba(0, 0, 0, .16)" }}>
                     <button className="w-[35%] flex flex-col">
                         <span className="text-[#000000] text-[16px] md:text-xl font-[500] line-through">
                             154,992

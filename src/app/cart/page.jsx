@@ -11,7 +11,7 @@ const Cart = () => {
         <CartMain />
       </div>
 
-      <div className='block xl:hidden lg:px-16'>
+      <div className='block xl:hidden lg:px-16 relative'>
         <CartMainMobileView />
       </div>
     </>
