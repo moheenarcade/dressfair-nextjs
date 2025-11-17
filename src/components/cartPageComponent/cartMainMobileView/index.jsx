@@ -19,6 +19,8 @@ import { Autoplay, Pagination, Navigation } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
+import ManageCartBottomModal from "@/components/models/ManageCartBottomModal";
+import ShareCartBottomModal from "@/components/models/ShareCartBottomModal";
 
 const CartMainMobileView = () => {
     const { isCartOpen, closeCart } = useCart();
@@ -26,6 +28,9 @@ const CartMainMobileView = () => {
     const [openQty, setOpenQty] = useState(false);
     const [selectedQty, setSelectedQty] = useState(1);
     const qtyOptions = [0, 1, 2, 3, 4, 5];
+    const [showMoreMenu, setShowMoreMenu] = useState(false);
+    const [isManageModalOpen, setIsManageModalOpen] = useState(false);
+    const [isShareModalOpen, setIsShareModalOpen] = useState(false);
 
     const [cartItems, setCartItems] = useState([
         { id: 1, img: "/deals-product5.avif", price: 13233, selected: true, qty: 1, openQty: false },
@@ -43,6 +48,12 @@ const CartMainMobileView = () => {
             closeCart();
         }
     }, [cartItems, closeCart]);
+
+    useEffect(() => {
+        const handleClickOutside = () => setShowMoreMenu(false);
+        if (showMoreMenu) document.addEventListener("click", handleClickOutside);
+        return () => document.removeEventListener("click", handleClickOutside);
+    }, [showMoreMenu]);
 
     const toggleQtyDropdown = (id) => {
         setCartItems(prev =>
@@ -97,9 +108,28 @@ const CartMainMobileView = () => {
                         <p className="text-[#000] text-[18px] font-bold">
                             Cart <span className="font-normal"> ({cartItems.filter(item => item.selected).length})</span>
                         </p>
-                        <button>
+                        <button onClick={() => setShowMoreMenu(!showMoreMenu)}>
                             <BsThreeDots className="text-2xl" />
                         </button>
+
+
+                        {showMoreMenu && (
+                            <div className="absolute right-0 top-8 bg-white shadow-md border border-gray-200 rounded-md w-[160px] py-2 z-[9999]">
+
+                                <button
+                                    onClick={() => {
+                                        setShowMoreMenu(false);
+                                        setIsManageModalOpen(true);
+                                    }}
+                                    className="w-full text-left px-3 py-2 text-sm hover:bg-gray-100">
+                                    Manage cart
+                                </button>
+                                <button onClick={() => setIsShareModalOpen(true)} className="w-full text-left px-3 py-2 text-sm hover:bg-gray-100">
+                                    Share cart
+                                </button>
+
+                            </div>
+                        )}
                     </div>
                     <div className="free-shipping flex items-center justify-between border border-gray-200 py-2 px-2 rounded-md">
                         <p className='flex gap-1 items-center text-[13px]  text-[#000000] font-semibold'><GiCheckMark className='text-[#088703] text-lg' />
@@ -125,7 +155,7 @@ const CartMainMobileView = () => {
                                 <div className="flex gap-4">
                                     <div className="border border-gray-100 overflow-hidden rounded-md">
                                         <Image
-                                            className="w-[280px] h-auto"
+                                            className="w-[200px] lg:w-[280px] h-auto"
                                             width={100}
                                             height={100}
                                             src={item.img}
@@ -135,16 +165,16 @@ const CartMainMobileView = () => {
 
                                     <div className="flex flex-col justify-between">
                                         <div className="flex gap-2 items-start">
-                                            <p className="line-clamp-1 text-[#666] text-[12px] font-[500]">24-Hour Long-Lasting Body & Deodorant Spray - Non-Sticky, Refreshing Aroma, Elegant Design for Men & Women, Perfect for Dates, Outdoor Activities, Ideal Gift, Daily Use</p>
+                                            <p className="line-clamp-1 md:line-clamp-2 text-[#666] text-[12px] md:text-md lg:text-xl font-[500]">24-Hour Long-Lasting Body & Deodorant Spray - Non-Sticky, Refreshing Aroma, Elegant Design for Men & Women, Perfect for Dates, Outdoor Activities, Ideal Gift, Daily Use</p>
                                             <button>
                                                 <svg viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" width="1rem" height="1rem" aria-hidden="true" fill="#888"><path d="M603.4 96c47.7 0 86.9 36.4 91.3 82.9l0.5 8.8-0.1 75.1 168.9 0c24.7 0 44.8 20.1 44.8 44.8 0 22.7-16.9 41.4-38.7 44.4l-6.1 0.4-20.5 0-46.2 436.2c-5.5 52.1-47.2 92.3-98.5 96.9l-9.7 0.4-354.2 0c-52.4 0-96.8-37.2-106.7-87.7l-1.5-9.6-46.2-436.2-20.5 0c-24.7 0-44.8-20.1-44.8-44.8 0-22.7 16.9-41.4 38.7-44.3l6.1-0.5 169 0 0-75.1c0-47.7 36.4-86.9 82.9-91.3l8.8-0.4 182.7 0z m149.9 256.4l-482.7 0 45.2 426.7c0.9 8.4 7.1 15 15 16.8l4.1 0.4 354.2 0c8.4 0 15.7-5.4 18.2-13.1l0.9-4.1 45.1-426.7z m-149.9-166.8l-182.7 0c-0.8 0-1.5 0.4-1.8 1.1l-0.3 1 0 75.1 186.9 0 0.1-75.1c0-0.8-0.4-1.5-1.1-1.8l-1.1-0.3z"></path></svg>
                                             </button>
                                         </div>
                                         <div className="flex justify-between w-full items-center border-b border-b-gray-200">
-                                            <div className="text-center text-[#222222] text-[16px] font-semibold py-2 flex items-center gap-1">
-                                                <span className="text-[12px]">Rs.</span>{item.price}
-                                                <p className="text-[#757575] text-[11px] font-normal relative"><span className="absolute top-[8px] bg-[#FB7701] w-full h-[2px]"></span>27452</p>
-                                                <p className="text-[#fb7701] border border-[#fb7701] px-1 p-px rounded-sm text-[10px]">
+                                            <div className="text-center text-[#222222] text-[16px] lg:text-xl font-semibold py-2 flex items-center gap-1">
+                                                <span className="text-[12px] lg:text-lg">Rs.</span>{item.price}
+                                                <p className="text-[#757575] text-[11px] lg:text-lg font-normal relative"><span className="absolute top-[8px] lg:top-[13px] bg-[#FB7701] w-full h-[2px]"></span>27452</p>
+                                                <p className="text-[#fb7701] border border-[#fb7701] px-1 p-px rounded-sm text-[10px] lg:text-lg">
                                                     -47%
                                                 </p>
                                             </div>
@@ -305,6 +335,16 @@ const CartMainMobileView = () => {
                 updateQty={updateQty}
                 qtyOptions={qtyOptions}
                 setIsModalOpen={setIsModalOpen}
+            />
+
+            <ManageCartBottomModal
+                isOpen={isManageModalOpen}
+                onClose={() => setIsManageModalOpen(false)}
+            />
+
+            <ShareCartBottomModal
+                isOpen={isShareModalOpen}
+                onClose={() => setIsShareModalOpen(false)}
             />
         </>
     )
