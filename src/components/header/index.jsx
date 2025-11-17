@@ -152,6 +152,7 @@ const Header = () => {
     const { user, logout } = useUser();
     const [showUserDropdown, setShowUserDropdown] = useState(false);
     const userDropdownRef = useRef(null);
+    const mobileCategoriesContainerRef = useRef(null);
     const handleLogout = () => {
         logout();
         setShowUserDropdown(false);
@@ -189,6 +190,19 @@ const Header = () => {
             document.body.style.overflow = "auto";
         };
     }, [showMegaMenu]);
+
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+          if (showMobileCategory && mobileCategoriesContainerRef.current && !mobileCategoriesContainerRef.current.contains(event.target)) {
+            setMobileCategory(false);
+          }
+        };
+  
+        document.addEventListener('mousedown', handleClickOutside);
+        return () => {
+          document.removeEventListener('mousedown', handleClickOutside);
+        };
+      }, [showMobileCategory]);
 
 
     return (
@@ -270,7 +284,7 @@ const Header = () => {
                                     {/* Overlay (dark background) */}
                                     {showMegaMenu && (
                                         <div
-                                            className="fixed top-30 inset-0 bg-black/50"
+                                            className="fixed top-30 inset-0 bg-black/50 z-[9999998]"
                                             onClick={() => setShowMegaMenu(false)}
                                         ></div>
                                     )}
@@ -770,9 +784,17 @@ const Header = () => {
                 onClose={() => setShowSignInModal(false)}
             />
 
-            {showMobileCategory && (
+            {/* {showMobileCategory && (
                 <MobileCategories onClose={() => setMobileCategory(false)} />
-            )}
+            )} */}
+
+
+<div ref={mobileCategoriesContainerRef}>
+      {showMobileCategory && (
+        <MobileCategories onClose={() => setMobileCategory(false)} />
+      )}
+    </div>
+
 
             <MobileHeaderSearchModel isOpen={showMobileSearchModel} onClose={() => setMobileSearchModel(false)} />
         </>
