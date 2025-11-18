@@ -27,14 +27,14 @@ const CheckoutTermConditions = () => {
                         Delivery guarantee
                     </p>
                     <ul className="flex flex-wrap gap-x-2">
-                        <p>
+                        <div>
                             <li className="text-[#555] text-[14px] pt-1 font-[500] flex items-center gap-1"><LuCheck className="text-lg text-[#088901]" />Rs.280 Credit for delay</li>
                             <li className="text-[#555] text-[14px] pt-1 font-[500] flex items-center gap-1"><LuCheck className="text-lg text-[#088901]" />Return if item damaged</li>
-                        </p>
-                        <p>
+                        </div>
+                        <div>
                             <li className="text-[#555] text-[14px] pt-1 font-[500] flex items-center gap-1"><LuCheck className="text-lg text-[#088901]" />15-day no update refund</li>
                             <li className="text-[#555] text-[14px] pt-1 font-[500] flex items-center gap-1"><LuCheck className="text-lg text-[#088901]" />30-day no delivery refund</li>
-                        </p>
+                        </div>
                     </ul>
                     <Link href="#" className="flex font-[500] hover:text-black w-fit items-center gap-1 text-[#555] text-[14px] pt-1">
                         Learn more <LuChevronRight />

@@ -10,6 +10,7 @@ import { GoChevronRight } from 'react-icons/go';
 import CheckoutCartItemSlider from '../checkoutCartItemSlider';
 import CoupenCode from '../coupenCode';
 import CheckoutTermConditions from '../checkoutTermsConditions';
+import AddressModal from '@/components/models/AddressModal';
 
 const paymentMethods = [
     {
@@ -50,6 +51,7 @@ const paymentMethods = [
 
 const CheckoutMain = () => {
     const [selectedPayment, setSelectedPayment] = useState("cod");
+    const [isAddressModalOpen, setIsAddressModalOpen] = useState(false);
 
     return (
         <>
@@ -75,11 +77,11 @@ const CheckoutMain = () => {
                         <div className="w-full lg:w-[50%] ">
                             <div className="flex items-center justify-between py-3">
                                 <p className='text-[#222] font-[600] text-[16px]'>Shipping address</p>
-                                <button className='flex items-center gap-1 text-[#222] text-[14px] hover:underline'>
+                                <button onClick={() => setIsAddressModalOpen(true)} className='flex items-center gap-1 text-[#222] text-[14px] hover:underline'>
                                     Change address  <FiChevronRight />
                                 </button>
                             </div>
-                            <div className="default-addresses overflow-hidden cursor-pointer relative border border-gray-200 rounded-sm p-3">
+                            <div onClick={() => setIsAddressModalOpen(true)} className="default-addresses overflow-hidden cursor-pointer relative border border-gray-200 rounded-sm p-3">
                                 <div className="flex items-center gap-3">
                                     <p className='text-black font-bold'>test</p>
                                     <p className='text-black text-[15px]'>+92 433 4343434</p>
@@ -219,6 +221,9 @@ const CheckoutMain = () => {
                     </div>
                 </div>
             </div>
+
+
+            <AddressModal isOpen={isAddressModalOpen} onClose={() => setIsAddressModalOpen(false)} />
         </>
     )
 }
