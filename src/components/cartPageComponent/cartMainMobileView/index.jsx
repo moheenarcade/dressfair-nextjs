@@ -317,7 +317,7 @@ const CartMainMobileView = () => {
                             <FaChevronUp className="text-md" />
                         </div>
                     </button>
-                    <Link href="#" className="w-[65%]">
+                    <Link href="/checkout" className="w-[65%]">
                         <button className="bg-[#fb5d01] w-full hover:bg-[#fb7701] hover:scale-[1.03] text-white font-semibold flex flex-col justify-center text-[13px] py-1 px-5 lg:px-6 rounded-full transition-all duration-300 ease-in-out">
                             <span className="text-[15px] md:text-xl">Last day for 62.9% off</span>
                             <span className="text-[12px] md:text-md">Checkout (14) | 10 : 46  : 37</span>
