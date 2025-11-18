@@ -11,6 +11,7 @@ import CheckoutCartItemSlider from '../checkoutCartItemSlider';
 import CoupenCode from '../coupenCode';
 import CheckoutTermConditions from '../checkoutTermsConditions';
 import AddressModal from '@/components/models/AddressModal';
+import EditAddressModal from '@/components/models/EditAddressModal';
 
 const paymentMethods = [
     {
@@ -52,6 +53,8 @@ const paymentMethods = [
 const CheckoutMain = () => {
     const [selectedPayment, setSelectedPayment] = useState("cod");
     const [isAddressModalOpen, setIsAddressModalOpen] = useState(false);
+    const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+    const [selectedAddressToEdit, setSelectedAddressToEdit] = useState(null);
 
     return (
         <>
@@ -93,7 +96,18 @@ const CheckoutMain = () => {
                                     ARIF WALA, Punjab Pakistan
                                 </p>
 
-                                <button className='absolute right-1 top-1 w-8 h-8 flex items-center justify-center rounded-full text-gray-500 hover:bg-gray-100 hover:scale-[1.08] transition-all duration-300 ease-in-out'>
+                                <button
+                                    onClick={(e) => {
+                                        e.stopPropagation(); // prevent triggering address selection
+                                        setSelectedAddressToEdit({
+                                            name: "test",
+                                            phone: "+92 433 4343434",
+                                            address: "test address",
+                                            city: "ARIF WALA, Punjab Pakistan",
+                                        });
+                                        setIsEditModalOpen(true);
+                                    }}
+                                    className='absolute right-1 top-1 w-8 h-8 flex items-center justify-center rounded-full text-gray-500 hover:bg-gray-100 hover:scale-[1.08] transition-all duration-300 ease-in-out'>
                                     <FaRegEdit />
                                 </button>
 
@@ -222,7 +236,11 @@ const CheckoutMain = () => {
                 </div>
             </div>
 
-
+            <EditAddressModal
+                isOpen={isEditModalOpen}
+                onClose={() => setIsEditModalOpen(false)}
+                address={selectedAddressToEdit}
+            />
             <AddressModal isOpen={isAddressModalOpen} onClose={() => setIsAddressModalOpen(false)} />
         </>
     )

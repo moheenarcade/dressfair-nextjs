@@ -30,14 +30,7 @@ const EditAddressForm = ({ address, onSave, onCancel, exitDirection = "right" })
     };
 
     return (
-        // <motion.div
-        //     key="edit-form"
-        //     initial={{ x: 300, opacity: 0 }}
-        //     animate={{ x: 0, opacity: 1 }}
-        //     exit={{ x: 300, opacity: 0 }}
-        //     transition={{ type: "spring", stiffness: 120, damping: 20 }}
-        //     className="space-y-4 relative h-full flex flex-col justify-between"
-        // >
+   
         <motion.div
         key="edit-form"
         initial={{ x: 300, opacity: 0 }} // slides in from right
