@@ -100,9 +100,9 @@ export default function CartSidebar() {
             </div>
 
             <div className="checkout-btns flex flex-col gap-2 pt-4 pb-4 border-b border-b-gray-200">
-              <button className="hover:bg-[#fb7701] hover:scale-[1.03] text-sm xl:text-md transition-all duration-300 ease-in-out w-full py-[10px] px-4 rounded-full border border-transparent text-white bg-[#fb5d01] text-md font-semibold">
+              <Link href="/checkout" className="hover:bg-[#fb7701] text-center hover:scale-[1.03] text-sm xl:text-md transition-all duration-300 ease-in-out w-full py-[10px] px-4 rounded-full border border-transparent text-white bg-[#fb5d01] text-md font-semibold">
                 Checkout (12)
-              </button>
+              </Link>
               <Link href="/cart" className="w-full text-center py-[10px] px-4 rounded-full text-[#222] border-gray-500 hover:border-black border text-sm xl:text-md font-semibold">
                 Go to cart
               </Link>
