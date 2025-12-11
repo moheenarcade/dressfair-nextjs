@@ -8,19 +8,8 @@ import ProductImage from "../../../../public/deals-product4.avif";
 import ProductImage2 from "../../../../public/deals-product3.avif";
 import ProductCardMobile from "@/components/homePageMobile/productCardMobile";
 import { IoIosArrowDown } from "react-icons/io";
-
-const products = [
-    { id: 1, title: "Men's Jacket - Milano Italia", sold: "2k", rating: 5, price: 1899, oldPrice: 3944, image: ProductImage, category: "Men's Fashion" },
-    { id: 2, title: "Wireless Earbuds Pro 5.0", sold: "2k", rating: 4.5, price: 2999, oldPrice: 4999, image: ProductImage2, category: "Electronics" },
-    { id: 3, title: "Smart Watch Series 8", sold: "2k", rating: 4.3, price: 8499, oldPrice: 10999, image: ProductImage, category: "Electronics" },
-    { id: 4, title: "Stylish Handbag for Women", sold: "2k", rating: 5, price: 2499, oldPrice: 3299, image: ProductImage2, category: "Women's Fashion" },
-    { id: 5, title: "Casual Sneakers for Men", sold: "2k", rating: 5, price: 3599, oldPrice: 4599, image: ProductImage, category: "Footwear" },
-    { id: 6, title: "Hair Dryer Pro 2200W", sold: "2k", rating: 5, price: 1999, oldPrice: 2899, image: ProductImage, category: "Beauty & Health" },
-    { id: 7, title: "Smart Home Security Camera", sold: "2k", rating: 5, price: 5499, oldPrice: 6999, image: ProductImage2, category: "Smart Home" },
-    { id: 8, title: "Toy Car Set for Kids", sold: "112k", rating: 5, price: 1499, oldPrice: 2299, image: ProductImage, category: "Toys" },
-    { id: 9, title: "Laptop Backpack", sold: "32k", rating: 5, price: 2299, oldPrice: 2999, image: ProductImage, category: "Accessories" },
-    { id: 10, title: "Running Shoes", sold: "3k", rating: 5, price: 4999, oldPrice: 5999, image: ProductImage2, category: "Fitness" },
-];
+import { getCatalogue } from "@/lib/api";
+import Loader from "@/components/loader";
 
 const options = [
     { value: "Recommended", label: "Recommended" },
@@ -32,7 +21,6 @@ const options = [
     { value: "Toys", label: "Toys" },
     { value: "Fitness", label: "Fitness" },
 ];
-
 
 const customStyles = {
     control: (base, state) => ({
@@ -116,6 +104,44 @@ const BestSellerFilters = () => {
     const handleMouseLeave = () => setMenuIsOpen(false);
     const dropdownCategoryRef = useRef(null);
     const dropdownRef = useRef(null);
+    const [products, setProducts] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const swiperRef = useRef(null);
+    const [loadingMore, setLoadingMore] = useState(false);
+    const [page, setPage] = useState(1);
+    const [hasMore, setHasMore] = useState(true);
+
+  
+      useEffect(() => {
+          loadProducts(page);
+      }, [page]);
+  
+      const loadProducts = async (pageNumber) => {
+          if (pageNumber > 1) setLoadingMore(true);
+  
+          const res = await getCatalogue(pageNumber);
+          if (res?.success) {
+              if (pageNumber === 1) {
+                  setProducts(res.data);
+              } else {
+                  setProducts(prev => [...prev, ...res.data]);
+              }
+  
+              setHasMore(res.pagination.has_more_pages);
+          }
+  
+          setLoading(false);
+          setLoadingMore(false);
+      };
+  
+  
+    //   const filteredProducts =
+    //       selectedCategory === "Recommended"
+    //           ? products
+    //           : products.filter((p) => p.category === selectedCategory);
+  
+
+
     const filteredProducts = products.filter((p) => {
         const categoryMatch =
             selectedCategory === "Recommended" || p.category === selectedCategory;
@@ -125,25 +151,6 @@ const BestSellerFilters = () => {
             (selectedDays === 7 && p.id % 3 === 0);
         return categoryMatch && daysMatch;
     });
-
-    // useEffect(() => {
-    //     const handleClickOutside = (event) => {
-    //         if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-    //             setmMobileDaysOpen(false);
-    //         }
-    //     };
-
-    //     const handleScroll = () => setmMobileDaysOpen(false);
-
-    //     document.addEventListener("mousedown", handleClickOutside);
-    //     window.addEventListener("scroll", handleScroll);
-
-    //     return () => {
-    //         document.removeEventListener("mousedown", handleClickOutside);
-    //         window.removeEventListener("scroll", handleScroll);
-    //     };
-    // }, []);
-
 
     useEffect(() => {
         const handleClickOutside = (event) => {
@@ -233,13 +240,39 @@ const BestSellerFilters = () => {
                         </div>
                     </div>
                 </div>
-                <ProductCard products={filteredProducts} />
+                {loading ? (
+                    <Loader />
+                ) : (
+                    <>
+                        <ProductCard products={filteredProducts} />
+                        {hasMore && (
+                            <div className="flex justify-center mt-6">
+                                {loadingMore ? (
+                                    <button
+                                        className="flex items-center gap-4 justify-center py-2 lg:py-3 px-6 lg:px-12 text-lg font-[500] text-gray-500 rounded-full cursor-not-allowed"
+                                        disabled
+                                    >
+                                        <div className="smallloader mx-auto"></div>
+                                        loading...
+                                    </button>
+                                ) : (
+                                    <button
+                                        className="flex items-center gap-2 justify-center py-2 lg:py-3 px-6 lg:px-12 font-semibold text-md transition-all duration-300 ease-in-out hover:scale-[1.02] hover:bg-[#fb6d01] bg-[#fb7701] text-white rounded-full"
+                                        onClick={() => setPage(page + 1)}
+                                    >
+                                        See More <FaChevronDown />
+                                    </button>
+                                )}
+                            </div>
+                        )}
+                    </>
+                )}
             </div>
             <div className="mobile-cards-list block xl:hidden">
                 <h1 className="text-center font-bold text-xl py-2">Best Sellers</h1>
                 <div className="mobile-filters-best-seller border-t border-t-gray-300 px-2 pt-4 relative">
                     <div className="flex items-center justify-between gap-4 pb-4" >
-            
+
                         <div className="w-[50%]" ref={dropdownRef}>
                             <div
                                 onClick={() => {
@@ -311,7 +344,33 @@ const BestSellerFilters = () => {
                     </div>
                 </div>
                 <div className="px-2">
-                    <ProductCardMobile products={filteredProducts} />
+                    {loading ? (
+                        <Loader />
+                    ) : (
+                        <>
+                            <ProductCardMobile products={filteredProducts} />
+                            {hasMore && (
+                                <div className="flex justify-center my-6">
+                                    {loadingMore ? (
+                                        <button
+                                            className="flex items-center gap-4 justify-center py-2 lg:py-3 px-6 lg:px-12 text-lg font-[500] text-gray-500 rounded-full cursor-not-allowed"
+                                            disabled
+                                        >
+                                            <div className="smallloader mx-auto"></div>
+                                           
+                                        </button>
+                                    ) : (
+                                        <button
+                                        className="flex items-center gap-2 text-black border border-gray-500 justify-center py-[6px] lg:py-3 px-5 lg:px-12 font-semibold text-sm transition-all duration-300 ease-in-out hover:scale-[1.02] bg-transparent rounded-full"
+                                        onClick={() => setPage(page + 1)}
+                                    >
+                                        See More
+                                    </button>
+                                    )}
+                                </div>
+                            )}
+                        </>
+                    )}
                 </div>
             </div>
         </div>

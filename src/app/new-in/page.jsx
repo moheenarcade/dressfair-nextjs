@@ -10,7 +10,9 @@ const NewIn = () => {
       </div>
 
       <div className='block xl:hidden lg:px-16'>
-        <NewInFilters />
+        <div className="pt-4">
+          <NewInFilters />
+        </div>
       </div>
     </>
   )

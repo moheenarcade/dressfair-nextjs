@@ -4,6 +4,9 @@ import { UserProvider } from "@/context/UserContext";
 import { CartProvider } from "@/context/CartContext";
 import CartSidebar from "@/components/models/CartSidebar";
 import LayoutContent from "@/components/LayoutContent";
+import { LanguageProvider } from "@/context/LanguageContext";
+import { Toaster } from "react-hot-toast";
+import FaviconLoader from "@/components/FaviconLoader";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -36,17 +39,32 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
+  if (typeof window !== "undefined") {
+    window.addEventListener("error", (e) => {
+      if (/ChunkLoadError|Loading chunk/.test(e.message)) {
+        window.location.reload();
+      }
+    });
+  }
   return (
     <html lang="en">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <UserProvider>
-          <CartProvider>
-            <LayoutContent>{children}</LayoutContent>
-            <CartSidebar />
-          </CartProvider>
-        </UserProvider>
+          <Toaster position="top-center" 
+          containerStyle={{
+            zIndex: 999999999999999,
+          }}
+          />
+        <LanguageProvider>
+        <FaviconLoader />
+          <UserProvider>
+            <CartProvider>
+              <LayoutContent>{children}</LayoutContent>
+              <CartSidebar />
+            </CartProvider>
+          </UserProvider>
+        </LanguageProvider>
       </body>
     </html>
   );

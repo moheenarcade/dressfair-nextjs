@@ -12,6 +12,8 @@ import { CiLocationOn } from 'react-icons/ci';
 import CheckoutCartItemSliderMobile from '../checkoutCartItemSliderMobile';
 import { FaChevronRight, FaChevronUp } from 'react-icons/fa6';
 import MobileChekoutListBottomModal from '@/components/models/MobileChekoutListBottomModal';
+import MobileChekoutAddressList from '@/components/models/MobileChekoutAddressList';
+import CartItemsDetailCheckoutMobile from '@/components/models/cartItemsDetailCheckoutMobile';
 
 const paymentMethods = [
     {
@@ -51,8 +53,20 @@ const paymentMethods = [
 ];
 
 const CheckOutMainMobileView = () => {
+    const {
+        cartItems,
+        updateQty,
+        toggleSingle,
+        toggleSelectAll,
+        isCartOpen,
+        closeCart,
+        subtotal,
+        totalQty,
+        allSelected,
+        removeItem,
+
+    } = useCart();
     const [selectedPayment, setSelectedPayment] = useState("cod");
-    const { isCartOpen, closeCart } = useCart();
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [openQty, setOpenQty] = useState(false);
     const [selectedQty, setSelectedQty] = useState(1);
@@ -60,16 +74,11 @@ const CheckOutMainMobileView = () => {
     const [showMoreMenu, setShowMoreMenu] = useState(false);
     const [isManageModalOpen, setIsManageModalOpen] = useState(false);
     const [isShareModalOpen, setIsShareModalOpen] = useState(false);
+    const [showMobileAddressModel, setShowMobileAddressModel] = useState(false);
+    const [showCartItemsModel, setShowCartItemsModel] = useState(false);
 
-    const [cartItems, setCartItems] = useState([
-        { id: 1, img: "/deals-product5.avif", price: 13233, selected: true, qty: 1, openQty: false },
-        { id: 2, img: "/deals-product5.avif", price: 13233, selected: true, qty: 1, openQty: false },
-        { id: 3, img: "/deals-product5.avif", price: 13233, selected: true, qty: 1, openQty: false },
-        { id: 4, img: "/deals-product5.avif", price: 13233, selected: true, qty: 1, openQty: false },
-        { id: 5, img: "/deals-product5.avif", price: 13233, selected: true, qty: 1, openQty: false },
-    ]);
 
-    const allSelected = cartItems.length > 0 && cartItems.every(item => item.selected);
+
 
 
     useEffect(() => {
@@ -78,42 +87,53 @@ const CheckOutMainMobileView = () => {
         }
     }, [cartItems, closeCart]);
 
+    // Local state to manage which dropdown is open
+    const [openQtyId, setOpenQtyId] = useState(null);
+
+    useEffect(() => {
+        if (cartItems.length === 0) {
+            closeCart();
+        }
+    }, [cartItems, closeCart]);
+
+    const toggleQtyDropdown = (id) => {
+        setOpenQtyId(openQtyId === id ? null : id);
+    };
+
+    // Handle quantity update with toast
+    const handleUpdateQty = (item, newQty) => {
+        const { product_id, color, size } = item;
+        const currentQty = item.qty;
+
+        if (newQty === 0) {
+            removeItem(product_id, color.sku, size.product_option_id);
+            toast.success("Item removed from cart successfully!");
+        } else {
+            updateQty(product_id, color.sku, size.product_option_id, newQty);
+
+            if (newQty > currentQty) {
+                toast.success(`Quantity increased to ${newQty}`);
+            } else if (newQty < currentQty) {
+                toast.success(`Quantity decreased to ${newQty}`);
+            }
+        }
+        setOpenQtyId(null);
+    };
+
+    // Handle item removal with toast
+    const handleRemoveItem = (item) => {
+        const { product_id, color, size } = item;
+        removeItem(product_id, color.sku, size.product_option_id);
+        toast.success("Item removed from cart successfully!");
+    };
+
+
     useEffect(() => {
         const handleClickOutside = () => setShowMoreMenu(false);
         if (showMoreMenu) document.addEventListener("click", handleClickOutside);
         return () => document.removeEventListener("click", handleClickOutside);
     }, [showMoreMenu]);
 
-    const toggleQtyDropdown = (id) => {
-        setCartItems(prev =>
-            prev.map(item =>
-                item.id === id ? { ...item, openQty: !item.openQty } : { ...item, openQty: false }
-            )
-        );
-    };
-
-    const toggleSelectAll = () => {
-        const updated = cartItems.map((item) => ({
-            ...item,
-            selected: !allSelected,
-        }));
-        setCartItems(updated);
-    };
-
-    const toggleSingle = (id) => {
-        const updated = cartItems.map((item) =>
-            item.id === id ? { ...item, selected: !item.selected } : item
-        );
-        setCartItems(updated);
-    };
-
-    const updateQty = (id, qty) => {
-        setCartItems(prev =>
-            prev
-                .map(item => (item.id === id ? { ...item, qty, openQty: false } : item))
-                .filter(item => item.qty > 0)
-        );
-    };
 
     return (
 
@@ -122,9 +142,9 @@ const CheckOutMainMobileView = () => {
 
             <div className="checkout-header fixed w-full top-0 bg-white right-0 left-0 z-[99999]">
                 <div className="flex items-center justify-between py-2 px-3">
-                    <GoChevronLeft className='text-3xl' />
+                   <Link href="/cart"> <GoChevronLeft className='text-3xl' /></Link>
                     <p className='font-semibold text-[19px]'>
-                        Checkout (17)
+                        Checkout ({totalQty})
                     </p>
                     <p className='invisible'>
                         <GoChevronLeft className='text-3xl' />
@@ -146,7 +166,13 @@ const CheckOutMainMobileView = () => {
             </div>
 
             <div className=" pt-5 bg-white">
-                <div className="overflow-hidden flex gap-2 cursor-pointer bg-white relative rounded-sm p-3">
+                <div
+                    onClick={(e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        setShowMobileAddressModel(true);
+                    }}
+                    className="overflow-hidden flex gap-2 cursor-pointer bg-white relative rounded-sm p-3">
                     <CiLocationOn className='text-xl mt-1' />
                     <div className="">
                         <div className="flex items-center gap-3">
@@ -248,15 +274,15 @@ const CheckOutMainMobileView = () => {
                 <div className="border-b border-b-gray-200 py-4">
                     <div className="flex items-center justify-between mb-3">
                         <p className="text-[16px] text-[#222] font-semibold">Item(s) total:</p>
-                        <p className="text-[17px] text-[#555] line-through ">Rs.85,614</p>
+                        <p className="text-[17px] text-[#555] line-through ">Rs. {subtotal}</p>
                     </div>
-                    <div className="flex items-center justify-between mb-3">
+                    {/* <div className="flex items-center justify-between mb-3">
                         <p className="text-[16px] text-[#222] font-semibold">Item(s) discount:</p>
                         <p className="text-[17px] font-semibold text-[#fb7701]">-Rs.54,070</p>
-                    </div>
+                    </div> */}
                     <div className="flex items-center justify-between">
                         <p className="text-[16px] text-[#222] font-semibold">Subtotal:</p>
-                        <p className="text-[17px] text-[#222] font-[500]">Rs.102,549</p>
+                        <p className="text-[17px] text-[#222] font-[500]">Rs.{subtotal}</p>
                     </div>
                 </div>
                 <div className="flex items-start justify-between pt-3">
@@ -264,7 +290,7 @@ const CheckOutMainMobileView = () => {
                         Order total (Applicable taxes included):
                     </p>
                     <p className='text-[#0A8800] text-[20px] font-bold'>
-                        <span className='text-[15px]'>Rs.</span>102,549
+                        <span className='text-[15px]'>Rs.</span>{subtotal}
                     </p>
                 </div>
                 <div className="border border-[#0a8800] rounded-md p-2 mt-1 relative">
@@ -293,21 +319,21 @@ const CheckOutMainMobileView = () => {
                             setIsModalOpen(true);
                         }}
                         className="w-[35%] flex flex-col">
-                        <span className="text-[#000000] text-[16px] md:text-xl font-[500] line-through">
+                        {/* <span className="text-[#000000] text-[16px] md:text-xl font-[500] line-through">
                             154,992
-                        </span>
+                        </span> */}
                         <div className="flex items-center mx-auto">
                             <span className="text-[14px] font-[600] text-[#FB7701]">
-                                Rs. <span className="text-[18px] md:text-2xl">57,357</span>
+                                Rs. <span className="text-[18px] md:text-2xl">{subtotal}</span>
                             </span>
                             <FaChevronUp className="text-md" />
                         </div>
                     </button>
                     <Link href="#" className="w-[65%] ">
-                    <button className="bg-[#fb5d01] py-3  w-full hover:bg-[#fb7701] hover:scale-[1.03] text-white font-semibold flex flex-col justify-center text-lg py-1 px-5 lg:px-6 rounded-full transition-all duration-300 ease-in-out">
-                      
-                      Submit order (17)
-                      </button>
+                        <button className="bg-[#fb5d01] py-3  w-full hover:bg-[#fb7701] hover:scale-[1.03] text-white font-semibold flex flex-col justify-center text-lg py-1 px-5 lg:px-6 rounded-full transition-all duration-300 ease-in-out">
+
+                            Submit order ({totalQty})
+                        </button>
                     </Link>
                 </div>
             </div>
@@ -323,6 +349,19 @@ const CheckOutMainMobileView = () => {
                 qtyOptions={qtyOptions}
                 setIsModalOpen={setIsModalOpen}
             />
+
+            <MobileChekoutAddressList
+                isOpen={showMobileAddressModel}
+                onClose={() => setShowMobileAddressModel(false)}
+                cartItems={cartItems}
+                toggleQtyDropdown={toggleQtyDropdown}
+                updateQty={updateQty}
+                qtyOptions={qtyOptions}
+                setShowMobileAddressModel={setShowMobileAddressModel}
+
+            />
+
+
 
         </>
     )

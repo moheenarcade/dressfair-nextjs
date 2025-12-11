@@ -165,7 +165,7 @@ button , a {
 }
 
 
-/* HTML: <div class="loader"></div> */
+
 .loader {
   width: 50px;
   aspect-ratio: 1;
@@ -192,6 +192,81 @@ button , a {
 }
 @keyframes l23 {
   100% {transform: rotate(1turn)}
+}
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.96); }
+  to { opacity: 1; transform: scale(1); }
+}
+.animate-fadeIn { animation: fadeIn 0.25s ease-in-out; }
+
+/* small laoder  */
+
+.smallloader {
+  width: 30px;
+  aspect-ratio: 1;
+  display: grid;
+  border-radius: 50%;
+  background:
+    linear-gradient(0deg ,rgb(0 0 0/50%) 30%,#0000 0 70%,rgb(0 0 0/100%) 0) 50%/8% 100%,
+    linear-gradient(90deg,rgb(0 0 0/25%) 30%,#0000 0 70%,rgb(0 0 0/75% ) 0) 50%/100% 8%;
+  background-repeat: no-repeat;
+  animation: l23 1s infinite steps(12);
+}
+.smallloader::before,
+.smallloader::after {
+   content: "";
+   grid-area: 1/1;
+   border-radius: 50%;
+   background: inherit;
+   opacity: 0.915;
+   transform: rotate(30deg);
+}
+.smallloader::after {
+   opacity: 0.83;
+   transform: rotate(60deg);
+}
+@keyframes l23 {
+  100% {transform: rotate(1turn)}
+}
+
+/* white loader  */
+.whiteloader {
+  width: 50px;
+  aspect-ratio: 1;
+  display: grid;
+  border-radius: 50%;
+  background:
+  linear-gradient(0deg, rgba(255, 255, 255, 0.5) 30%, #ffffff00 0 70%, rgba(255, 255, 255, 1) 0) 50%/8% 100%,
+  linear-gradient(90deg, rgba(255, 255, 255, 0.25) 30%, #ffffff00 0 70%, rgba(255, 255, 255, 0.75) 0) 50%/100% 8%;
+
+  background-repeat: no-repeat;
+  animation: l23 1s infinite steps(12);
+}
+.whiteloader::before,
+.whiteloader::after {
+   content: "";
+   grid-area: 1/1;
+   border-radius: 50%;
+   background: inherit;
+   opacity: 0.915;
+   transform: rotate(30deg);
+}
+.whiteloader::after {
+   opacity: 0.83;
+   transform: rotate(60deg);
+}
+@keyframes l23 {
+  100% {transform: rotate(1turn)}
+}
+
+@keyframes blink-border {
+  0% { border-color: red; }
+  50% { border-color: transparent; }
+  100% { border-color: red; }
+}
+
+.blink {
+  animation: blink-border 0.5s ease-in-out 2; /* 2 blinks, 0.5s each */
 }
 
 
